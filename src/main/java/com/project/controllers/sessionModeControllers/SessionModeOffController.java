@@ -1,12 +1,13 @@
 package com.project.controllers.sessionModeControllers;
 
 import com.project.controllers.MainController;
+import com.project.models.User;
 
 public interface SessionModeOffController extends MainController {
 
-    String registerUser(String email, String password);
+    String registerUser(User user);
 
-    String loginUserAndGetSessionId(String email, String password);
+    String loginUserAndGetSessionId(User user);
 
     //boolean sessionOffControl();
 

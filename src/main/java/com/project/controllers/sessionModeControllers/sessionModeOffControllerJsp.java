@@ -1,15 +1,23 @@
 package com.project.controllers.sessionModeControllers;
 
+import com.project.models.User;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-public class sessionModeOffControllerJsp implements SessionModeOffController {
+@Controller
+public class sessionModeOffControllerJsp implements SessionModeOffController{
+
     @Override
-    public String registerUser(@ModelAttribute("register") String email, String password) {
+    @RequestMapping("/registerUser")
+    public String registerUser(@ModelAttribute("user") User user) {
+        System.out.println("This is registerUser method " + user);
         return null;
     }
 
     @Override
-    public String loginUserAndGetSessionId(@ModelAttribute ("login") String email, String password) {
+    public String loginUserAndGetSessionId(@ModelAttribute("user2") User user) {
+        System.out.println("This is loginUserAndGetSessionId method " + user);
         return null;
     }
 }

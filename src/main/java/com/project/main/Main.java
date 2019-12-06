@@ -4,15 +4,12 @@ import com.project.controllers.sessionModeControllers.SessionModeOffController;
 import com.project.controllers.sessionModeControllers.SessionModeOffControllerConsole;
 import com.project.controllers.sessionModeControllers.SessionModeOnController;
 import com.project.controllers.sessionModeControllers.SessionModeOnControllerConsole;
+import com.project.models.User;
 import com.project.repositories.ConnectionSaver;
-import configuration.AppConfig;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.support.FileSystemXmlApplicationContext;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
 
@@ -24,7 +21,16 @@ public class Main {
     //@ComponentScan
     //@EnableAutoConfiguration
     public static void main(String[] args) {
-        ApplicationContext appContext = new AnnotationConfigApplicationContext(AppConfig.class);
+        ApplicationContext appContext = new FileSystemXmlApplicationContext("/src/main/webapp/WEB-INF/config/servlet-config.xml");//new AnnotationConfigApplicationContext(AppConfig.class);
+
+        System.out.println(appContext.getBeanDefinitionCount());
+        String[] beanNames = appContext.getBeanDefinitionNames();
+        for (int i = 0; i < beanNames.length; i++) {
+            System.out.println(beanNames[i]);
+        }
+        Object sessionModeOffControllerJsp = appContext.getBean("sessionModeOffControllerJsp");
+
+        System.out.println(sessionModeOffControllerJsp.getClass());
 
         ConnectionSaver connectionSaver = new ConnectionSaver();
 
@@ -73,10 +79,10 @@ public class Main {
         boolean sessionModeOnStatus = false;
         switch(commandNumber) {
             case 0:
-                respond = sessionModeOffController.registerUser(strings.get(2), strings.get(3));
+                respond = sessionModeOffController.registerUser(new User(-200, strings.get(2), strings.get(3)));//think how to implement it better
                 break;
             case 1:
-                respond = sessionModeOffController.loginUserAndGetSessionId(strings.get(2),strings.get(3));
+                respond = sessionModeOffController.loginUserAndGetSessionId(new User(-200, strings.get(2),strings.get(3)));//think how to implement it better
                 if (!respond.contains("null")) {
                     sessionModeOnStatus = true;
                 }
