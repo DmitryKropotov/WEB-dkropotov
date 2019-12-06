@@ -1,6 +1,5 @@
-/*package com.project.servlets;
+package com.project.servlets;
 
-import com.project.controllers.ConsoleMainController;
 import com.project.controllers.MainController;
 
 import javax.servlet.ServletException;
@@ -9,20 +8,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 @WebServlet("/main")
 public class MainPageServlet extends HttpServlet {
 
-    private static MainController consoleMainController = new ConsoleMainController();
-
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-         //resp.getWriter().write("Hello world");
-        consoleMainController.sessionModeControl();
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {String command = req.getParameter("command");
+        if (command == null) {
+            command = "";
+        }
+        if (command.equals("register")) {
+            resp.sendRedirect("/WEB_dkropotov2_war_exploded/register");
+        }
+        if (command.equals("login")) {
+            resp.sendRedirect("/WEB_dkropotov2_war_exploded/login");
+        }
+        PrintWriter writer = resp.getWriter();
+        writer.write("Please write command in param");
     }
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-    }
-}*/
+}

@@ -4,6 +4,10 @@ import com.project.controllers.sessionModeControllers.SessionModeOffController;
 import com.project.controllers.sessionModeControllers.SessionModeOffControllerConsole;
 import com.project.controllers.sessionModeControllers.SessionModeOnController;
 import com.project.controllers.sessionModeControllers.SessionModeOnControllerConsole;
+import com.project.repositories.ConnectionSaver;
+import configuration.AppConfig;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -20,6 +24,12 @@ public class Main {
     //@ComponentScan
     //@EnableAutoConfiguration
     public static void main(String[] args) {
+        ApplicationContext appContext = new AnnotationConfigApplicationContext(AppConfig.class);
+
+        ConnectionSaver connectionSaver = new ConnectionSaver();
+
+        System.out.println(connectionSaver.getUrl());
+
         boolean sessionModeOnStatus = false;
         while (true) {
             if (!sessionModeOnStatus) {
