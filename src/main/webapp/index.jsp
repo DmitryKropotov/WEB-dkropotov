@@ -14,33 +14,6 @@
     <title>Final Project</title>
 </head>
 <body>
-    <h4>Please choose an operation</h4>
-
-    <form action="/action_page.php">
-        First name: <input type="text" name="FirstName" value="Mickey"><br>
-        Last name: <input type="text" name="LastName" value="Mouse"><br>
-        <input type="submit" value="Submit">
-    </form>
-
-    <table>
-       <tr>
-        <tr>
-            <h5>Register a new user</h5>
-            <form action="/registerUser.html">
-                 Email: <input type="text" name="email"/></td><br>
-                 Password: <input type="password" name="password"/></td><br>
-                 Repeat password: <input type="password"/></td><br>
-                <input type="submit" value="Submit user"/>
-            </form>
-        </tr>
-        <tr>
-            <h5>Login to the system</h5>
-            <form commandName="user2">
-                 Email: <input type="text" name="email"/></td><br>
-                 Password: <input type="password" name="password"/></td><br>
-                <input type="submit" value="Login user"/>
-            </form>
-        </tr>
-    </table>
+    <h4>Main page</h4>
 </body>
 </html>

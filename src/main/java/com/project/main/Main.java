@@ -28,7 +28,7 @@ public class Main {
         for (int i = 0; i < beanNames.length; i++) {
             System.out.println(beanNames[i]);
         }
-        Object sessionModeOffControllerJsp = appContext.getBean("sessionModeOffControllerJsp");
+        Object sessionModeOffControllerJsp = appContext.getBean("SessionModeOffControllerJsp");
 
         System.out.println(sessionModeOffControllerJsp.getClass());
 
