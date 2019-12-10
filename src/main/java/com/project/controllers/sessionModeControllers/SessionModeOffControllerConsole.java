@@ -27,16 +27,4 @@ public class SessionModeOffControllerConsole implements SessionModeOffController
     public String loginUserAndGetSessionId(User user) {
         return userService.loginUserAndGetSessionId(user.getEmail(), encryptPassword(user.getPassword()));
     }
-
-    private String encryptPassword(String password) {
-        if (password.isEmpty()) {
-            return "";
-        }
-        char[] pass = password.toCharArray();
-        String result = "";
-        for (int i = 0; i < pass.length; i++) {
-            result += pass[i] + "rgh";
-        }
-        return result;
-    }
 }

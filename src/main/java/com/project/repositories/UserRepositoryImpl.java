@@ -43,14 +43,31 @@ public class UserRepositoryImpl implements UserRepository {
     @Override
     public Optional<User> selectUserByEmail(String email) {
         List<User> users = new ArrayList();
+        Statement stmt = null;
+        ResultSet rs = null;
         try {
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM Users where email = '"  + email + "'");
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery("SELECT * FROM Users where email = '"  + email + "'");
             while (rs.next()) {
                 users.add(new User(rs.getInt("id"), email, rs.getString("password")));
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
         }
         return users.isEmpty() ? Optional.empty(): Optional.ofNullable(users.get(0));
     }

@@ -11,6 +11,21 @@
 <html>
 <head>
     <title>Final Project</title>
+
+    <style>
+    .error {
+    color: #ff0000;
+    }
+
+    .errorblock {
+    color: #000;
+    background-color: #ffEEEE;
+    border: 3px solid #ff0000;
+    padding: 8px;
+    margin: 16px;
+    }
+    </style>
+
 </head>
 <body>
 
@@ -22,8 +37,9 @@
 <table>
     <tr>
     <tr>
+    <form:errors path="*" cssClass="errorblock" element="div" />
         <h5>Register a new user</h5>
-            <form:form commandName="user">
+            <form:form>
             <table>
                 Email: <input type="text" name="email"/></td><br>
                 Password: <input type="password" name="password"/></td><br>
@@ -34,7 +50,7 @@
     </tr>
     <tr>
         <h5>Login to the system</h5>
-         <form:form commandName="user2">
+         <form:form>
          <table>
              Email: <input type="text" name="email"/></td><br>
              Password: <input type="password" name="password"/></td><br>

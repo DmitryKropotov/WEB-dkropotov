@@ -21,7 +21,7 @@ public class Main {
     //@ComponentScan
     //@EnableAutoConfiguration
     public static void main(String[] args) {
-        ApplicationContext appContext = new FileSystemXmlApplicationContext("/src/main/webapp/WEB-INF/config/servlet-config.xml");//new AnnotationConfigApplicationContext(AppConfig.class);
+        /*ApplicationContext appContext = new FileSystemXmlApplicationContext("/src/main/webapp/WEB-INF/config/servlet-config.xml");//new AnnotationConfigApplicationContext(AppConfig.class);
 
         System.out.println(appContext.getBeanDefinitionCount());
         String[] beanNames = appContext.getBeanDefinitionNames();
@@ -34,7 +34,7 @@ public class Main {
 
         ConnectionSaver connectionSaver = new ConnectionSaver();
 
-        System.out.println(connectionSaver.getUrl());
+        System.out.println(connectionSaver.getUrl());*/
 
         boolean sessionModeOnStatus = false;
         while (true) {
