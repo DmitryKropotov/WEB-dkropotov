@@ -2,12 +2,13 @@ package com.project.controllers.sessionModeControllers;
 
 import com.project.controllers.MainController;
 import com.project.models.User;
+import org.springframework.ui.Model;
 
 public interface SessionModeOffController extends MainController {
 
-    String registerUser(User user);
+    boolean registerUser(User user, Model model);
 
-    String loginUserAndGetSessionId(User user);
+    String loginUserAndGetSessionId(User user, Model model);
 
     default String encryptPassword(String password) {
         if (password.isEmpty()) {
@@ -20,7 +21,5 @@ public interface SessionModeOffController extends MainController {
         }
         return result;
     }
-
-    //boolean sessionOffControl();
 
 }

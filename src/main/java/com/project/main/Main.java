@@ -8,6 +8,7 @@ import com.project.models.User;
 import com.project.repositories.ConnectionSaver;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
+import org.springframework.ui.Model;
 
 import java.util.*;
 
@@ -15,7 +16,7 @@ public class Main {
 
     private static SessionModeOnController sessionModeOnController = null;
 
-    private static SessionModeOffController sessionModeOffController = SessionModeOffControllerConsole.getInstance();
+    private static SessionModeOffControllerConsole sessionModeOffController = (SessionModeOffControllerConsole) SessionModeOffControllerConsole.getInstance();
 
     //@Configuration
     //@ComponentScan
@@ -79,7 +80,8 @@ public class Main {
         boolean sessionModeOnStatus = false;
         switch(commandNumber) {
             case 0:
-                respond = sessionModeOffController.registerUser(new User(-200, strings.get(2), strings.get(3)));//think how to implement it better
+                respond = sessionModeOffController.registerUser(new User(-200, strings.get(2), strings.get(3))) ?
+                "user is registered": "user is not registered";//think how to implement it better
                 break;
             case 1:
                 respond = sessionModeOffController.loginUserAndGetSessionId(new User(-200, strings.get(2),strings.get(3)));//think how to implement it better

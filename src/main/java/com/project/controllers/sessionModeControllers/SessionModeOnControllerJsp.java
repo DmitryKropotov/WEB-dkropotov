@@ -5,7 +5,7 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class SessionModeOnControllerJsp implements SessionModeOnController {
     //@RequestMapping(value = "/sessionModeOn")
-    public String mainInSessionModeOn(/*@ModelAttribute("sessionModeOn") ProductRequest product*/) {
+    public String mainInSessionModeOn(/*@Valid @ModelAttribute("sessionModeOn") ProductRequest product, BindingResult result*/) {
         System.out.println("mainInSessionModeOn method ");
         return "sessionModeOnMainPage";
     }

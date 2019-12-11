@@ -15,19 +15,19 @@ public class UserRepositoryImpl implements UserRepository {
     private Connection conn = ConnectionSaver.getConnection();
 
     @Override
-    public String createUser(String email, String password) {
+    public boolean createUser(String email, String password) {
         if (selectUserByEmail(email).isPresent()) {
-            return "User with email " + email + " already exists";
+            return false;
         }
         Statement stmt = null;
-        String result = "Status ";
+        boolean result;
         try {
             stmt = conn.createStatement();
             stmt.executeUpdate("INSERT INTO Users (email, password) VALUES ('" + email + "', '" + password + "');");
-            result = result + "200";//OK code
+            result = true;
         } catch (SQLException e) {
             e.printStackTrace();
-            result = result + "409";//error code
+            result = false;
         } finally {
             if (stmt != null) {
                 try {

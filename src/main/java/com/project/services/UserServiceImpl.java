@@ -9,7 +9,7 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository = new UserRepositoryImpl();
     private SessionService sessionService = new SessionServiceImpl();
 
-    public String registerUser(String email, String password) {
+    public boolean registerUser(String email, String password) {
          return userRepository.createUser(email, password);
     }
 
