@@ -8,10 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -98,7 +95,7 @@ public class SessionModeOffControllerJsp implements SessionModeOffController {
             //return "wrongEmailOrPassword";
         }
         SessionModeOnControllerJsp sessionModeOnController = new SessionModeOnControllerJsp();
-        return sessionModeOnController.mainInSessionModeOn();
+        return "redirect:sessionModeOn.html";//sessionModeOnController.mainInSessionModeOn();
         //return "redirect:sessionModeOn.html";
     }
 

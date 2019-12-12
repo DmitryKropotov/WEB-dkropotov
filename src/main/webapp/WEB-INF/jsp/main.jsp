@@ -38,7 +38,6 @@
 
 <table>
     <tr>
-    <tr>
         <h5>Register a new user</h5>
             <form:form>
             <table>
@@ -56,15 +55,15 @@
     </tr>
     <tr>
         <h5>Login to the system</h5>
-         <form:form>
-         <td>
+          <form:form>
+          <table>
              Email: <input type="email" name="email"/></td><br>
              Password: <input type="password" name="password"/></td><br>
              <input type = "hidden" name="passwordRepeater"/></td>
              <h1>${userchecker.wrongEmailOrPassword}</h1>
              <input type="submit" value="Login user"/>
-         </table>
-         </form:form>
+          </table>
+          </form:form>
     </tr>
 </table>
 </body>

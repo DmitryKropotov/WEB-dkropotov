@@ -16,6 +16,6 @@ public interface SessionModeOnController extends MainController {
 
     boolean checkoutBooking();
 
-    void finishSession();
+    String finishSession();
 
 }

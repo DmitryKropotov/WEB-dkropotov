@@ -1,8 +1,6 @@
 package com.project.controllers.sessionModeControllers;
 
-import com.project.controllers.MainController;
 import com.project.models.Product;
-import com.project.repositories.ConnectionSaver;
 import com.project.services.ProductsService;
 import com.project.services.ProductsServiceImpl;
 
@@ -136,9 +134,10 @@ public class SessionModeOnControllerConsole implements SessionModeOnController {
     }
 
     @Override
-    public void finishSession() {
+    public String finishSession() {
         returnGoodsToStore();
         System.out.println("Session is over");
+        return "";
     }
 
     @Override

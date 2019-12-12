@@ -11,6 +11,32 @@
 <html>
 <head>
     <title>Final Project</title>
+
+
+
+    <script type="text/javascript">
+	$(document).ready(
+		function() {
+		$.getJSON('<spring:url value="http://localhost:8080/WEB_dkropotov2_war_exploded/goods.html"/>', {
+    ajax : 'true'
+}, function(data){
+    var html = '<option value="">--Please select one--</option>';
+    var len = data.length;
+    for (var i = 0; i < len; i++) {
+        html += '<option value="' + data[i].desc + '">'
+                + data[i].desc + '</option>';
+    }
+    html += '</option>';
+
+    $('#activities').html(html);
+});
+
+});
+
+</script>
+
+
+
 </head>
 <body>
 
@@ -30,7 +56,15 @@
                 Amount: <input type="number" name="amount"/></td><br>
                 <input type="submit" value="Submit choice"/>
             </table>
-        </form:form>
+            <form:form commandName="productrequest">
+                <form:select id="goods" path="products"></form:select>
+            </form:form>
+            <h1>Available products are ${productrequest.products}</h1>
+            <form:form>
+                <input type="hidden" name="logOut" value="true">
+                <input type="submit" value="Log out"/>
+            </form:form>
+         </form:form>
     </tr>
 </table>
 </body>
