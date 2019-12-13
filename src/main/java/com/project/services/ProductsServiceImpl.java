@@ -13,8 +13,38 @@ public class ProductsServiceImpl implements ProductsService {
     private ProductsRepository productsRepository = ProductsRepositoryImpl.getProductsRepository();
 
     @Override
-    public List<Product> selectAllProducts() {
+    public List<Product> getAllProductsAsList() {
         return productsRepository.selectProducts(new HashMap<>());
+    }
+
+    @Override
+    public String getAllProductsAsString() {
+        List<Product> products = productsRepository.selectProducts(new HashMap<>());
+        String result = "";
+        for (Product product : products) {
+            result = result + product.toString() + " ";
+        }
+        return result;
+    }
+
+    @Override
+    public Map<String, Integer> getTitleAmountProductsAsMap(){
+        List<Product> products = productsRepository.selectProducts(new HashMap<>());
+        Map<String, Integer> result = new HashMap<>();
+        for (Product product : products) {
+            result.put(product.getTitle(), product.getAvailable());
+        }
+        return result;
+    }
+
+    @Override
+    public Map<String, Integer> getTitleIdProductsAsMap() {
+        List<Product> products = productsRepository.selectProducts(new HashMap<>());
+        Map<String, Integer> result = new HashMap<>();
+        for (Product product : products) {
+            result.put(product.getTitle(), product.getId());
+        }
+        return result;
     }
 
     @Override

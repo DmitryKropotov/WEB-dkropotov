@@ -4,6 +4,8 @@ import com.project.controllers.sessionModeControllers.SessionModeOffController;
 import com.project.controllers.sessionModeControllers.SessionModeOffControllerConsole;
 import com.project.controllers.sessionModeControllers.SessionModeOnController;
 import com.project.controllers.sessionModeControllers.SessionModeOnControllerConsole;
+import com.project.controllers.sessionModeControllers.enums.ModifyCartItemsResults;
+import com.project.models.Product;
 import com.project.models.User;
 import com.project.repositories.ConnectionSaver;
 import org.springframework.context.ApplicationContext;
@@ -127,10 +129,10 @@ public class Main {
         }
 
         List<String> strings = Arrays.asList(inputString.split(" "));
-        String respond;
+        String respond = null;
         switch(commandNumber) {
             case 0:
-                respond = sessionModeOnController.showProductsInStore();
+                respond = sessionModeOnController.getAllProductsAsString();
                 break;
             case 1:
                 respond = sessionModeOnController.addItemToCardProducts(Integer.parseInt(strings.get(5)), Integer.parseInt(strings.get(7)));
@@ -139,10 +141,27 @@ public class Main {
                 respond = sessionModeOnController.displayCartContent();
                 break;
             case 3:
-                respond = sessionModeOnController.removeItemFromCart(Integer.parseInt(strings.get(6)));
+                int idToRemove = Integer.parseInt(strings.get(6));
+                respond = "Item with id " + idToRemove + (sessionModeOnController.removeItemFromCart(idToRemove) ? " removed": " not found");
                 break;
             case 4:
-                respond = sessionModeOnController.modifyCartItem(Integer.parseInt(strings.get(4)), Integer.parseInt(strings.get(6)));
+                int idToModify = Integer.parseInt(strings.get(4));
+                int newAmount = Integer.parseInt(strings.get(6));
+                ModifyCartItemsResults result = sessionModeOnController.modifyCartItem(idToModify, newAmount);
+                switch (result) {
+                    case NOT_FOUND_IN_CART:
+                        respond = "There is no item with id " + idToModify + " in cart";
+                        break;
+                    case NOT_FOUND_IN_DATABASE:
+                        respond = "Item with id " + idToModify + " not found";
+                        break;
+                    case NOT_ENOUGH_IN_DATABASE:
+                        respond = "Item with id " + idToModify + " is not enough in database";
+                        break;
+                    case MODIFIED:
+                        respond = "Item with id " + idToModify + " modified";
+                        break;
+                }
                 break;
             case 5:
                 sessionModeOnController.checkoutBooking();

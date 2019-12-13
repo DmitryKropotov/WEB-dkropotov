@@ -1,10 +1,10 @@
 package com.project.controllers.sessionModeControllers;
 
+import com.project.controllers.sessionModeControllers.enums.ModifyCartItemsResults;
 import com.project.models.Product;
 import com.project.models.ProductRequest;
 import com.project.services.ProductsService;
 import com.project.services.ProductsServiceImpl;
-import com.sun.tools.internal.ws.processor.model.Request;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -25,14 +25,60 @@ public class SessionModeOnControllerJsp implements SessionModeOnController {
     @RequestMapping(value = "/sessionModeOn", method = RequestMethod.GET)
     public String mainInSessionModeOn(Model model) {
         System.out.println("mainInSessionModeOn method get");
-        model.addAttribute("productrequest", new ProductRequest());
+        model.addAttribute("productrequest", new ProductRequest(getAllProductsAsString(), getTitleAmountProductsAsMap(),
+                getTitleIdProductsAsMap()));
         return "sessionModeOnMainPage";
     }
 
     @RequestMapping(value = "/sessionModeOn", method = RequestMethod.POST)
-    public String mainInSessionModeOn(@Valid @ModelAttribute("sessionModeOn") ProductRequest product, BindingResult result, Model model) {
+    public String mainInSessionModeOn(@Valid @ModelAttribute("productrequest") ProductRequest product, BindingResult result, Model model) {
         System.out.println("mainInSessionModeOn method post");
-        if (product.isLogOut()) {
+
+        String allProductsAsString = getAllProductsAsString();
+        product.setAvailableProducts(allProductsAsString);
+        Map<String, Integer> titleAmountProducts = getTitleAmountProductsAsMap();
+        product.setTitleAmountProducts(titleAmountProducts);
+        Map<String, Integer> titleIdProductsAsMap = getTitleIdProductsAsMap();
+        product.setTitleIdProducts(titleIdProductsAsMap);
+
+        String title = product.getTitle();
+        Integer amount = product.getAmount();
+        if (title != null && amount != null) {
+            String answer =  addItemToCardProducts(titleIdProductsAsMap.get(title), titleAmountProducts.get(title));
+            product.setAnswerForGoodRespond(answer);
+            return "sessionModeOnMainPage";
+        } else if (product.isDisplayContent()) {
+              String answer = displayCartContent();
+              product.setCartContent(answer);
+              return "sessionModeOnMainPage";
+        } else if (product.getItemToRemove() != null) {
+            int id = titleIdProductsAsMap.get(product.getItemToRemove());
+            String removedSuccessfully = "Item with id " + id + (removeItemFromCart(id) ? " removed": " not found");
+            product.setRemovedSuccessfully(removedSuccessfully);
+            return "sessionModeOnMainPage";
+        } else if (product.getItemToModify() != null && product.getNewAmount() != null) {
+            int id = titleIdProductsAsMap.get(product.getItemToRemove());
+            ModifyCartItemsResults modificationResult = modifyCartItem(id, product.getNewAmount());
+            switch (modificationResult) {
+                case NOT_FOUND_IN_CART:
+                    product.setModificationResult("There is no item with id " + id + " in cart");
+                    break;
+                case NOT_FOUND_IN_DATABASE:
+                    product.setModificationResult("Item with id " + id + " not found");
+                    break;
+                case NOT_ENOUGH_IN_DATABASE:
+                    product.setModificationResult("Item with id " + id + " is not enough in database");
+                    break;
+                case MODIFIED:
+                    product.setModificationResult("Item with id " + id + " modified");
+                    break;
+            }
+            return "sessionModeOnMainPage";
+        } else if (product.isCheckoutBooking()) {
+            String successfulCheckout = checkoutBooking() ? "Your booking is successfully registered": "Sorry. There is not enough products in database any more";
+            product.setCheckOutResult(successfulCheckout);
+            return "sessionModeOnMainPage";
+        } else if (product.isLogOut()) {
             return finishSession();
         } else {
             return "sessionModeOnMainPage";
@@ -59,13 +105,23 @@ public class SessionModeOnControllerJsp implements SessionModeOnController {
 
 
     @Override
-    public String showProductsInStore() {
-        List<Product> products = productsService.selectAllProducts();
-        String result = "";
-        for (Product product : products) {
-            result = result + product.toString();
-        }
-        return result;
+    public List<Product> showProductsInStore() {
+        return productsService.getAllProductsAsList();
+    }
+
+    @Override
+    public String getAllProductsAsString() {
+        return productsService.getAllProductsAsString();
+    }
+
+    @Override
+    public Map<String, Integer> getTitleAmountProductsAsMap() {
+        return productsService.getTitleAmountProductsAsMap();
+    }
+
+    @Override
+    public Map<String, Integer> getTitleIdProductsAsMap() {
+        return productsService.getTitleIdProductsAsMap();
     }
 
     @Override
@@ -113,7 +169,7 @@ public class SessionModeOnControllerJsp implements SessionModeOnController {
     }
 
     @Override
-    public String removeItemFromCart(int id) {
+    public boolean removeItemFromCart(int id) {
         Optional<Product> productToRemove = cartProducts.stream().filter(product -> product.getId() == id).findFirst();
         if (productToRemove.isPresent()) {
             Map<String, Object> conditionsToSelect = new HashMap();
@@ -123,24 +179,23 @@ public class SessionModeOnControllerJsp implements SessionModeOnController {
             columnsToUpdate.put("available", availableInDB + productToRemove.get().getAvailable());
             productsService.updateProducts(columnsToUpdate, conditionsToSelect);
             cartProducts.remove(productToRemove.get());
-            return "Item with id " + id + " removed";
-        } else {
-            return "Item with id " + id+ " not found";
+            return true;
         }
+        return false;
     }
 
     @Override
-    public String modifyCartItem(int id, int newAmount) {
+    public ModifyCartItemsResults modifyCartItem(int id, int newAmount) {
         List<Product> modifiedProductsFromCart = cartProducts.stream().filter(cartProduct -> cartProduct.getId() == id).collect(Collectors.toList());
         if (modifiedProductsFromCart.isEmpty()) {
-            return "There is no item with id " + id + " in cart";
+            return ModifyCartItemsResults.NOT_FOUND_IN_CART;
         }
         Map<String, Object> conditionsToSelect = new HashMap();
         conditionsToSelect.put("id", id);
         int availableInDB = productsService.selectProducts(conditionsToSelect).get(0).getAvailable();
         Product productFromCart = modifiedProductsFromCart.get(0);
         if (newAmount > availableInDB + productFromCart.getAvailable()) {
-            return "Item with id " + id + " is not enough in database";
+            return ModifyCartItemsResults.NOT_ENOUGH_IN_DATABASE;
         } else {
             Product productFromDb = productsService.selectProducts(conditionsToSelect).get(0);
             Map<String, Object> columnsToUpdate = new HashMap<>();
@@ -148,7 +203,10 @@ public class SessionModeOnControllerJsp implements SessionModeOnController {
             productsService.updateProducts(columnsToUpdate, conditionsToSelect);
             productFromCart.setAvailable(newAmount);
         }
-        return "Item with id " + id + (!modifiedProductsFromCart.isEmpty() ? " modified": " not found");
+        if (modifiedProductsFromCart.isEmpty()) {
+            return ModifyCartItemsResults.NOT_FOUND_IN_DATABASE;
+        }
+        return ModifyCartItemsResults.MODIFIED;
     }
 
     @Override
@@ -174,6 +232,23 @@ public class SessionModeOnControllerJsp implements SessionModeOnController {
 
     @Override
     public String finishSession() {
-         return "redirect: main.html";
+        returnGoodsToStore();
+        return "redirect: main.html";
+    }
+
+    private void returnGoodsToStore() {
+        List<Product> productsFromDataBase = productsService.getAllProductsAsList();
+        cartProducts.forEach(product -> {
+            Optional<Product> productFromDB = productsFromDataBase.stream().filter(productFromDBInFilter -> productFromDBInFilter.getId() == product.getId()).findFirst();
+            if (!productFromDB.isPresent()) {
+                System.out.println("database error");
+                return;
+            }
+            Map<String, Object> columnsToUpdate = new HashMap<>();
+            columnsToUpdate.put("available", productFromDB.get().getAvailable() + product.getAvailable());
+            Map<String, Object> conditions = new HashMap<>();
+            conditions.put("id", product.getId());
+            productsService.updateProducts(columnsToUpdate, conditions);
+        });
     }
 }

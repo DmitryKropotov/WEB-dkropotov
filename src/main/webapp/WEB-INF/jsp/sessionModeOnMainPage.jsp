@@ -40,7 +40,7 @@
 </head>
 <body>
 
-<form:form commandName="sessionModeOn">
+<form:form commandName="productrequest">
 </form:form>
 
 
@@ -50,16 +50,49 @@
     <tr>
     <tr>
         <h5>Please choose goods from the store</h5>
+        <h2>Available products are ${productrequest.availableProducts}</h2>
         <form:form>
-            <table>
-                Good: <input type="text" name="title"/></td><br>
-                Amount: <input type="number" name="amount"/></td><br>
-                <input type="submit" value="Submit choice"/>
-            </table>
-            <form:form commandName="productrequest">
-                <form:select id="goods" path="products"></form:select>
+            <form:form>
+                <table>
+                   Good: <input type="text" name="title"/></td><br>
+                   Amount: <input type="number" name="amount"/></td><br>
+                   <h5>${productrequest.answerForGoodRespond}</h5>
+                   <input type="submit" value="Submit choice"/>
+                </table>
             </form:form>
-            <h1>Available products are ${productrequest.products}</h1>
+            <form:form>
+                <table>
+                   <input type="hidden" name="displayContent" value="true"/></td><br>
+                   <h1>${productrequest.cartContent}</h1>
+                   <input type="submit" value="Show cart content"/>
+                </table>
+            </form:form>
+
+
+
+            <form:form>
+               <table>
+                  <input type="text" name="itemToRemove"/></td><br>
+                  <h1>${productrequest.removedSuccessfully}</h1>
+                  <input type="submit" value="Remove item from cart"/>
+               </table>
+            </form:form>
+            <form:form>
+                <table>
+                   <input type="text" name="itemToModify"/></td><br>
+                   <input type="number" name="newAmount"/></td><br>
+                   <h1>${productrequest.modificationResult}</h1>
+                   <input type="submit" value="Modify cart item"/>
+                </table>
+            </form:form>
+            <form:form>
+                <table>
+                   <input type="hidden" name="checkoutBooking" value="true"/></td><br>
+                   <h1>${productrequest.checkOutResult}</h1>
+                   <input type="submit" value="Checkout booking"/>
+                </table>
+            </form:form>
+
             <form:form>
                 <input type="hidden" name="logOut" value="true">
                 <input type="submit" value="Log out"/>

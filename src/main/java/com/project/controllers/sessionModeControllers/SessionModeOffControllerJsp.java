@@ -18,7 +18,7 @@ import java.util.List;
 @SessionAttributes("userchecker")
 public class SessionModeOffControllerJsp implements SessionModeOffController {
 
-    private static final SessionModeOffControllerJsp SESSION_MODE_OFF_CONSOLE = new SessionModeOffControllerJsp();
+    private static final SessionModeOffControllerJsp SESSION_MODE_OFF_CONTROLLER_JSP = new SessionModeOffControllerJsp();
 
     private SessionModeOffControllerJsp() {}
 
@@ -94,7 +94,7 @@ public class SessionModeOffControllerJsp implements SessionModeOffController {
            return "main";
             //return "wrongEmailOrPassword";
         }
-        SessionModeOnControllerJsp sessionModeOnController = new SessionModeOnControllerJsp();
+        //SessionModeOnControllerJsp sessionModeOnController = new SessionModeOnControllerJsp();
         return "redirect:sessionModeOn.html";//sessionModeOnController.mainInSessionModeOn();
         //return "redirect:sessionModeOn.html";
     }

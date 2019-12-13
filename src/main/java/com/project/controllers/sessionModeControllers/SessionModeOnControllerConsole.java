@@ -1,5 +1,6 @@
 package com.project.controllers.sessionModeControllers;
 
+import com.project.controllers.sessionModeControllers.enums.ModifyCartItemsResults;
 import com.project.models.Product;
 import com.project.services.ProductsService;
 import com.project.services.ProductsServiceImpl;
@@ -14,19 +15,23 @@ public class SessionModeOnControllerConsole implements SessionModeOnController {
     private ProductsService productsService = new ProductsServiceImpl();
 
     @Override
-    public String showProductsInStore() {
-        List<Product> products = productsService.selectAllProducts();
-        String respond;
-        if (products.isEmpty()) {
-            respond = "Products are not available";
-        } else {
-            respond = "";
-            for (Product product : products) {
-                respond += parseProductToJson(product);
-                respond += ", ";
-            }
-        }
-        return respond;
+    public List<Product> showProductsInStore() {
+        return productsService.getAllProductsAsList();
+    }
+
+    @Override
+    public String getAllProductsAsString() {
+        return productsService.getAllProductsAsString();
+    }
+
+    @Override
+    public Map<String, Integer> getTitleAmountProductsAsMap() {
+        return productsService.getTitleAmountProductsAsMap();
+    }
+
+    @Override
+    public Map<String, Integer> getTitleIdProductsAsMap() {
+        return productsService.getTitleIdProductsAsMap();
     }
 
     @Override
@@ -74,7 +79,7 @@ public class SessionModeOnControllerConsole implements SessionModeOnController {
     }
 
     @Override
-    public String removeItemFromCart(int id) {
+    public boolean removeItemFromCart(int id) {
         Optional<Product> productToRemove = cartProducts.stream().filter(product -> product.getId() == id).findFirst();
         if (productToRemove.isPresent()) {
             Map<String, Object> conditionsToSelect = new HashMap();
@@ -84,24 +89,24 @@ public class SessionModeOnControllerConsole implements SessionModeOnController {
             columnsToUpdate.put("available", availableInDB + productToRemove.get().getAvailable());
             productsService.updateProducts(columnsToUpdate, conditionsToSelect);
             cartProducts.remove(productToRemove.get());
-            return "Item with id " + id + " removed";
-        } else {
-            return "Item with id " + id+ " not found";
+            return true;
         }
+        return false;
+
     }
 
     @Override
-    public String modifyCartItem(int id, int newAmount) {
+    public ModifyCartItemsResults modifyCartItem(int id, int newAmount) {
         List<Product> modifiedProductsFromCart = cartProducts.stream().filter(cartProduct -> cartProduct.getId() == id).collect(Collectors.toList());
         if (modifiedProductsFromCart.isEmpty()) {
-            return "There is no item with id " + id + " in cart";
+            return ModifyCartItemsResults.NOT_FOUND_IN_CART;
         }
         Map<String, Object> conditionsToSelect = new HashMap();
         conditionsToSelect.put("id", id);
         int availableInDB = productsService.selectProducts(conditionsToSelect).get(0).getAvailable();
         Product productFromCart = modifiedProductsFromCart.get(0);
         if (newAmount > availableInDB + productFromCart.getAvailable()) {
-             return "Item with id " + id + " is not enough in database";
+             return ModifyCartItemsResults.NOT_ENOUGH_IN_DATABASE;
         } else {
              Product productFromDb = productsService.selectProducts(conditionsToSelect).get(0);
              Map<String, Object> columnsToUpdate = new HashMap<>();
@@ -109,7 +114,10 @@ public class SessionModeOnControllerConsole implements SessionModeOnController {
              productsService.updateProducts(columnsToUpdate, conditionsToSelect);
              productFromCart.setAvailable(newAmount);
         }
-        return "Item with id " + id + (!modifiedProductsFromCart.isEmpty() ? " modified": " not found");
+        if (modifiedProductsFromCart.isEmpty()) {
+            return ModifyCartItemsResults.NOT_FOUND_IN_DATABASE;
+        }
+        return ModifyCartItemsResults.MODIFIED;
     }
 
     @Override
@@ -147,7 +155,7 @@ public class SessionModeOnControllerConsole implements SessionModeOnController {
     }
 
     private void returnGoodsToStore() {
-        List<Product> productsFromDataBase = productsService.selectAllProducts();
+        List<Product> productsFromDataBase = productsService.getAllProductsAsList();
         cartProducts.forEach(product -> {
             Optional<Product> productFromDB = productsFromDataBase.stream().filter(productFromDBInFilter -> productFromDBInFilter.getId() == product.getId()).findFirst();
             if (!productFromDB.isPresent()) {
