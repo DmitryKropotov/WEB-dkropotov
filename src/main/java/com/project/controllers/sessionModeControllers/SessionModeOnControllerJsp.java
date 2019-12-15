@@ -3,6 +3,7 @@ package com.project.controllers.sessionModeControllers;
 import com.project.controllers.sessionModeControllers.enums.ModifyCartItemsResults;
 import com.project.models.Product;
 import com.project.models.ProductRequest;
+import com.project.repositories.ConnectionSaver;
 import com.project.services.ProductsService;
 import com.project.services.ProductsServiceImpl;
 import org.springframework.stereotype.Controller;
@@ -34,6 +35,14 @@ public class SessionModeOnControllerJsp implements SessionModeOnController {
     public String mainInSessionModeOn(@Valid @ModelAttribute("productrequest") ProductRequest product, BindingResult result, Model model) {
         System.out.println("mainInSessionModeOn method post");
 
+        //update values which will be displayed on jsp page
+        product.setAnswerForGoodRespond("");
+        product.setCartContent("");
+        product.setRemovedSuccessfully("");
+        product.setModificationResult("");
+        product.setCheckOutResult("");
+
+
         String allProductsAsString = getAllProductsAsString();
         product.setAvailableProducts(allProductsAsString);
         Map<String, Integer> titleAmountProducts = getTitleAmountProductsAsMap();
@@ -42,19 +51,22 @@ public class SessionModeOnControllerJsp implements SessionModeOnController {
         product.setTitleIdProducts(titleIdProductsAsMap);
 
         String title = product.getTitle();
-        Integer amount = product.getAmount();
-        if (title != null && amount != null) {
-            String answer =  addItemToCardProducts(titleIdProductsAsMap.get(title), titleAmountProducts.get(title));
+        Integer requestedAmount = product.getAmount();
+        if (title != null && requestedAmount != null) {
+            String answer =  addItemToCardProducts(titleIdProductsAsMap.get(title), requestedAmount);
             product.setAnswerForGoodRespond(answer);
+            makeValuesOfLogicVarsDefault(product);
             return "sessionModeOnMainPage";
         } else if (product.isDisplayContent()) {
               String answer = displayCartContent();
               product.setCartContent(answer);
+              makeValuesOfLogicVarsDefault(product);
               return "sessionModeOnMainPage";
         } else if (product.getItemToRemove() != null) {
             int id = titleIdProductsAsMap.get(product.getItemToRemove());
             String removedSuccessfully = "Item with id " + id + (removeItemFromCart(id) ? " removed": " not found");
             product.setRemovedSuccessfully(removedSuccessfully);
+            makeValuesOfLogicVarsDefault(product);
             return "sessionModeOnMainPage";
         } else if (product.getItemToModify() != null && product.getNewAmount() != null) {
             int id = titleIdProductsAsMap.get(product.getItemToRemove());
@@ -73,14 +85,17 @@ public class SessionModeOnControllerJsp implements SessionModeOnController {
                     product.setModificationResult("Item with id " + id + " modified");
                     break;
             }
+            makeValuesOfLogicVarsDefault(product);
             return "sessionModeOnMainPage";
         } else if (product.isCheckoutBooking()) {
             String successfulCheckout = checkoutBooking() ? "Your booking is successfully registered": "Sorry. There is not enough products in database any more";
             product.setCheckOutResult(successfulCheckout);
+            makeValuesOfLogicVarsDefault(product);
             return "sessionModeOnMainPage";
         } else if (product.isLogOut()) {
             return finishSession();
         } else {
+            makeValuesOfLogicVarsDefault(product);
             return "sessionModeOnMainPage";
         }
     }
@@ -125,7 +140,7 @@ public class SessionModeOnControllerJsp implements SessionModeOnController {
     }
 
     @Override
-    public String addItemToCardProducts(int ASKED_ITEM_ID, int ASKED_QUANTITY) {
+    public String addItemToCardProducts(final int ASKED_ITEM_ID, final int ASKED_QUANTITY) {
         String respond;
         Map<String, Object> conditions = new HashMap();
         conditions.put("id", ASKED_ITEM_ID);
@@ -233,6 +248,7 @@ public class SessionModeOnControllerJsp implements SessionModeOnController {
     @Override
     public String finishSession() {
         returnGoodsToStore();
+        this.exitApp();//temporary command
         return "redirect: main.html";
     }
 
@@ -250,5 +266,16 @@ public class SessionModeOnControllerJsp implements SessionModeOnController {
             conditions.put("id", product.getId());
             productsService.updateProducts(columnsToUpdate, conditions);
         });
+    }
+
+    private void makeValuesOfLogicVarsDefault(ProductRequest product) {
+        product.setTitle(null);
+        product.setAmount(null);
+        product.setDisplayContent(false);
+        product.setItemToRemove(null);
+        product.setItemToModify(null);
+        product.setNewAmount(null);
+        product.setCheckoutBooking(false);
+        product.setLogOut(false);
     }
 }
