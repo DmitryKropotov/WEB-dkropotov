@@ -1,9 +1,8 @@
-package com.project.repositories;
+package com.project.controllers;
 
 import com.project.models.Session;
 
-public interface SessionRepository {
-
+public interface SessionController {
     int createUserSessionAndGetItsId(int userId);
 
     Session getSessionById(int id);

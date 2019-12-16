@@ -8,6 +8,7 @@ public interface SessionModeOffController extends MainController {
 
     boolean registerUser(User user, Model model);
 
+    //string, but not int is returned because we need to redirect to another page
     String loginUserAndGetSessionId(User user, Model model);
 
     default String encryptPassword(String password) {

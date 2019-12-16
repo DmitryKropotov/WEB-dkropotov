@@ -35,10 +35,27 @@
 
 </script>
 
+    <style>
+        .error {
+            color: #ff0000;
+        }
+
+        .errorblock {
+            color: #000;
+            background-color: #ffEEEE;
+            border: 3px solid #ff0000;
+            padding: 8px;
+            margin: 16px;
+        }
+    </style>
 
 
 </head>
 <body>
+
+<form:form commandName="productrequest">
+    <form:errors path="*" cssClass="errorblock" element="div" />
+</form:form>
 
 <form:form commandName="productrequest">
 </form:form>
@@ -54,31 +71,15 @@
         <form:form>
             <form:form>
                 <table>
-                   <!-- default values for variables for logic
-                   <input type="hidden" name="displayContent" value="false"/></td>
-                   <input type="hidden" name="itemToRemove" value="null"/></td>
-                   <input type="hidden" name="itemToModify" value="null"/></td>
-                   <input type="hidden" name="newAmount" value="null"/></td>
-                   <input type="hidden" name="checkoutBooking" value="false"/></td>
-                   <input type="hidden" name="logOut" value="false"/></td>-->
-
                    Good: <input type="text" name="title"/></td><br>
-                   Amount: <input type="number" name="amount"/></td><br>
+                   Amount: <input type="number" name="amount" cssErrorClass="error"/></td><br>
+                   <td><form:errors path="number" cssClass="error" /></td><br>
                    <h5>${productrequest.answerForGoodRespond}</h5>
                    <input type="submit" value="Submit choice"/>
                 </table>
             </form:form>
             <form:form>
                 <table>
-                   <!-- default values for variables for logic
-                   <input type="hidden" name="title"/></td>
-                   <input type="hidden" name="amount"/></td>
-                   <input type="hidden" name="itemToRemove" value="null"/></td>
-                   <input type="hidden" name="itemToModify" value="null"/></td>
-                   <input type="hidden" name="newAmount" value="null"/></td>
-                   <input type="hidden" name="checkoutBooking" value="false"/></td>
-                   <input type="hidden" name="logOut" value="false"/></td>-->
-
                     <input type="hidden" name="displayContent" value="true"/></td>
                    <h1>${productrequest.cartContent}</h1>
                    <input type="submit" value="Show cart content"/>
@@ -89,15 +90,6 @@
 
             <form:form>
                <table>
-                  <!-- default values for variables for logic
-                  <input type="hidden" name="title" value="null"/></td>
-                  <input type="hidden" name="amount" value="null"/></td>
-                  <input type="hidden" name="displayContent" value="false"/></td>
-                  <input type="hidden" name="itemToModify" value="null"/></td>
-                  <input type="hidden" name="newAmount" value="false"/></td>
-                  <input type="hidden" name="checkoutBooking" value="false"/></td>
-                  <input type="hidden" name="logOut" value="false"/></td>-->
-
                   <input type="text" name="itemToRemove"/></td><br>
                   <h1>${productrequest.removedSuccessfully}</h1>
                   <input type="submit" value="Remove item from cart"/>
@@ -105,48 +97,21 @@
             </form:form>
             <form:form>
                 <table>
-                   <!-- default values for variables for logic
-                   <input type="hidden" name="title" value="null"/></td>
-                   <input type="hidden" name="amount" value="null"/></td>
-                   <input type="hidden" name="displayContent" value="false"/></td>
-                   <input type="hidden" name="itemToRemove" value="null"/></td>
-                   <input type="hidden" name="newAmount" value="null"/></td>
-                   <input type="hidden" name="checkoutBooking" value="false"/></td>
-                   <input type="hidden" name="logOut" value="false"/></td>-->
-
                    <input type="text" name="itemToModify"/></td><br>
-                   <input type="number" name="newAmount"/></td><br>
+                   <input type="number" name="newAmount" cssErrorClass="error"/></td><br>
+                   <td><form:errors path="number" cssClass="error" /></td><br>
                    <h1>${productrequest.modificationResult}</h1>
                    <input type="submit" value="Modify cart item"/>
                 </table>
             </form:form>
             <form:form>
                 <table>
-                    <!-- default values for variables for logic
-                   <input type="hidden" name="title" value="null"/></td>
-                   <input type="hidden" name="amount" value="null"/></td>
-                   <input type="hidden" name="displayContent" value="false"/></td>
-                   <input type="hidden" name="itemToRemove" value="null"/></td>
-                   <input type="hidden" name="itemToModify" value="null"/></td>
-                   <input type="hidden" name="newAmount" value="null"/></td>
-                   <input type="hidden" name="logOut" value="false"/></td>-->
-
                    <input type="hidden" name="checkoutBooking" value="true"/></td>
                    <h1>${productrequest.checkOutResult}</h1>
                    <input type="submit" value="Checkout booking"/>
                 </table>
             </form:form>
-
             <form:form>
-                <!-- default values for variables for logic
-                <input type="hidden" name="title" value="null"/></td>
-                <input type="hidden" name="amount" value="null"/></td>
-                <input type="hidden" name="displayContent" value="false"/></td>
-                <input type="hidden" name="itemToRemove" value="null"/></td>
-                <input type="hidden" name="itemToModify" value="null"/></td>
-                <input type="hidden" name="newAmount" value="null"/></td>
-                <input type="hidden" name="checkoutBooking" value="false"/></td>-->
-
                 <input type="hidden" name="logOut" value="true">
                 <input type="submit" value="Log out"/>
             </form:form>

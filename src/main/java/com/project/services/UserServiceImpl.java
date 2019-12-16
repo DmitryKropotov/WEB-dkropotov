@@ -4,25 +4,29 @@ import com.project.models.User;
 import com.project.repositories.UserRepository;
 import com.project.repositories.UserRepositoryImpl;
 
+import java.util.Optional;
+
 public class UserServiceImpl implements UserService {
 
     private UserRepository userRepository = new UserRepositoryImpl();
     private SessionService sessionService = new SessionServiceImpl();
 
+    @Override
     public boolean registerUser(String email, String password) {
          return userRepository.createUser(email, password);
     }
 
-    public String loginUserAndGetSessionId(String email, String password) {
-        User user = userRepository.selectUserByEmail(email).orElseGet(() -> {return null;});
+    @Override
+    public Optional<Integer> loginUserAndGetSessionId(String email, String password) {
+        User user = userRepository.selectUserByEmail(email).orElseGet(() -> null);
         boolean loginSucceed = user != null && validateLogin(password, user.getPassword());
-        String result = "SessionId ";
+        //String result = "SessionId ";
         if (loginSucceed) {
-            result += sessionService.createUserSessionAndGetItsId(user.getId());
+            return Optional.of(sessionService.createUserSessionAndGetItsId(user.getId()));
         } else {
-            result += "null";
+            return Optional.empty();
         }
-        return result;
+        //return result;
     }
 
     private boolean validateLogin(String enteredPassword, String userPassword) {

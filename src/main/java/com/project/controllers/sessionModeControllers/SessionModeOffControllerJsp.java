@@ -1,5 +1,7 @@
 package com.project.controllers.sessionModeControllers;
 
+import com.project.controllers.SessionController;
+import com.project.controllers.SessionControllerImpl;
 import com.project.models.User;
 import com.project.models.UserChecker;
 import com.project.services.UserService;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 
 @Controller
@@ -23,6 +26,8 @@ public class SessionModeOffControllerJsp implements SessionModeOffController {
     private SessionModeOffControllerJsp() {}
 
     private UserService userService = new UserServiceImpl();
+
+    private SessionController sessionController = new SessionControllerImpl();
 
     @RequestMapping(value = "/main", method = RequestMethod.GET)
     public String goToMainPage(Model model) {
@@ -39,10 +44,6 @@ public class SessionModeOffControllerJsp implements SessionModeOffController {
         List<ObjectError> errors = result.getAllErrors();
         errors.forEach(error -> System.out.println(error + " "));
 
-        //model.addAttribute("userchecker", user);
-        //model.addAttribute("passwordsNotMatch", "1");
-        //model.addAttribute("success", "2");
-        //model.addAttribute("wrongEmailOrPassword", "3");
         user.setPasswordsNotMatch("");
         user.setWrongEmailOrPassword("");
         user.setSuccess("");
@@ -89,14 +90,15 @@ public class SessionModeOffControllerJsp implements SessionModeOffController {
     @RequestMapping(value = "/loginUser")
     public String loginUserAndGetSessionId(User user, Model model) {
         System.out.println("This is loginUserAndGetSessionId method " + user);
-        String result = userService.loginUserAndGetSessionId(user.getEmail(), encryptPassword(user.getPassword()));
-        if (result.contains("null")) {
+        Optional<Integer> result = userService.loginUserAndGetSessionId(user.getEmail(), encryptPassword(user.getPassword()));
+        if (!result.isPresent()) {
            return "main";
-            //return "wrongEmailOrPassword";
         }
         //SessionModeOnControllerJsp sessionModeOnController = new SessionModeOnControllerJsp();
-        return "redirect:sessionModeOn.html";//sessionModeOnController.mainInSessionModeOn();
-        //return "redirect:sessionModeOn.html";
+        //Session session = sessionController.getSessionById(result.get());
+        //SessionModeOnController sessionModeOnControllerProxy = (SessionModeOnController) SecurityProxy.newInstance(new SessionModeOnControllerJsp());
+        //sessionModeOnControllerProxy.in
+        return "redirect:sessionModeOn.html";
     }
 
 }

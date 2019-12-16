@@ -114,9 +114,6 @@ public class SessionModeOnControllerConsole implements SessionModeOnController {
              productsService.updateProducts(columnsToUpdate, conditionsToSelect);
              productFromCart.setAvailable(newAmount);
         }
-        if (modifiedProductsFromCart.isEmpty()) {
-            return ModifyCartItemsResults.NOT_FOUND_IN_DATABASE;
-        }
         return ModifyCartItemsResults.MODIFIED;
     }
 

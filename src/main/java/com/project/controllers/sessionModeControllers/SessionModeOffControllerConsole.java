@@ -68,7 +68,7 @@ public class SessionModeOffControllerConsole implements SessionModeOffController
 
     @Override
     public String loginUserAndGetSessionId(User user, Model model) {
-        return userService.loginUserAndGetSessionId(user.getEmail(), encryptPassword(user.getPassword()));
+        return userService.loginUserAndGetSessionId(user.getEmail(), encryptPassword(user.getPassword())).toString();
     }
 
     public String loginUserAndGetSessionId(User user) {

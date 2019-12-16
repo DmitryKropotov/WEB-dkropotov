@@ -1,5 +1,7 @@
 package com.project.models;
 
+import org.hibernate.validator.constraints.Range;
+
 import java.util.Map;
 
 public class ProductRequest {
@@ -9,11 +11,12 @@ public class ProductRequest {
 
     //variables for logic
     private String title;
-    //@Range(min = 1, max = titleAmountProducts.get(title))
+    @Range(min = 1)
     private Integer amount;
     private boolean displayContent;
     private String itemToRemove;
     private String itemToModify;
+    @Range(min = 1)
     private Integer newAmount;
     private boolean checkoutBooking;
     private boolean logOut;
@@ -31,11 +34,6 @@ public class ProductRequest {
         this.availableProducts = availableProducts;
         this.titleAmountProducts = titleAmountProducts;
         this.titleIdProducts = titleIdProducts;
-    }
-
-    public ProductRequest(String title, Integer amount) {
-        this.title = title;
-        this.amount = amount;
     }
 
     public String getAvailableProducts() { return availableProducts; }
