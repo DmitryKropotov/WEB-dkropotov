@@ -1,6 +1,7 @@
 package com.project.controllers.sessionModeControllers;
 
 import com.project.models.User;
+import com.project.models.UserChecker;
 import com.project.services.UserService;
 import com.project.services.UserServiceImpl;
 import org.springframework.ui.Model;
@@ -67,11 +68,11 @@ public class SessionModeOffControllerConsole implements SessionModeOffController
     }
 
     @Override
-    public String loginUserAndGetSessionId(User user, Model model) {
+    public String loginUserAndGetSessionId(UserChecker user, Model model) {
         return userService.loginUserAndGetSessionId(user.getEmail(), encryptPassword(user.getPassword())).toString();
     }
 
-    public String loginUserAndGetSessionId(User user) {
+    public String loginUserAndGetSessionId(UserChecker user) {
         return this.loginUserAndGetSessionId(user, new Model() {
             @Override
             public Model addAttribute(String s, Object o) {

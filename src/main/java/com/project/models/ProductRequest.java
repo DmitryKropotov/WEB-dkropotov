@@ -38,7 +38,7 @@ public class ProductRequest {
 
     public String getAvailableProducts() { return availableProducts; }
 
-    public void setAvailableProducts(String product) { this.availableProducts = availableProducts; }
+    public void setAvailableProducts(String availableProducts) { this.availableProducts = availableProducts; }
 
     public Map<String, Integer> getTitleAmountProducts() { return titleAmountProducts; }
 
