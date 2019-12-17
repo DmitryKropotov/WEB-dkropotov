@@ -7,6 +7,7 @@ import com.project.controllers.sessionModeControllers.SessionModeOnControllerCon
 import com.project.controllers.sessionModeControllers.enums.ModifyCartItemsResults;
 import com.project.models.Product;
 import com.project.models.User;
+import com.project.models.UserChecker;
 import com.project.repositories.ConnectionSaver;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
@@ -86,7 +87,10 @@ public class Main {
                         "user is registered" : "user is not registered";//think how to implement it better
                 break;
             case 1:
-                respond = sessionModeOffController.loginUserAndGetSessionId(new User(-200, strings.get(2), strings.get(3)));//think how to implement it better
+                UserChecker user = new UserChecker();
+                user.setEmail(strings.get(2));
+                user.setPassword(strings.get(3));
+                respond = sessionModeOffController.loginUserAndGetSessionId(user);//think how to implement it better
                 if (!respond.contains("null")) {
                     sessionModeOnStatus = true;
                 }

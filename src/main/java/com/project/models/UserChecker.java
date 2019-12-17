@@ -2,7 +2,6 @@ package com.project.models;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
-import org.hibernate.validator.constraints.Range;
 
 public class UserChecker {
     @NotEmpty @Email
@@ -15,6 +14,8 @@ public class UserChecker {
     private String passwordsNotMatch;
     private String wrongEmailOrPassword;
     private String userAlreadyExists;
+
+    private ProductRequest productRequest;
 
     public String getEmail() {
         return email;
@@ -70,5 +71,13 @@ public class UserChecker {
 
     public void setUserAlreadyExists(String userAlreadyExists) {
         this.userAlreadyExists = userAlreadyExists;
+    }
+
+    public ProductRequest getProductRequest() {
+        return productRequest;
+    }
+
+    public void setProductRequest(ProductRequest productRequest) {
+        this.productRequest = productRequest;
     }
 }

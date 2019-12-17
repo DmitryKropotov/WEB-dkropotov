@@ -10,7 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -22,18 +21,11 @@ public class SessionModeOnControllerJsp implements SessionModeOnController {
 
     private List<Product> cartProducts = new ArrayList<>();
 
-    @RequestMapping(value = "/sessionModeOn", method = RequestMethod.GET)
-    public String mainInSessionModeOn(Model model) {
-        System.out.println("mainInSessionModeOn method get in SessionModeOnControllerJsp class");
-        model.addAttribute("productrequest", new ProductRequest(getAllProductsAsString(), getTitleAmountProductsAsMap(),
-                getTitleIdProductsAsMap()));
-        return "sessionModeOnMainPage";
-    }
 
     @RequestMapping(value = "/sessionModeOn", method = RequestMethod.POST)
-    public String mainInSessionModeOn(@Valid @ModelAttribute("productrequest") ProductRequest product, BindingResult result, Model model) {
-        System.out.println("mainInSessionModeOn method post in SessionModeOnControllerJsp class");
+    public String mainInSessionModeOn(ProductRequest product, BindingResult result, Model model) {
 
+        model.addAttribute("productrequest", product);
         //update values which will be displayed on jsp page
         product.setAnswerForGoodRespond("");
         product.setCartContent("");
@@ -42,8 +34,6 @@ public class SessionModeOnControllerJsp implements SessionModeOnController {
         product.setCheckOutResult("");
 
 
-        String allProductsAsString = getAllProductsAsString();
-        product.setAvailableProducts(allProductsAsString);
         Map<String, Integer> titleAmountProducts = getTitleAmountProductsAsMap();
         product.setTitleAmountProducts(titleAmountProducts);
         Map<String, Integer> titleIdProductsAsMap = getTitleIdProductsAsMap();
@@ -60,13 +50,13 @@ public class SessionModeOnControllerJsp implements SessionModeOnController {
             } else {
                 product.setAnswerForGoodRespond("There is no product with name " + title);
             }
-            makeValuesOfLogicVarsDefault(product);
+            makeValuesOfLogicVarsAndContentToShowDefault(product);
             return "sessionModeOnMainPage";
         } else if (product.isDisplayContent()) {
-              String answer = displayCartContent();
-              product.setCartContent(answer);
-              makeValuesOfLogicVarsDefault(product);
-              return "sessionModeOnMainPage";
+            String answer = displayCartContent();
+            product.setCartContent(answer);
+            makeValuesOfLogicVarsAndContentToShowDefault(product);
+            return "sessionModeOnMainPage";
         } else if (product.getItemToRemove() != null) {
             String productName = product.getItemToRemove();
             if (titleIdProductsAsMap.containsKey(product.getItemToRemove())) {
@@ -76,7 +66,7 @@ public class SessionModeOnControllerJsp implements SessionModeOnController {
             } else {
                 product.setRemovedSuccessfully("Item with name " + productName +" is not in database");
             }
-            makeValuesOfLogicVarsDefault(product);
+            makeValuesOfLogicVarsAndContentToShowDefault(product);
             return "sessionModeOnMainPage";
         } else if (product.getItemToModify() != null && product.getNewAmount() != null) {
             String productName = product.getItemToModify();
@@ -100,17 +90,21 @@ public class SessionModeOnControllerJsp implements SessionModeOnController {
             } else {
                 product.setModificationResult("Item with productName " + productName + " not found in database");
             }
-            makeValuesOfLogicVarsDefault(product);
+            makeValuesOfLogicVarsAndContentToShowDefault(product);
             return "sessionModeOnMainPage";
         } else if (product.isCheckoutBooking()) {
-            String successfulCheckout = checkoutBooking() ? "Your booking is successfully registered": "Sorry. There is not enough products in database any more";
+            boolean successfullyRegistered = checkoutBooking();
+            String successfulCheckout = successfullyRegistered ? "Your booking is successfully registered": "Sorry. There is not enough products in database any more";
+            if (successfullyRegistered) {
+                cartProducts.clear();
+            }
             product.setCheckOutResult(successfulCheckout);
-            makeValuesOfLogicVarsDefault(product);
+            makeValuesOfLogicVarsAndContentToShowDefault(product);
             return "sessionModeOnMainPage";
         } else if (product.isLogOut()) {
             return finishSession();
         } else {
-            makeValuesOfLogicVarsDefault(product);
+            makeValuesOfLogicVarsAndContentToShowDefault(product);
             return "sessionModeOnMainPage";
         }
     }
@@ -244,24 +238,16 @@ public class SessionModeOnControllerJsp implements SessionModeOnController {
             List<Product> products = productsService.selectProducts(conditions);
             int productAvailable = products.get(0).getAvailable();
             if (products.isEmpty() || productAvailable < product.getAvailable()) {
-                if (products.isEmpty()) {
-                    System.out.println("Sorry. There is no product with id = " + product.getId() + " any more");
-                } else {
-                    System.out.println("Sorry. There is only " +
-                            productAvailable + " with id = " + product.getId() + " available in the database");
-                }
                 return false;
             }
         }
-        System.out.println("Your booking is successfully registered");
         return true;
     }
 
     @Override
     public String finishSession() {
         returnGoodsToStore();
-        this.exitApp();//temporary command
-        return "redirect: main.html";
+        return "main";
     }
 
     private void returnGoodsToStore() {
@@ -280,7 +266,9 @@ public class SessionModeOnControllerJsp implements SessionModeOnController {
         });
     }
 
-    private void makeValuesOfLogicVarsDefault(ProductRequest product) {
+    private void makeValuesOfLogicVarsAndContentToShowDefault(ProductRequest product) {
+        String allProductsAsString = getAllProductsAsString();
+        product.setAvailableProducts(allProductsAsString);
         product.setTitle(null);
         product.setAmount(null);
         product.setDisplayContent(false);
