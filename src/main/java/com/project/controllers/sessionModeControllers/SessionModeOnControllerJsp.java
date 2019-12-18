@@ -34,7 +34,7 @@ public class SessionModeOnControllerJsp implements SessionModeOnController {
         product.setCheckOutResult("");
 
 
-        Map<String, Integer> titleAmountProducts = getTitleAmountProductsAsMap();
+        Map<String, Integer> titleAmountProducts = productsService.getTitleAmountProductsAsMap();//getTitleAmountProductsAsMap();
         product.setTitleAmountProducts(titleAmountProducts);
         Map<String, Integer> titleIdProductsAsMap = getTitleIdProductsAsMap();
         product.setTitleIdProducts(titleIdProductsAsMap);
@@ -126,22 +126,15 @@ public class SessionModeOnControllerJsp implements SessionModeOnController {
         return products;
     }
 
-
-
-    @Override
-    public List<Product> showProductsInStore() {
-        return productsService.getAllProductsAsList();
-    }
-
     @Override
     public String getAllProductsAsString() {
         return productsService.getAllProductsAsString();
     }
 
-    @Override
-    public Map<String, Integer> getTitleAmountProductsAsMap() {
+    //@Override
+    /*private Map<String, Integer> getTitleAmountProductsAsMap() {
         return productsService.getTitleAmountProductsAsMap();
-    }
+    }*/
 
     @Override
     public Map<String, Integer> getTitleIdProductsAsMap() {

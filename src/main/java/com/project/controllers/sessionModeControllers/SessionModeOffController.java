@@ -5,12 +5,13 @@ import com.project.models.User;
 import com.project.models.UserChecker;
 import org.springframework.ui.Model;
 
+import java.util.Optional;
+
 public interface SessionModeOffController extends MainController {
 
     boolean registerUser(User user, Model model);
 
-    //string, but not int is returned because we need to redirect to another page
-    String loginUserAndGetSessionId(UserChecker user, Model model);
+    Optional<Integer> loginUserAndGetSessionId(UserChecker user);
 
     default String encryptPassword(String password) {
         if (password.isEmpty()) {

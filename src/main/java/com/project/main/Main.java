@@ -1,25 +1,17 @@
 package com.project.main;
 
-import com.project.controllers.sessionModeControllers.SessionModeOffController;
 import com.project.controllers.sessionModeControllers.SessionModeOffControllerConsole;
 import com.project.controllers.sessionModeControllers.SessionModeOnController;
 import com.project.controllers.sessionModeControllers.SessionModeOnControllerConsole;
 import com.project.controllers.sessionModeControllers.enums.ModifyCartItemsResults;
-import com.project.models.Product;
 import com.project.models.User;
 import com.project.models.UserChecker;
-import com.project.repositories.ConnectionSaver;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.FileSystemXmlApplicationContext;
-import org.springframework.ui.Model;
 
 import java.util.*;
 
 public class Main {
 
     private static SessionModeOnController sessionModeOnController = null;
-
-    private static SessionModeOffControllerConsole sessionModeOffController = (SessionModeOffControllerConsole) SessionModeOffControllerConsole.getInstance();
 
     //@Configuration
     //@ComponentScan
@@ -57,6 +49,8 @@ public class Main {
     }
 
     private static boolean sessionOffCommandMenu() {
+        SessionModeOffControllerConsole sessionModeOffController = (SessionModeOffControllerConsole) SessionModeOffControllerConsole.getInstance();
+
         List<String> allowedFormats = new ArrayList();
         allowedFormats.add("register user [a-zA-Z0-9]+@[a-z]+.[a-z]+ [a-zA-Z0-9]+");
         allowedFormats.add("login user [a-zA-Z0-9]+@[a-z]+.[a-z]+ [a-zA-Z0-9]+");
@@ -90,9 +84,12 @@ public class Main {
                 UserChecker user = new UserChecker();
                 user.setEmail(strings.get(2));
                 user.setPassword(strings.get(3));
-                respond = sessionModeOffController.loginUserAndGetSessionId(user);//think how to implement it better
-                if (!respond.contains("null")) {
+                Optional<Integer> sessionId = sessionModeOffController.loginUserAndGetSessionId(user);
+                if (sessionId.isPresent()) {
                     sessionModeOnStatus = true;
+                    respond = "User is logged in successfully. SessionId is " + sessionId.get();
+                } else {
+                    respond = "Email or password error";
                 }
                 break;
             default:
@@ -150,18 +147,15 @@ public class Main {
                 break;
             case 4:
                 Map<String, Integer> titleIdProductsAsMap = sessionModeOnController.getTitleIdProductsAsMap();
-                String productTitle = strings.get(6);
-                int idToModify = Integer.parseInt(strings.get(4));
+                String productTitle = strings.get(4);
+                int newAmount = Integer.parseInt(strings.get(6));
                 if (titleIdProductsAsMap.containsKey(productTitle)) {
-                    int newAmount = titleIdProductsAsMap.get(productTitle);
+                    int idToModify = titleIdProductsAsMap.get(productTitle);
                     ModifyCartItemsResults result = sessionModeOnController.modifyCartItem(idToModify, newAmount);
                     switch (result) {
                         case NOT_FOUND_IN_CART:
                             respond = "There is no item with title " + productTitle + " in cart";
                             break;
-                    /*case NOT_FOUND_IN_DATABASE:
-                        respond = "Item with id " + title + " not found";
-                        break;*/
                         case NOT_ENOUGH_IN_DATABASE:
                             respond = "Item with title " + productTitle + " is not enough in database";
                             break;
@@ -170,11 +164,12 @@ public class Main {
                             break;
                     }
                 } else {
-                    respond = "Item with title " + productTitle + " not found";
+                    respond = "Item with title " + productTitle + " not found in database";
                 }
                 break;
             case 5:
                 sessionModeOnController.checkoutBooking();
+                break;
             case 6:
                 sessionModeOnController.finishSession();
                 return false;

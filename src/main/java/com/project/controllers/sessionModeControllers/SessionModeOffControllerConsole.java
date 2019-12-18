@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 
 import java.util.Collection;
 import java.util.Map;
+import java.util.Optional;
 
 public class SessionModeOffControllerConsole implements SessionModeOffController {
 
@@ -68,46 +69,7 @@ public class SessionModeOffControllerConsole implements SessionModeOffController
     }
 
     @Override
-    public String loginUserAndGetSessionId(UserChecker user, Model model) {
-        return userService.loginUserAndGetSessionId(user.getEmail(), encryptPassword(user.getPassword())).toString();
-    }
-
-    public String loginUserAndGetSessionId(UserChecker user) {
-        return this.loginUserAndGetSessionId(user, new Model() {
-            @Override
-            public Model addAttribute(String s, Object o) {
-                return null;
-            }
-
-            @Override
-            public Model addAttribute(Object o) {
-                return null;
-            }
-
-            @Override
-            public Model addAllAttributes(Collection<?> collection) {
-                return null;
-            }
-
-            @Override
-            public Model addAllAttributes(Map<String, ?> map) {
-                return null;
-            }
-
-            @Override
-            public Model mergeAttributes(Map<String, ?> map) {
-                return null;
-            }
-
-            @Override
-            public boolean containsAttribute(String s) {
-                return false;
-            }
-
-            @Override
-            public Map<String, Object> asMap() {
-                return null;
-            }
-        });
+    public Optional<Integer> loginUserAndGetSessionId(UserChecker user) {
+        return userService.loginUserAndGetSessionId(user.getEmail(), encryptPassword(user.getPassword()));
     }
 }

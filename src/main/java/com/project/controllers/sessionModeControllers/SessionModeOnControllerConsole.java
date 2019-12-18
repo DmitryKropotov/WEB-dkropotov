@@ -15,18 +15,8 @@ public class SessionModeOnControllerConsole implements SessionModeOnController {
     private ProductsService productsService = new ProductsServiceImpl();
 
     @Override
-    public List<Product> showProductsInStore() {
-        return productsService.getAllProductsAsList();
-    }
-
-    @Override
     public String getAllProductsAsString() {
         return productsService.getAllProductsAsString();
-    }
-
-    @Override
-    public Map<String, Integer> getTitleAmountProductsAsMap() {
-        return productsService.getTitleAmountProductsAsMap();
     }
 
     @Override

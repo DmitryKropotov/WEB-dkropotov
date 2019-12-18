@@ -20,13 +20,11 @@ public class UserServiceImpl implements UserService {
     public Optional<Integer> loginUserAndGetSessionId(String email, String password) {
         User user = userRepository.selectUserByEmail(email).orElseGet(() -> null);
         boolean loginSucceed = user != null && validateLogin(password, user.getPassword());
-        //String result = "SessionId ";
         if (loginSucceed) {
             return Optional.of(sessionService.createUserSessionAndGetItsId(user.getId()));
         } else {
             return Optional.empty();
         }
-        //return result;
     }
 
     private boolean validateLogin(String enteredPassword, String userPassword) {

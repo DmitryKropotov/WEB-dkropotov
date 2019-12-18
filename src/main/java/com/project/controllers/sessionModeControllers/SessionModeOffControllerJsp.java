@@ -70,13 +70,16 @@ public class SessionModeOffControllerJsp implements SessionModeOffController {
         String email = user.getEmail();
         String password = user.getPassword();
         String passwordRepeater = user.getPasswordRepeater();
+        //check if there are errors in credentials
         if (result.hasErrors()) {
             user.setPasswordRepeater(null);
             return "main";
+        //operation register user, passwords don't match
         } else if (passwordRepeater != null && !passwordRepeater.isEmpty() && !password.equals(passwordRepeater)) {
             user.setPasswordsNotMatch("Passwords don't match");
             user.setPasswordRepeater(null);
             return "main";
+        //operation register user, passwords match
         } else if (passwordRepeater != null && !passwordRepeater.isEmpty()) {
             boolean registered = registerUser(new User(-200, email, password), model);//think how to implement it better
             System.out.println(registered);
@@ -88,7 +91,7 @@ public class SessionModeOffControllerJsp implements SessionModeOffController {
             user.setPasswordRepeater(null);
             return "main";
         } else {
-            String message = loginUserAndGetSessionId(/*new User(-200, email, password)*/user, model);//think how to implement it better
+            String message = loginUserAndGetPageName(/*new User(-200, email, password)*/user, model);//think how to implement it better
             System.out.println(message);
             if (message.equals("main")) {
                 user.setWrongEmailOrPassword("Wrong email or password");
@@ -104,13 +107,11 @@ public class SessionModeOffControllerJsp implements SessionModeOffController {
         return userService.registerUser(user.getEmail(), encryptPassword(user.getPassword()));//temporary implementation
     }
 
-    @Override
-    @RequestMapping(value = "/loginUser")
-    public String loginUserAndGetSessionId(UserChecker user, Model model) {
-        System.out.println("This is loginUserAndGetSessionId method " + user);
-        Optional<Integer> result = userService.loginUserAndGetSessionId(user.getEmail(), encryptPassword(user.getPassword()));
+    private String loginUserAndGetPageName(UserChecker user, Model model) {
+        System.out.println("This is loginUserAndGetPageName method " + user);
+        Optional<Integer> result = loginUserAndGetSessionId(user);
         if (!result.isPresent()) {
-           return "main";
+            return "main";
         }
         user.setProductRequest(new ProductRequest());
         this.sessionModeOnController = new SessionModeOnControllerJsp();
@@ -120,6 +121,13 @@ public class SessionModeOffControllerJsp implements SessionModeOffController {
             user.setProductRequest(null);
         }
         return resultSessionOn;
+    }
+
+    @Override
+    @RequestMapping(value = "/loginUser")
+    public Optional<Integer> loginUserAndGetSessionId(UserChecker user) {
+        System.out.println("This is loginUserAndGetSessionId method " + user);
+        return userService.loginUserAndGetSessionId(user.getEmail(), encryptPassword(user.getPassword()));
     }
 
     private BindingResult getAnnonymousBindingResult() {
