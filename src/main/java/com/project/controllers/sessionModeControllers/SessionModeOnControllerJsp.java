@@ -2,139 +2,21 @@ package com.project.controllers.sessionModeControllers;
 
 import com.project.controllers.sessionModeControllers.enums.ModifyCartItemsResults;
 import com.project.models.Product;
-import com.project.models.ProductRequest;
 import com.project.services.ProductsService;
 import com.project.services.ProductsServiceImpl;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
-
 import java.util.*;
 import java.util.stream.Collectors;
 
-@Controller
-@SessionAttributes("productrequest")
 public class SessionModeOnControllerJsp implements SessionModeOnController {
 
     private ProductsService productsService = new ProductsServiceImpl();
 
     private List<Product> cartProducts = new ArrayList<>();
 
-
-    @RequestMapping(value = "/sessionModeOn", method = RequestMethod.POST)
-    public String mainInSessionModeOn(ProductRequest product, BindingResult result, Model model) {
-
-        model.addAttribute("productrequest", product);
-        //update values which will be displayed on jsp page
-        product.setAnswerForGoodRespond("");
-        product.setCartContent("");
-        product.setRemovedSuccessfully("");
-        product.setModificationResult("");
-        product.setCheckOutResult("");
-
-
-        Map<String, Integer> titleAmountProducts = productsService.getTitleAmountProductsAsMap();//getTitleAmountProductsAsMap();
-        product.setTitleAmountProducts(titleAmountProducts);
-        Map<String, Integer> titleIdProductsAsMap = getTitleIdProductsAsMap();
-        product.setTitleIdProducts(titleIdProductsAsMap);
-
-        if (product.getTitle() != null &&  product.getAmount() != null) {
-            String title = product.getTitle();
-            Integer requestedAmount = product.getAmount();
-            if (requestedAmount <= 0) {
-                product.setAnswerForGoodRespond("Amount of quantity should be positive");
-            } else if (titleIdProductsAsMap.containsKey(title)) {
-                String answer = addItemToCardProducts(titleIdProductsAsMap.get(title), requestedAmount);
-                product.setAnswerForGoodRespond(answer);
-            } else {
-                product.setAnswerForGoodRespond("There is no product with name " + title);
-            }
-            makeValuesOfLogicVarsAndContentToShowDefault(product);
-            return "sessionModeOnMainPage";
-        } else if (product.isDisplayContent()) {
-            String answer = displayCartContent();
-            product.setCartContent(answer);
-            makeValuesOfLogicVarsAndContentToShowDefault(product);
-            return "sessionModeOnMainPage";
-        } else if (product.getItemToRemove() != null) {
-            String productName = product.getItemToRemove();
-            if (titleIdProductsAsMap.containsKey(product.getItemToRemove())) {
-                int id = titleIdProductsAsMap.get(product.getItemToRemove());
-                String removedSuccessfully = "Item with name " + productName + (removeItemFromCart(id) ? " removed" : " is not found in cart");
-                product.setRemovedSuccessfully(removedSuccessfully);
-            } else {
-                product.setRemovedSuccessfully("Item with name " + productName +" is not in database");
-            }
-            makeValuesOfLogicVarsAndContentToShowDefault(product);
-            return "sessionModeOnMainPage";
-        } else if (product.getItemToModify() != null && product.getNewAmount() != null) {
-            String productName = product.getItemToModify();
-            int productNewAmount = product.getNewAmount();
-            if (productNewAmount <= 0) {
-                product.setModificationResult("Amount of quantity should be positive");
-            } else if (titleIdProductsAsMap.containsKey(productName)) {
-                int id = titleIdProductsAsMap.get(productName);
-                ModifyCartItemsResults modificationResult = modifyCartItem(id, productNewAmount);
-                switch (modificationResult) {
-                    case NOT_FOUND_IN_CART:
-                        product.setModificationResult("There is no item with productName " + productName + " in cart");
-                        break;
-                    case NOT_ENOUGH_IN_DATABASE:
-                        product.setModificationResult("Item with productName " + productName + " is not enough in database");
-                        break;
-                    case MODIFIED:
-                        product.setModificationResult("Item with productName " + productName + " modified");
-                        break;
-                }
-            } else {
-                product.setModificationResult("Item with productName " + productName + " not found in database");
-            }
-            makeValuesOfLogicVarsAndContentToShowDefault(product);
-            return "sessionModeOnMainPage";
-        } else if (product.isCheckoutBooking()) {
-            boolean successfullyRegistered = checkoutBooking();
-            String successfulCheckout = successfullyRegistered ? "Your booking is successfully registered": "Sorry. There is not enough products in database any more";
-            if (successfullyRegistered) {
-                cartProducts.clear();
-            }
-            product.setCheckOutResult(successfulCheckout);
-            makeValuesOfLogicVarsAndContentToShowDefault(product);
-            return "sessionModeOnMainPage";
-        } else if (product.isLogOut()) {
-            return finishSession();
-        } else {
-            makeValuesOfLogicVarsAndContentToShowDefault(product);
-            return "sessionModeOnMainPage";
-        }
-    }
-
-    @RequestMapping(value = "/goods", method = RequestMethod.GET)
-    public @ResponseBody List<Product> getGoods(Model model) {
-        System.out.println("getGoods method get");
-        List<Product> products = new ArrayList<>();
-
-        Product p1 = new Product(0, "p1", 1, 1.0);
-        products.add(p1);
-
-        Product p2 = new Product(1, "p2", 1, 1.0);
-        products.add(p2);
-
-        Product p3 = new Product(2, "p3", 1, 1.0);
-        products.add(p3);
-
-        return products;
-    }
-
     @Override
     public String getAllProductsAsString() {
         return productsService.getAllProductsAsString();
     }
-
-    //@Override
-    /*private Map<String, Integer> getTitleAmountProductsAsMap() {
-        return productsService.getTitleAmountProductsAsMap();
-    }*/
 
     @Override
     public Map<String, Integer> getTitleIdProductsAsMap() {
@@ -234,6 +116,7 @@ public class SessionModeOnControllerJsp implements SessionModeOnController {
                 return false;
             }
         }
+        cartProducts.clear();
         return true;
     }
 
@@ -257,18 +140,5 @@ public class SessionModeOnControllerJsp implements SessionModeOnController {
             conditions.put("id", product.getId());
             productsService.updateProducts(columnsToUpdate, conditions);
         });
-    }
-
-    private void makeValuesOfLogicVarsAndContentToShowDefault(ProductRequest product) {
-        String allProductsAsString = getAllProductsAsString();
-        product.setAvailableProducts(allProductsAsString);
-        product.setTitle(null);
-        product.setAmount(null);
-        product.setDisplayContent(false);
-        product.setItemToRemove(null);
-        product.setItemToModify(null);
-        product.setNewAmount(null);
-        product.setCheckoutBooking(false);
-        product.setLogOut(false);
     }
 }

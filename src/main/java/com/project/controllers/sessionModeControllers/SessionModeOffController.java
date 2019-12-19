@@ -1,15 +1,13 @@
 package com.project.controllers.sessionModeControllers;
 
 import com.project.controllers.MainController;
-import com.project.models.User;
 import com.project.models.UserChecker;
-import org.springframework.ui.Model;
 
 import java.util.Optional;
 
 public interface SessionModeOffController extends MainController {
 
-    boolean registerUser(User user, Model model);
+    boolean registerUser(UserChecker user);
 
     Optional<Integer> loginUserAndGetSessionId(UserChecker user);
 

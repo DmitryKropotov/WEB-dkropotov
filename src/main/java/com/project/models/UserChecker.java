@@ -17,6 +17,13 @@ public class UserChecker {
 
     private ProductRequest productRequest;
 
+    public UserChecker() {}
+
+    public UserChecker(String email, String password) {
+        this.email = email;
+        this.password = password;
+    }
+
     public String getEmail() {
         return email;
     }

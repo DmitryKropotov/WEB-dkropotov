@@ -157,9 +157,4 @@ public class SessionModeOnControllerConsole implements SessionModeOnController {
         });
     }
 
-    private String parseProductToJson(Product product) {
-        return  "id: " + product.getId() + ", title: " + product.getTitle() +
-                ", available: " + product.getAvailable() + ", price: " + product.getPrice();
-    }
-
 }

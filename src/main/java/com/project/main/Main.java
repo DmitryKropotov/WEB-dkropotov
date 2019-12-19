@@ -32,16 +32,13 @@ public class Main {
 
         System.out.println(connectionSaver.getUrl());*/
 
-        boolean sessionModeOnStatus = false;
         while (true) {
-            if (!sessionModeOnStatus) {
-                sessionModeOnStatus = sessionOffCommandMenu();
-                if (sessionModeOnStatus) {
+            if (sessionModeOnController == null) {
+                if (sessionOffCommandMenu()) {
                     sessionModeOnController = new SessionModeOnControllerConsole();
                 }
             } else {
-                sessionModeOnStatus = sessionOnControl();
-                if (!sessionModeOnStatus) {
+                if (!sessionOnControl()) {
                     sessionModeOnController = null;
                 }
             }
@@ -77,13 +74,11 @@ public class Main {
         boolean sessionModeOnStatus = false;
         switch (commandNumber) {
             case 0:
-                respond = sessionModeOffController.registerUser(new User(-200, strings.get(2), strings.get(3))) ?
+                respond = sessionModeOffController.registerUser(new UserChecker(strings.get(2), strings.get(3))) ?
                         "user is registered" : "user is not registered";//think how to implement it better
                 break;
             case 1:
-                UserChecker user = new UserChecker();
-                user.setEmail(strings.get(2));
-                user.setPassword(strings.get(3));
+                UserChecker user = new UserChecker(strings.get(2), strings.get(3));
                 Optional<Integer> sessionId = sessionModeOffController.loginUserAndGetSessionId(user);
                 if (sessionId.isPresent()) {
                     sessionModeOnStatus = true;
