@@ -3,13 +3,19 @@ package com.project.controllers.sessionModeControllers;
 import com.project.controllers.sessionModeControllers.enums.ModifyCartItemsResults;
 import com.project.models.Product;
 import com.project.services.ProductsService;
-import com.project.services.ProductsServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
+
 import java.util.*;
 import java.util.stream.Collectors;
 
+@Controller("sessionModeOnControllerJsp")
+@Scope("prototype")
 public class SessionModeOnControllerJsp implements SessionModeOnController {
 
-    private ProductsService productsService = new ProductsServiceImpl();
+    @Autowired
+    private ProductsService productsService;
 
     private List<Product> cartProducts = new ArrayList<>();
 

@@ -3,11 +3,14 @@ package com.project.repositories;
 import com.project.models.Session;
 
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+@Repository
 public class SessionRepositoryImpl implements SessionRepository {
 
     private Connection conn = ConnectionSaver.getConnection();

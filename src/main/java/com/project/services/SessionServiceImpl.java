@@ -2,10 +2,13 @@ package com.project.services;
 
 import com.project.models.Session;
 import com.project.repositories.SessionRepository;
-import com.project.repositories.SessionRepositoryImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class SessionServiceImpl implements SessionService {
-    private SessionRepository sessionRepository = new SessionRepositoryImpl();
+    @Autowired
+    private SessionRepository sessionRepository;
 
     @Override
     public int createUserSessionAndGetItsId(int userId) {

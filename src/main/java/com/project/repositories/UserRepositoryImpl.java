@@ -1,6 +1,7 @@
 package com.project.repositories;
 
 import com.project.models.User;
+import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -10,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@Repository
 public class UserRepositoryImpl implements UserRepository {
 
     private Connection conn = ConnectionSaver.getConnection();

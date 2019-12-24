@@ -2,14 +2,18 @@ package com.project.services;
 
 import com.project.models.User;
 import com.project.repositories.UserRepository;
-import com.project.repositories.UserRepositoryImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+@Service
 public class UserServiceImpl implements UserService {
 
-    private UserRepository userRepository = new UserRepositoryImpl();
-    private SessionService sessionService = new SessionServiceImpl();
+    @Autowired
+    private UserRepository userRepository;
+    @Autowired
+    private SessionService sessionService;
 
     @Override
     public boolean registerUser(String email, String password) {

@@ -3,10 +3,12 @@ package com.project.controllers;
 import com.project.controllers.sessionModeControllers.SessionModeOffControllerJsp;
 import com.project.controllers.sessionModeControllers.SessionModeOnControllerJsp;
 import com.project.controllers.sessionModeControllers.enums.ModifyCartItemsResults;
+import com.project.main.AppConfig;
 import com.project.models.ProductRequest;
 import com.project.models.UserChecker;
 import com.project.services.ProductsService;
-import com.project.services.ProductsServiceImpl;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -23,6 +25,8 @@ import java.util.Optional;
 public class JspImplementationMainController {
 
     private SessionModeOnControllerJsp sessionModeOnController = null;
+
+    private static ApplicationContext appContext = new AnnotationConfigApplicationContext(AppConfig.class);
 
     private static int goToMainPageCall = 0;
 
@@ -51,7 +55,9 @@ public class JspImplementationMainController {
             //debug logs
             pageToReturn = sessionModeOff(user, result, model);
             if (pageToReturn.equals("sessionModeOnMainPage")) {
-                sessionModeOnController = new SessionModeOnControllerJsp();
+                sessionModeOnController =
+                        (SessionModeOnControllerJsp) appContext.getBean("sessionModeOnControllerJsp");//new SessionModeOnControllerJsp();
+                System.out.println(sessionModeOnController);
                 ProductRequest productRequest = new ProductRequest(sessionModeOnController.getAllProductsAsString());
                 model.addAttribute("productrequest", productRequest);
                 user.setProductRequest(productRequest);
@@ -70,7 +76,9 @@ public class JspImplementationMainController {
     }
 
     private String sessionModeOff(UserChecker user, BindingResult result, Model model) {
-        SessionModeOffControllerJsp sessionModeOffController = SessionModeOffControllerJsp.getInstance();
+        SessionModeOffControllerJsp sessionModeOffController =
+                (SessionModeOffControllerJsp) appContext.getBean("sessionModeOffControllerJsp");
+        System.out.println(sessionModeOffController);
 
         user.setPasswordsNotMatch("");
         user.setWrongEmailOrPassword("");
@@ -110,7 +118,10 @@ public class JspImplementationMainController {
     }
 
     private String sessionModeOn(ProductRequest product, Model model) {
-        ProductsService productsService = new ProductsServiceImpl();
+        //log
+        System.out.println("sessionModeOn is called");
+        //log
+        ProductsService productsService = (ProductsService) appContext.getBean("ProductsService");
         model.addAttribute("productrequest", product);
 
         //update values which will be displayed on jsp page

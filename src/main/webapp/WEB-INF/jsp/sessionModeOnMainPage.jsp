@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <html>
@@ -13,27 +14,26 @@
     <title>Final Project</title>
 
 
+    <script type="text/javascript" src="jquery-1.8.3.js"></script>
 
     <script type="text/javascript">
-	$(document).ready(
-		function() {
-		$.getJSON('<spring:url value="http://localhost:8080/WEB_dkropotov2_war_exploded/goods.html"/>', {
-    ajax : 'true'
-}, function(data){
-    var html = '<option value="">--Please select one--</option>';
-    var len = data.length;
-    for (var i = 0; i < len; i++) {
-        html += '<option value="' + data[i].desc + '">'
-                + data[i].desc + '</option>';
-    }
-    html += '</option>';
-
-    $('#activities').html(html);
-});
-
-});
-
-</script>
+        $(document).ready(
+            function() {
+                $.getJSON('<spring:url value="activities.json"/>', {<!--spring:url value="activities.json/>"-->
+                    ajax : 'true'
+                }, function(data){
+                    var html = '<option value="">--Please select product--</option>';
+                    var len = data.length;
+                    debugger;
+                    for (var i = 0; i < len; i++) {
+                        html += '<option value="' + data[i] + '">'
+                            + data[i] + '</option>';
+                    }
+                    html += '</option>';
+                    $('#products').html(html);
+                });
+            });
+    </script>
 
     <style>
         .error {
@@ -67,6 +67,9 @@
         <form:form>
             <form:form>
                 <table>
+                    <!--<td>
+                      <!-form:select id="products" path="productRequest.title"><!-/form:select>
+                   </td-->
                    Good: <input type="text" name="productRequest.title"/></td><br>
                    Amount: <input type="number" name="productRequest.amount" cssErrorClass="error"/></td><br>
                    <td><form:errors path="number" cssClass="error" /></td><br>

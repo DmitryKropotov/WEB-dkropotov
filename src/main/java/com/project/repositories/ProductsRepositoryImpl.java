@@ -1,6 +1,7 @@
 package com.project.repositories;
 
 import com.project.models.Product;
+import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -8,16 +9,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.*;
 
+@Repository
 public class ProductsRepositoryImpl implements ProductsRepository {
-
-    private static ProductsRepository productsRepository = null;
-
-    public static ProductsRepository getProductsRepository() {
-        if (productsRepository == null) {
-            productsRepository = new ProductsRepositoryImpl();
-        }
-        return productsRepository;
-    }
 
     private Connection conn = ConnectionSaver.getConnection();
 

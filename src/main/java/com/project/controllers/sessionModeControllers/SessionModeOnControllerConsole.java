@@ -3,16 +3,24 @@ package com.project.controllers.sessionModeControllers;
 import com.project.controllers.sessionModeControllers.enums.ModifyCartItemsResults;
 import com.project.models.Product;
 import com.project.services.ProductsService;
-import com.project.services.ProductsServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
+@Controller("sessionModeOnControllerConsole")
+@Scope("prototype")
 public class SessionModeOnControllerConsole implements SessionModeOnController {
 
     private List<Product> cartProducts = new ArrayList<>();
 
-    private ProductsService productsService = new ProductsServiceImpl();
+    @Autowired
+    private ProductsService productsService;
 
     @Override
     public String getAllProductsAsString() {
@@ -125,6 +133,7 @@ public class SessionModeOnControllerConsole implements SessionModeOnController {
             }
         }
         System.out.println("Your booking is successfully registered");
+        cartProducts.clear();
         return true;
     }
 
@@ -155,6 +164,13 @@ public class SessionModeOnControllerConsole implements SessionModeOnController {
             conditions.put("id", product.getId());
             productsService.updateProducts(columnsToUpdate, conditions);
         });
+    }
+
+
+    @RequestMapping(value = "/goods", method = RequestMethod.GET)
+    public @ResponseBody List<String> getAllAvailableProductsNames() {
+        return productsService.getAllProductsAsList().stream().filter(product -> product.getAvailable() > 0).
+                map(product -> product.getTitle()).collect(Collectors.toList());
     }
 
 }

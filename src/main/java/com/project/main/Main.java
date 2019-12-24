@@ -2,16 +2,18 @@ package com.project.main;
 
 import com.project.controllers.sessionModeControllers.SessionModeOffControllerConsole;
 import com.project.controllers.sessionModeControllers.SessionModeOnController;
-import com.project.controllers.sessionModeControllers.SessionModeOnControllerConsole;
 import com.project.controllers.sessionModeControllers.enums.ModifyCartItemsResults;
-import com.project.models.User;
 import com.project.models.UserChecker;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.util.*;
 
 public class Main {
 
     private static SessionModeOnController sessionModeOnController = null;
+
+    private static ApplicationContext appContext = new AnnotationConfigApplicationContext(AppConfig.class);
 
     //@Configuration
     //@ComponentScan
@@ -35,7 +37,8 @@ public class Main {
         while (true) {
             if (sessionModeOnController == null) {
                 if (sessionOffCommandMenu()) {
-                    sessionModeOnController = new SessionModeOnControllerConsole();
+                    sessionModeOnController = (SessionModeOnController) appContext.getBean("sessionModeOnControllerConsole");
+                    System.out.println(sessionModeOnController);
                 }
             } else {
                 if (!sessionOnControl()) {
@@ -46,7 +49,9 @@ public class Main {
     }
 
     private static boolean sessionOffCommandMenu() {
-        SessionModeOffControllerConsole sessionModeOffController = (SessionModeOffControllerConsole) SessionModeOffControllerConsole.getInstance();
+        SessionModeOffControllerConsole sessionModeOffController = (SessionModeOffControllerConsole) appContext.getBean("sessionModeOffControllerConsole");// = (SessionModeOffControllerConsole) SessionModeOffControllerConsole.getInstance();
+
+        System.out.println(sessionModeOffController);
 
         List<String> allowedFormats = new ArrayList();
         allowedFormats.add("register user [a-zA-Z0-9]+@[a-z]+.[a-z]+ [a-zA-Z0-9]+");
