@@ -143,7 +143,7 @@ public class Main {
                 break;
             case 3:
                 int idToRemove = Integer.parseInt(strings.get(6));
-                respond = "Item with id " + idToRemove + (sessionModeOnController.removeItemFromCart(idToRemove) ? " removed" : " not found");
+                respond = "Item with id " + idToRemove + (sessionModeOnController.removeItemFromCartById(idToRemove) ? " removed" : " not found");
                 break;
             case 4:
                 Map<String, Integer> titleIdProductsAsMap = sessionModeOnController.getTitleIdProductsAsMap();
@@ -168,7 +168,8 @@ public class Main {
                 }
                 break;
             case 5:
-                sessionModeOnController.checkoutBooking();
+                boolean successfullyRegistered = sessionModeOnController.checkoutBooking();
+                respond = successfullyRegistered ? "Your booking is successfully registered" : "Sorry. There is not enough products in database any more";
                 break;
             case 6:
                 sessionModeOnController.finishSession();

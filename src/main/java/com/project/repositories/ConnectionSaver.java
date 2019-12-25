@@ -1,9 +1,6 @@
 package com.project.repositories;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
 import org.sqlite.JDBC;
 
 import java.sql.Connection;
@@ -14,7 +11,6 @@ import java.util.Arrays;
 import java.util.List;
 
 //@PropertySource("app.properties")
-@Repository
 public class ConnectionSaver {
 
     private static Connection conn = null;

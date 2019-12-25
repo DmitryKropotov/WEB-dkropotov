@@ -9,16 +9,8 @@ import java.util.Optional;
 @Controller("sessionModeOffControllerJsp")
 public class SessionModeOffControllerJsp implements SessionModeOffController {
 
-    //private static final SessionModeOffControllerJsp SESSION_MODE_OFF_CONTROLLER_JSP = new SessionModeOffControllerJsp();
-
-    //private SessionModeOffControllerJsp() {}
-
-    /*public static SessionModeOffControllerJsp getInstance() {
-        return SESSION_MODE_OFF_CONTROLLER_JSP;
-    }*/
-
     @Autowired
-    private UserService userService;// = new UserServiceImpl();
+    private UserService userService;
 
     @Override
     public boolean registerUser(UserChecker user) {

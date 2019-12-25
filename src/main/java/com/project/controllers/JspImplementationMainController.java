@@ -111,6 +111,7 @@ public class JspImplementationMainController {
         } else {
             Optional<Integer> sessionId = sessionModeOffController.loginUserAndGetSessionId(user);
             if (!sessionId.isPresent()) {
+                user.setWrongEmailOrPassword("Email or password error");
                 return "main";
             }
             return "sessionModeOnMainPage";
@@ -168,7 +169,7 @@ public class JspImplementationMainController {
             String productName = product.getItemToRemove();
             if (titleIdProductsAsMap.containsKey(product.getItemToRemove())) {
                 int id = titleIdProductsAsMap.get(product.getItemToRemove());
-                String removedSuccessfully = "Item with name " + productName + (sessionModeOnController.removeItemFromCart(id) ? " removed" : " is not found in cart");
+                String removedSuccessfully = "Item with name " + productName + (sessionModeOnController.removeItemFromCartById(id) ? " removed" : " is not found in cart");
                 product.setRemovedSuccessfully(removedSuccessfully);
             } else {
                 product.setRemovedSuccessfully("Item with name " + productName + " is not in database");

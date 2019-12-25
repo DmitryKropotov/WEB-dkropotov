@@ -20,7 +20,7 @@ public interface SessionModeOnController extends MainController {
     String displayCartContent();
 
     //user operation
-    boolean removeItemFromCart(int id);
+    boolean removeItemFromCartById(int id);
 
     //user operation
     ModifyCartItemsResults modifyCartItem(int id, int newAmount);
