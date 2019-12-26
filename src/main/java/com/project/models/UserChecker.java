@@ -8,10 +8,11 @@ public class UserChecker {
     private String email;
     @NotEmpty
     private String password;
+    @NotEmpty
     private String passwordRepeater;
 
     private String success;
-    private String passwordsNotMatch;
+    private String passwordError;
     private String wrongEmailOrPassword;
     private String userAlreadyExists;
 
@@ -56,12 +57,12 @@ public class UserChecker {
         this.success = success;
     }
 
-    public String getPasswordsNotMatch() {
-        return passwordsNotMatch;
+    public String getPasswordError() {
+        return passwordError;
     }
 
-    public void setPasswordsNotMatch(String passwordsNotMatch) {
-        this.passwordsNotMatch = passwordsNotMatch;
+    public void setPasswordError(String passwordError) {
+        this.passwordError = passwordError;
     }
 
     public String getWrongEmailOrPassword() {

@@ -80,7 +80,7 @@ public class JspImplementationMainController {
                 (SessionModeOffControllerJsp) appContext.getBean("sessionModeOffControllerJsp");
         System.out.println(sessionModeOffController);
 
-        user.setPasswordsNotMatch("");
+        user.setPasswordError("");
         user.setWrongEmailOrPassword("");
         user.setSuccess("");
         user.setUserAlreadyExists("");
@@ -91,13 +91,20 @@ public class JspImplementationMainController {
         if (result.hasErrors()) {
             user.setPasswordRepeater(null);
             return "main";
-            //operation register user, passwords don't match
-        } else if (passwordRepeater != null && !passwordRepeater.isEmpty() && !password.equals(passwordRepeater)) {
-            user.setPasswordsNotMatch("Passwords don't match");
+        }
+        //Error in password
+        else if (password.contains(" ")) {
+            user.setPasswordError("Password shouldn't contain gaps");
+            return "main";
+        }
+        //operation register user, passwords don't match
+        else if (!passwordRepeater.equals(" ") && !password.equals(passwordRepeater)) {
+            user.setPasswordError("Passwords don't match");
             user.setPasswordRepeater(null);
             return "main";
-            //operation register user, passwords match
-        } else if (passwordRepeater != null && !passwordRepeater.isEmpty()) {
+        }
+        //operation register user, passwords match
+        else if (!passwordRepeater.equals(" ")) {
             boolean registered = sessionModeOffController.registerUser(user);
             System.out.println(registered);
             if (registered) {
@@ -107,8 +114,9 @@ public class JspImplementationMainController {
             }
             user.setPasswordRepeater(null);
             return "main";
-            //operation login user
-        } else {
+        }
+        //operation login user
+        else {
             Optional<Integer> sessionId = sessionModeOffController.loginUserAndGetSessionId(user);
             if (!sessionId.isPresent()) {
                 user.setWrongEmailOrPassword("Email or password error");

@@ -47,7 +47,7 @@
                 Password: <input type="password" name="password"/></td><br>
                 <td><form:errors path="password" cssClass="error" cssErrorClass="error"/></td><br>
                 Repeat password: <input type="password" name="passwordRepeater"/></td><br>
-                <h1>${userchecker.passwordsNotMatch}</h1>
+                <h1>${userchecker.passwordError}</h1>
                 <h1>${userchecker.userAlreadyExists}</h1>
                 <input type="submit" value="Submit user"/>
             </table>
@@ -59,7 +59,7 @@
           <table>
              Email: <input type="email" name="email"/></td><br>
              Password: <input type="password" name="password"/></td><br>
-             <input type = "hidden" name="passwordRepeater"/></td>
+             <input type = "hidden" name="passwordRepeater" value=" "/></td>
              <h1>${userchecker.wrongEmailOrPassword}</h1>
              <input type="submit" value="Login user"/>
           </table>
