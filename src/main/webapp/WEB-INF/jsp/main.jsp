@@ -39,14 +39,27 @@
 <table>
     <tr>
         <h5>Register a new user</h5>
-            <form:form>
+            <form:form commandName="userchecker">
             <table>
-                <h1>${userchecker.success}</h1>
-                Email: <input type="email" name="email" cssErrorClass="error"/></td><br>
-                <td><form:errors path="email" cssClass="error" /></td><br>
-                Password: <input type="password" name="password"/></td><br>
-                <td><form:errors path="password" cssClass="error" cssErrorClass="error"/></td><br>
-                Repeat password: <input type="password" name="passwordRepeater"/></td><br>
+                <h1>${userchecker.successfulRegMessage}</h1>
+                <!--tr-->
+                   Email: <input type="email" name="email"/>
+                   <!--form:errors path="email" cssClass="error"/>
+                </tr-->
+                </br>
+
+                <!--tr-->
+                   Password: <input type="password" name="password"/>
+                   <!--form:errors path="password" cssClass="error"/>
+                </tr-->
+                </br>
+
+                <!--tr-->
+                   Repeat password: <input type="password" name="passwordRepeater"/>
+                   <!--form:errors path="passwordRepeater" cssClass="error"/>
+                </tr-->
+                </br>
+
                 <h1>${userchecker.passwordError}</h1>
                 <h1>${userchecker.userAlreadyExists}</h1>
                 <input type="submit" value="Submit user"/>
@@ -57,8 +70,19 @@
         <h5>Login to the system</h5>
           <form:form>
           <table>
-             Email: <input type="email" name="email"/></td><br>
-             Password: <input type="password" name="password"/></td><br>
+
+              <!--tr-->
+                  Email: <input type="email" name="email"/>
+                  <!--form:errors path="email" cssClass="error"/>
+              </tr-->
+              </br>
+
+              <!--tr-->
+                  Password: <input type="password" name="password"/>
+                  <!--form:errors path="password" cssClass="error"/>
+              </tr-->
+              </br>
+
              <input type = "hidden" name="passwordRepeater" value=" "/></td>
              <h1>${userchecker.wrongEmailOrPassword}</h1>
              <input type="submit" value="Login user"/>

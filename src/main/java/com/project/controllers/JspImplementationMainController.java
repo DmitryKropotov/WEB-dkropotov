@@ -82,7 +82,7 @@ public class JspImplementationMainController {
 
         user.setPasswordError("");
         user.setWrongEmailOrPassword("");
-        user.setSuccess("");
+        user.setSuccessfulRegMessage("");
         user.setUserAlreadyExists("");
 
         String password = user.getPassword();
@@ -108,7 +108,7 @@ public class JspImplementationMainController {
             boolean registered = sessionModeOffController.registerUser(user);
             System.out.println(registered);
             if (registered) {
-                user.setSuccess("User is registered successfully");
+                user.setSuccessfulRegMessage("User is registered successfully");
             } else {
                 user.setUserAlreadyExists("User with such email already exists");
             }

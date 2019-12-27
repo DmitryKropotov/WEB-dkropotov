@@ -1,17 +1,16 @@
 package com.project.models;
 
-import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
 public class UserChecker {
-    @NotEmpty @Email
+    @NotEmpty
     private String email;
     @NotEmpty
     private String password;
     @NotEmpty
     private String passwordRepeater;
 
-    private String success;
+    private String successfulRegMessage;
     private String passwordError;
     private String wrongEmailOrPassword;
     private String userAlreadyExists;
@@ -49,12 +48,12 @@ public class UserChecker {
         this.passwordRepeater = passwordRepeater;
     }
 
-    public String getSuccess() {
-        return success;
+    public String getSuccessfulRegMessage() {
+        return successfulRegMessage;
     }
 
-    public void setSuccess(String success) {
-        this.success = success;
+    public void setSuccessfulRegMessage(String successfulRegMessage) {
+        this.successfulRegMessage = successfulRegMessage;
     }
 
     public String getPasswordError() {
