@@ -4,6 +4,8 @@ import com.project.controllers.sessionModeControllers.SessionModeOffControllerJs
 import com.project.controllers.sessionModeControllers.SessionModeOnControllerJsp;
 import com.project.controllers.sessionModeControllers.enums.ModifyCartItemsResults;
 import com.project.main.AppConfig;
+import com.project.models.Activity;
+import com.project.models.Exercise;
 import com.project.models.ProductRequest;
 import com.project.models.UserChecker;
 import com.project.services.ProductsService;
@@ -16,6 +18,7 @@ import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -122,8 +125,43 @@ public class JspImplementationMainController {
                 user.setWrongEmailOrPassword("Email or password error");
                 return "main";
             }
+
+
+            //It is needed base version to work
+            Exercise exercise = new Exercise();
+            exercise.setMinutes(200);
+            model.addAttribute("exercise", exercise);
+
+
+
+            //model.addAttribute("productrequest", user.getProductRequest());
+
+
             return "sessionModeOnMainPage";
         }
+    }
+
+    @RequestMapping(value = "/activities", method = RequestMethod.GET)
+    public @ResponseBody
+    List<Activity> findAllActivities() {
+        List<Activity> activities = new ArrayList<>();
+
+        System.out.println("findAllActivities get");
+
+        Activity run = new Activity();
+        run.setDesc("Run");
+        activities.add(run);
+
+        Activity bike = new Activity();
+        run.setDesc("Bike");
+        activities.add(bike);
+
+        Activity swim = new Activity();
+        run.setDesc("Swim");
+        activities.add(swim);
+
+        return activities;
+        //return exerciseService.findAllActivities();
     }
 
     private String sessionModeOn(ProductRequest product, Model model) {
@@ -134,7 +172,7 @@ public class JspImplementationMainController {
         model.addAttribute("productrequest", product);
 
         //update values which will be displayed on jsp page
-        product.setAnswerForGoodRespond("");
+        product.setAnswerForGoodRespond("");//here I receive NullPointerException
         product.setCartContent("");
         product.setRemovedSuccessfully("");
         product.setModificationResult("");

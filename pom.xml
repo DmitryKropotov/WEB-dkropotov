@@ -6,7 +6,7 @@
 
     <groupId>groupId</groupId>
     <artifactId>storeProject</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.1-SNAPSHOT</version>
     <packaging>war</packaging>
 
     <build>
@@ -31,7 +31,8 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
-            <version>4.3.25.RELEASE</version>
+            <version>3.2.18.RELEASE</version>
+            <!--<version>4.3.25.RELEASE</version>-->
             <!--<version>5.1.9.RELEASE</version>-->
         </dependency>
         <dependency>
@@ -43,6 +44,11 @@
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator</artifactId>
             <version>4.2.0.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-mapper-asl</artifactId>
+            <version>1.4.1</version>
         </dependency>
         <!--dependencies for ajax-->
         <dependency>
