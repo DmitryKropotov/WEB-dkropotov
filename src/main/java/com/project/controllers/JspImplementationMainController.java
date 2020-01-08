@@ -2,10 +2,11 @@ package com.project.controllers;
 
 import com.project.controllers.sessionModeControllers.SessionModeOffControllerJsp;
 import com.project.controllers.sessionModeControllers.SessionModeOnControllerJsp;
+import com.project.controllers.sessionModeControllers.enums.ConditionsToChoose;
 import com.project.controllers.sessionModeControllers.enums.ModifyCartItemsResults;
 import com.project.main.AppConfig;
-import com.project.models.Activity;
 import com.project.models.Exercise;
+import com.project.models.Product;
 import com.project.models.ProductRequest;
 import com.project.models.UserChecker;
 import com.project.services.ProductsService;
@@ -18,10 +19,11 @@ import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Controller
 @SessionAttributes("userchecker")
@@ -141,27 +143,16 @@ public class JspImplementationMainController {
         }
     }
 
-    @RequestMapping(value = "/activities", method = RequestMethod.GET)
+    @RequestMapping(value = "/products", method = RequestMethod.GET)
     public @ResponseBody
-    List<Activity> findAllActivities() {
-        List<Activity> activities = new ArrayList<>();
+    List<String> getAvailableProducts() {
+        Map<String, Object> conditions = new HashMap<>();
+        conditions.put("available", 0);
+        List<Product> products = sessionModeOnController.selectProducts(conditions, ConditionsToChoose.MORE);
 
-        System.out.println("findAllActivities get");
+        System.out.println("getAvailableProducts method");
 
-        Activity run = new Activity();
-        run.setDesc("Run");
-        activities.add(run);
-
-        Activity bike = new Activity();
-        run.setDesc("Bike");
-        activities.add(bike);
-
-        Activity swim = new Activity();
-        run.setDesc("Swim");
-        activities.add(swim);
-
-        return activities;
-        //return exerciseService.findAllActivities();
+        return products.stream().map(Product::getTitle).collect(Collectors.toList());
     }
 
     private String sessionModeOn(ProductRequest product, Model model) {

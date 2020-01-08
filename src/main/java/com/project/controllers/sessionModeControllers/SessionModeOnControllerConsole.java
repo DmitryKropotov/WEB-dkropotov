@@ -1,6 +1,8 @@
 package com.project.controllers.sessionModeControllers;
 
+import com.project.controllers.sessionModeControllers.enums.ConditionsToChoose;
 import com.project.controllers.sessionModeControllers.enums.ModifyCartItemsResults;
+import com.project.models.Product;
 import com.project.services.ProductsServiceWithUserCart;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -56,6 +58,11 @@ public class SessionModeOnControllerConsole implements SessionModeOnController {
            productsService.clearCartProducts();
        }
        return cartIsValid;
+    }
+
+    @Override
+    public List<Product> selectProducts(Map<String, Object> conditions, ConditionsToChoose...signs) {
+        return productsService.selectProducts(conditions, signs);
     }
 
     @Override

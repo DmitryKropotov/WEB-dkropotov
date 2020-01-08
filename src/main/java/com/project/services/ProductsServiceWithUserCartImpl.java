@@ -1,5 +1,6 @@
 package com.project.services;
 
+import com.project.controllers.sessionModeControllers.enums.ConditionsToChoose;
 import com.project.controllers.sessionModeControllers.enums.ModifyCartItemsResults;
 import com.project.models.Product;
 import com.project.repositories.ProductsRepository;
@@ -53,8 +54,8 @@ public class ProductsServiceWithUserCartImpl implements ProductsServiceWithUserC
     }
 
     @Override
-    public List<Product> selectProducts(Map<String, Object> conditions) {
-        return productsRepository.selectProducts(conditions);
+    public List<Product> selectProducts(Map<String, Object> conditions, ConditionsToChoose ...signs) {
+        return productsRepository.selectProducts(conditions, signs);
     }
 
     @Override

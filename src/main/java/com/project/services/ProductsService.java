@@ -1,5 +1,6 @@
 package com.project.services;
 
+import com.project.controllers.sessionModeControllers.enums.ConditionsToChoose;
 import com.project.models.Product;
 
 import java.util.List;
@@ -15,7 +16,7 @@ public interface ProductsService {
 
     Map<String, Integer> getTitleIdProductsAsMap();
 
-    List<Product> selectProducts(Map<String, Object> conditions);
+    List<Product> selectProducts(Map<String, Object> conditions, ConditionsToChoose ...signs);
 
     int updateProducts(Map<String, Object> columns, Map<String, Object> conditions);
 

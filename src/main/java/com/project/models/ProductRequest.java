@@ -30,10 +30,8 @@ public class ProductRequest {
 
     public ProductRequest() {}
 
-    public ProductRequest(String availableProducts/*, Map<String, Integer> titleAmountProducts, Map<String, Integer> titleIdProducts*/) {
+    public ProductRequest(String availableProducts) {
         this.availableProducts = availableProducts;
-        //this.titleAmountProducts = titleAmountProducts;
-        //this.titleIdProducts = titleIdProducts;
     }
 
     public String getAvailableProducts() { return availableProducts; }

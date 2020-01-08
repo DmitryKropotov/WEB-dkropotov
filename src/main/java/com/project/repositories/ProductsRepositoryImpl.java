@@ -1,5 +1,6 @@
 package com.project.repositories;
 
+import com.project.controllers.sessionModeControllers.enums.ConditionsToChoose;
 import com.project.models.Product;
 import org.springframework.stereotype.Repository;
 
@@ -59,7 +60,10 @@ public class ProductsRepositoryImpl implements ProductsRepository {
     }
 
     @Override
-    public List<Product> selectProducts(Map<String, Object> conditions) {
+    public List<Product> selectProducts(Map<String, Object> conditions, ConditionsToChoose... signs) {
+        if (signs.length > conditions.size()) {
+            throw new IllegalArgumentException("Amount of signs shouldn't be more than amount of conditions");
+        }
         Statement stmt = null;
         ResultSet rs = null;
 
@@ -67,8 +71,10 @@ public class ProductsRepositoryImpl implements ProductsRepository {
         if (!conditions.isEmpty()) {
             sql += " where ";
             Set<String> conditionsFields = conditions.keySet();
+            int i = 0;
             for (String field : conditionsFields) {
-                sql += field + "=" + conditions.get(field) + " and ";
+                String sign = signs.length <= i + 1 ? signs[i++].toString(): "=";
+                sql += field + sign + conditions.get(field) + " and ";
             }
             sql = sql.substring(0, sql.length() - 5);
         }

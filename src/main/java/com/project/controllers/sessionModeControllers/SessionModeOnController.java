@@ -1,8 +1,11 @@
 package com.project.controllers.sessionModeControllers;
 
 import com.project.controllers.MainController;
+import com.project.controllers.sessionModeControllers.enums.ConditionsToChoose;
 import com.project.controllers.sessionModeControllers.enums.ModifyCartItemsResults;
+import com.project.models.Product;
 
+import java.util.List;
 import java.util.Map;
 
 public interface SessionModeOnController extends MainController {
@@ -27,6 +30,9 @@ public interface SessionModeOnController extends MainController {
 
     //user operation
     boolean checkoutBooking();
+
+    //additional operation
+    List<Product> selectProducts(Map<String, Object> conditions, ConditionsToChoose...signs);
 
     //additional user operation
     String finishSession();
