@@ -53,6 +53,7 @@
 </head>
 <body>
 
+<!--error block for version with a better validation-->
 <form:form commandName="productrequest">
     <form:errors path="*" cssClass="errorblock" element="div" />
 </form:form>
@@ -67,11 +68,9 @@
         <form:form>
             <form:form>
                 <table>
-                    <!--<td>
-                      <!-form:select id="products" path="productRequest.title"><!-/form:select>
-                   </td-->
                    Good: <input type="text" name="productRequest.title"/></td><br>
                    Amount: <input type="number" name="productRequest.amount" cssErrorClass="error"/></td><br>
+                   <!--error message for version with a better validation-->
                    <td><form:errors path="number" cssClass="error" /></td><br>
                    <h5>${productrequest.answerForGoodRespond}</h5>
                    <input type="submit" value="Submit choice"/>
@@ -98,6 +97,7 @@
                 <table>
                    <input type="text" name="productRequest.itemToModify"/></td><br>
                    <input type="number" name="productRequest.newAmount" cssErrorClass="error"/></td><br>
+                   <!--error message for version with a better validation-->
                    <td><form:errors path="number" cssClass="error" /></td><br>
                    <h1>${productrequest.modificationResult}</h1>
                    <input type="submit" value="Modify cart item"/>

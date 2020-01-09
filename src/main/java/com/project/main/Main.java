@@ -15,24 +15,7 @@ public class Main {
 
     private static ApplicationContext appContext = new AnnotationConfigApplicationContext(AppConfig.class);
 
-    //@Configuration
-    //@ComponentScan
-    //@EnableAutoConfiguration
     public static void main(String[] args) {
-        /*ApplicationContext appContext = new FileSystemXmlApplicationContext("/src/main/webapp/WEB-INF/config/servlet-config.xml");//new AnnotationConfigApplicationContext(AppConfig.class);
-
-        System.out.println(appContext.getBeanDefinitionCount());
-        String[] beanNames = appContext.getBeanDefinitionNames();
-        for (int i = 0; i < beanNames.length; i++) {
-            System.out.println(beanNames[i]);
-        }
-        Object sessionModeOffControllerJsp = appContext.getBean("SessionModeOffControllerJsp");
-
-        System.out.println(sessionModeOffControllerJsp.getClass());
-
-        ConnectionSaver connectionSaver = new ConnectionSaver();
-
-        System.out.println(connectionSaver.getUrl());*/
 
         while (true) {
             if (sessionModeOnController == null) {

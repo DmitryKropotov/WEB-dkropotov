@@ -56,7 +56,7 @@ public class JspImplementationMainController {
             pageToReturn = sessionModeOff(user, result, model);
             if (pageToReturn.equals("sessionModeOnMainPage")) {
                 sessionModeOnController =
-                        (SessionModeOnControllerJsp) appContext.getBean("sessionModeOnControllerJsp");//new SessionModeOnControllerJsp();
+                        (SessionModeOnControllerJsp) appContext.getBean("sessionModeOnControllerJsp");
                 System.out.println(sessionModeOnController);
                 ProductRequest productRequest = new ProductRequest(sessionModeOnController.getAllProductsAsString());
                 model.addAttribute("productrequest", productRequest);
