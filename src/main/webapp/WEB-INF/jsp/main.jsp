@@ -69,24 +69,24 @@
     <tr>
         <h5>Login to the system</h5>
           <form:form>
-          <table>
+            <table>
 
-              <!--tr-->
+               <!--tr-->
                   Email: <input type="email" name="email"/>
                   <!--form:errors path="email" cssClass="error"/>
-              </tr-->
-              </br>
+               </tr-->
+               </br>
 
-              <!--tr-->
+               <!--tr-->
                   Password: <input type="password" name="password"/>
                   <!--form:errors path="password" cssClass="error"/>
-              </tr-->
-              </br>
+               </tr-->
+               </br>
 
-             <input type = "hidden" name="passwordRepeater" value=" "/></td>
-             <h1>${userchecker.wrongEmailOrPassword}</h1>
-             <input type="submit" value="Login user"/>
-          </table>
+               <input type = "hidden" name="passwordRepeater" value=" "/></td>
+               <h1>${userchecker.wrongEmailOrPassword}</h1>
+               <input type="submit" value="Login user"/>
+            </table>
           </form:form>
     </tr>
 </table>

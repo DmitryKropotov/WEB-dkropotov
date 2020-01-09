@@ -26,7 +26,7 @@
                     var len = data.length;
                     debugger;
                     for (var i = 0; i < len; i++) {
-                        html += '<option value="' + data[i]+ '">'
+                        html += '<option value="' + data[i] + '">'
                             + data[i] + '</option>';
                     }
                     html += '</option>';
@@ -53,6 +53,7 @@
 </head>
 <body>
 
+<!--error block for version with a better validation-->
 <form:form commandName="productrequest">
     <form:errors path="*" cssClass="errorblock" element="div" />
 </form:form>
@@ -104,11 +105,12 @@
             </form:form>
             <form:form>
                 <table>
-                    <input type="text" name="productRequest.itemToModify"/></td><br>
-                    <input type="number" name="productRequest.newAmount" cssErrorClass="error"/></td><br>
-                    <td><form:errors path="number" cssClass="error" /></td><br>
-                    <h1>${productrequest.modificationResult}</h1>
-                    <input type="submit" value="Modify cart item"/>
+                   <input type="text" name="productRequest.itemToModify"/></td><br>
+                   <input type="number" name="productRequest.newAmount" cssErrorClass="error"/></td><br>
+                   <!--error message for version with a better validation-->
+                   <td><form:errors path="number" cssClass="error" /></td><br>
+                   <h1>${productrequest.modificationResult}</h1>
+                   <input type="submit" value="Modify cart item"/>
                 </table>
             </form:form>
             <form:form>
