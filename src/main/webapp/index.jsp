@@ -14,6 +14,9 @@
     <title>Final Project</title>
 </head>
 <body>
-    <h4>Main page</h4>
+    <h4>Hello</h4>
+    <a href="main.html">
+        Main application page
+    </a>
 </body>
 </html>
