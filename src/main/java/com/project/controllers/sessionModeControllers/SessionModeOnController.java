@@ -10,7 +10,7 @@ public interface SessionModeOnController extends MainController {
     //user operation
     String getAllProductsAsString();
 
-    //additional operation, think what to do with it
+    //additional operation
     Map<String, Integer> getTitleIdProductsAsMap();
 
     //user operation

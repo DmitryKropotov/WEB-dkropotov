@@ -1,6 +1,5 @@
 package com.project.repositories;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.sqlite.JDBC;
 
 import java.sql.Connection;
@@ -10,21 +9,9 @@ import java.sql.Statement;
 import java.util.Arrays;
 import java.util.List;
 
-//@PropertySource("app.properties")
 public class ConnectionSaver {
 
     private static Connection conn = null;
-
-    @Value("${url}")
-    private String url;
-
-    public String getUrl() {
-        return url;
-    }
-
-    /*public static void setUrl(String url) {
-        ConnectionSaver.url = url;
-    }*/
 
     static Connection getConnection() {
         if (conn != null) {
@@ -33,9 +20,9 @@ public class ConnectionSaver {
 
         try {
             // db parameters
-            //String url = "jdbc:sqlite:shop.db";
+            String url = "jdbc:sqlite:shop.db";
             DriverManager.registerDriver(new JDBC());
-            conn = DriverManager.getConnection("jdbc:sqlite:shop.db");
+            conn = DriverManager.getConnection(url);
         } catch (SQLException e) {
             e.printStackTrace();
         }
