@@ -16,11 +16,11 @@ public interface SessionModeOffController extends MainController {
             return "";
         }
         char[] pass = password.toCharArray();
-        String result = "";
-        for (int i = 0; i < pass.length; i++) {
-            result += pass[i] + "rgh";
+        StringBuilder result = new StringBuilder();
+        for (char c : pass) {
+            result.append(c).append("rgh");
         }
-        return result;
+        return result.toString();
     }
 
 }
