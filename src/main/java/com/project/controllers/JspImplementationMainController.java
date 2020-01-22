@@ -115,7 +115,7 @@ public class JspImplementationMainController {
             if (registered) {
                 user.setSuccessfulRegMessage("User is registered successfully");
             } else {
-                user.setUserAlreadyExists("User with such email already exists");
+                user.setUserAlreadyExists("Database error. Possible, user with such email already exists");
             }
             user.setPasswordRepeater(null);
             return "main";

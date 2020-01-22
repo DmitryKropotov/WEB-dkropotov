@@ -32,7 +32,7 @@ public class Main {
     }
 
     private static boolean sessionOffCommandMenu() {
-        SessionModeOffControllerConsole sessionModeOffController = (SessionModeOffControllerConsole) appContext.getBean("sessionModeOffControllerConsole");// = (SessionModeOffControllerConsole) SessionModeOffControllerConsole.getInstance();
+        SessionModeOffControllerConsole sessionModeOffController = (SessionModeOffControllerConsole) appContext.getBean("sessionModeOffControllerConsole");
 
         System.out.println(sessionModeOffController);
 
@@ -63,7 +63,7 @@ public class Main {
         switch (commandNumber) {
             case 0:
                 respond = sessionModeOffController.registerUser(new UserChecker(strings.get(2), strings.get(3))) ?
-                        "user is registered" : "user is not registered";//think how to implement it better
+                        "user is registered" : "user is not registered";
                 break;
             case 1:
                 UserChecker user = new UserChecker(strings.get(2), strings.get(3));
@@ -97,7 +97,7 @@ public class Main {
         System.out.println("Please print command in format 'show all products in store', " +
                 "'add item to cart id: [itemId] quantity: [number]', 'display your cart content', " +
                 "'remove an item from cart id: [itemId]', " +
-                "'modify cart item id: [itemId] quantity: [number]', 'checkout' to verify your book, " +
+                "'modify cart item title: [itemId] quantity: [number]', 'checkout' to verify your book, " +
                 "'finish session' to logout or 'exit' to exit application.");
 
         String inputString = scanner.nextLine();

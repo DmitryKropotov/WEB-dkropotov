@@ -5,12 +5,14 @@ import com.project.controllers.sessionModeControllers.enums.ModifyCartItemsResul
 import com.project.models.Product;
 import com.project.repositories.ProductsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
 @Service("ProductsService")
+@Scope("prototype")
 public class ProductsServiceWithUserCartImpl implements ProductsServiceWithUserCart {
 
     private List<Product> cartProducts = new ArrayList<>();
