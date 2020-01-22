@@ -34,14 +34,14 @@
     <form:errors path="*" cssClass="errorblock" element="div" />
 </form:form>
 
-<h4>Please choose an operation</h4>
+<h1>You have two operations: register a new user and login to the system</h1>
 
 <table>
     <tr>
-        <h5>Register a new user</h5>
+        <h2>Register a new user</h2>
             <form:form commandName="userchecker">
             <table>
-                <h1>${userchecker.successfulRegMessage}</h1>
+                <h2>${userchecker.successfulRegMessage}</h2>
                 <!--tr-->
                    Email: <input type="email" name="email"/>
                    <!--form:errors path="email" cssClass="error"/>
@@ -60,14 +60,14 @@
                 </tr-->
                 </br>
 
-                <h1>${userchecker.passwordError}</h1>
-                <h1>${userchecker.userAlreadyExists}</h1>
+                <h2>${userchecker.passwordError}</h2>
+                <h2>${userchecker.userAlreadyExists}</h2>
                 <input type="submit" value="Submit user"/>
             </table>
             </form:form>
     </tr>
     <tr>
-        <h5>Login to the system</h5>
+        <h2>Login to the system</h2>
           <form:form>
             <table>
 
@@ -84,7 +84,7 @@
                </br>
 
                <input type = "hidden" name="passwordRepeater" value=" "/></td>
-               <h1>${userchecker.wrongEmailOrPassword}</h1>
+               <h2>${userchecker.wrongEmailOrPassword}</h2>
                <input type="submit" value="Login user"/>
             </table>
           </form:form>

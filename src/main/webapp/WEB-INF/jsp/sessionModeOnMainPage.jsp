@@ -58,13 +58,13 @@
     <form:errors path="*" cssClass="errorblock" element="div" />
 </form:form>
 
-<h4>Please fill in your cart</h4>
+<h1>You have a set of available operations for work with your cart</h1>
 
 <table>
     <tr>
     <tr>
-        <h5>Please choose goods from the store</h5>
-        <h2>Available products are ${productrequest.availableProducts}</h2>
+        <h2>Please choose goods from the store</h2>
+        <h4>Available products are ${productrequest.availableProducts}</h4>
         <form:form>
             <form:form>
                 <table>
@@ -72,14 +72,14 @@
                    Amount: <input type="number" name="productRequest.amount" cssErrorClass="error"/></td><br>
                    <!--error message for version with a better validation-->
                    <td><form:errors path="number" cssClass="error" /></td><br>
-                   <h5>${productrequest.answerForGoodRespond}</h5>
+                   <h2>${productrequest.answerForGoodRespond}</h2>
                    <input type="submit" value="Submit choice"/>
                 </table>
             </form:form>
             <form:form>
                 <table>
                     <input type="hidden" name="productRequest.displayContent" value="true"/></td>
-                   <h1>${productrequest.cartContent}</h1>
+                   <h2>${productrequest.cartContent}</h2>
                    <input type="submit" value="Show cart content"/>
                 </table>
             </form:form>
@@ -89,7 +89,7 @@
             <form:form>
                <table>
                   <input type="text" name="productRequest.itemToRemove"/></td><br>
-                  <h1>${productrequest.removedSuccessfully}</h1>
+                  <h2>${productrequest.removedSuccessfully}</h2>
                   <input type="submit" value="Remove item from cart"/>
                </table>
             </form:form>
@@ -99,14 +99,14 @@
                    <input type="number" name="productRequest.newAmount" cssErrorClass="error"/></td><br>
                    <!--error message for version with a better validation-->
                    <td><form:errors path="number" cssClass="error" /></td><br>
-                   <h1>${productrequest.modificationResult}</h1>
+                   <h2>${productrequest.modificationResult}</h2>
                    <input type="submit" value="Modify cart item"/>
                 </table>
             </form:form>
             <form:form>
                 <table>
                    <input type="hidden" name="productRequest.checkoutBooking" value="true"/></td>
-                   <h1>${productrequest.checkOutResult}</h1>
+                   <h2>${productrequest.checkOutResult}</h2>
                    <input type="submit" value="Checkout booking"/>
                 </table>
             </form:form>
