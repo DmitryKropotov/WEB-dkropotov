@@ -1,8 +1,6 @@
 package com.project.repositories;
 
 import com.project.models.Session;
-
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
@@ -57,8 +55,7 @@ public class SessionRepositoryImpl implements SessionRepository {
             stmt = conn.createStatement();
             stmt.execute("SELECT * FROM Sessions (id) VALUES (" + id + ")");
             rs = stmt.getResultSet();
-            RowMapper rowMapper = new SessionRowMapper();
-            session = (Session) rowMapper.mapRow(rs, 0);
+            session = new Session(rs.getInt(1), rs.getInt(2));
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -78,13 +75,5 @@ public class SessionRepositoryImpl implements SessionRepository {
             }
         }
         return session;
-    }
-
-    class SessionRowMapper implements RowMapper<Session> {
-
-        @Override
-        public Session mapRow(ResultSet rs, int i) throws SQLException {
-            return new Session(rs.getInt(1), rs.getInt(2));
-        }
     }
 }
