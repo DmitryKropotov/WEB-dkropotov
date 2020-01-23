@@ -11,7 +11,8 @@ import java.io.PrintWriter;
 public class MainPageServlet extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {String command = req.getParameter("command");
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        String command = req.getParameter("command");
         if (command == null) {
             command = "";
         }

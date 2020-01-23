@@ -12,7 +12,10 @@ public class RegisterPageServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        String email = getInitParameter("email");
+        String initEmail = getInitParameter("email");
+        String email = req.getParameter("email");
+        resp.getWriter().write("Initial email is " + initEmail);
+        resp.getWriter().println();
         resp.getWriter().write("This is register page for user with email " + email);
     }
 }
