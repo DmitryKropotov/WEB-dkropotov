@@ -6,6 +6,8 @@ import com.project.controllers.sessionModeControllers.enums.ModifyCartItemsResul
 import com.project.main.AppConfig;
 import com.project.models.ProductRequest;
 import com.project.models.UserChecker;
+import com.project.repositories.DatabaseInitializer;
+import com.project.repositories.ProductsRepositoryImpl;
 import com.project.services.ProductsService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -32,6 +34,8 @@ public class JspImplementationMainController {
 
     @RequestMapping(value = "/main", method = RequestMethod.GET)
     public String goToMainPage(Model model) {
+        DatabaseInitializer databaseInitializer = new DatabaseInitializer(new ProductsRepositoryImpl());
+        databaseInitializer.initializeDatabase();
         System.out.println("goToMainPage get");
         UserChecker userChecker = new UserChecker();
         model.addAttribute("userchecker", userChecker);

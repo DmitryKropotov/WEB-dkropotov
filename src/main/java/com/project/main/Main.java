@@ -4,6 +4,8 @@ import com.project.controllers.sessionModeControllers.SessionModeOffControllerCo
 import com.project.controllers.sessionModeControllers.SessionModeOnController;
 import com.project.controllers.sessionModeControllers.enums.ModifyCartItemsResults;
 import com.project.models.UserChecker;
+import com.project.repositories.DatabaseInitializer;
+import com.project.repositories.ProductsRepositoryImpl;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -16,6 +18,9 @@ public class Main {
     private static ApplicationContext appContext = new AnnotationConfigApplicationContext(AppConfig.class);
 
     public static void main(String[] args) {
+
+        DatabaseInitializer databaseInitializer = new DatabaseInitializer(new ProductsRepositoryImpl());
+        databaseInitializer.initializeDatabase();
 
         while (true) {
             if (sessionModeOnController == null) {
