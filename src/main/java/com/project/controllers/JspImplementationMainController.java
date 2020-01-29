@@ -1,9 +1,9 @@
 package com.project.controllers;
 
+import com.project.configuration.AppConfig;
 import com.project.controllers.sessionModeControllers.SessionModeOffControllerJsp;
 import com.project.controllers.sessionModeControllers.SessionModeOnControllerJsp;
 import com.project.controllers.sessionModeControllers.enums.ModifyCartItemsResults;
-import com.project.main.AppConfig;
 import com.project.models.ProductRequest;
 import com.project.models.UserChecker;
 import com.project.repositories.DatabaseInitializer;

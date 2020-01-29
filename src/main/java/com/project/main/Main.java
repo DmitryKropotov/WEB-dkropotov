@@ -6,6 +6,7 @@ import com.project.controllers.sessionModeControllers.enums.ModifyCartItemsResul
 import com.project.models.UserChecker;
 import com.project.repositories.DatabaseInitializer;
 import com.project.repositories.ProductsRepositoryImpl;
+import com.project.configuration.AppConfig;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
