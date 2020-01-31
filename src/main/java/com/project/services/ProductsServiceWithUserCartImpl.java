@@ -3,6 +3,7 @@ package com.project.services;
 import com.project.controllers.sessionModeControllers.enums.ModifyCartItemsResults;
 import com.project.models.Product;
 import com.project.repositories.ProductsRepository;
+import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
@@ -12,6 +13,7 @@ import java.util.stream.Collectors;
 
 @Service("ProductsService")
 @Scope("prototype")
+@Log
 public class ProductsServiceWithUserCartImpl implements ProductsServiceWithUserCart {
 
     private List<Product> cartProducts = new ArrayList<>();
@@ -171,7 +173,7 @@ public class ProductsServiceWithUserCartImpl implements ProductsServiceWithUserC
         cartProducts.forEach(product -> {
             Optional<Product> productFromDB = productsFromDataBase.stream().filter(productFromDBInFilter -> productFromDBInFilter.getId() == product.getId()).findFirst();
             if (!productFromDB.isPresent()) {
-                System.out.println("database error");
+                log.warning("MYYYYYYYYY LOG: database error");
                 return;
             }
             Map<String, Object> columnsToUpdate = new HashMap<>();

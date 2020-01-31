@@ -1,17 +1,19 @@
 package com.project.main;
 
+import com.project.configuration.AppConfig;
 import com.project.controllers.sessionModeControllers.SessionModeOffControllerConsole;
 import com.project.controllers.sessionModeControllers.SessionModeOnController;
 import com.project.controllers.sessionModeControllers.enums.ModifyCartItemsResults;
 import com.project.models.UserChecker;
 import com.project.repositories.DatabaseInitializer;
 import com.project.repositories.ProductsRepositoryImpl;
-import com.project.configuration.AppConfig;
+import lombok.extern.java.Log;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.util.*;
 
+@Log
 public class Main {
 
     private static SessionModeOnController sessionModeOnController = null;
@@ -27,7 +29,7 @@ public class Main {
             if (sessionModeOnController == null) {
                 if (sessionOffCommandMenu()) {
                     sessionModeOnController = (SessionModeOnController) appContext.getBean("sessionModeOnControllerConsole");
-                    System.out.println(sessionModeOnController);
+                    log.info("MYYYYYYYYY LOG" +  sessionModeOnController);
                 }
             } else {
                 if (!sessionOnControl()) {
@@ -40,7 +42,7 @@ public class Main {
     private static boolean sessionOffCommandMenu() {
         SessionModeOffControllerConsole sessionModeOffController = (SessionModeOffControllerConsole) appContext.getBean("sessionModeOffControllerConsole");
 
-        System.out.println(sessionModeOffController);
+        log.info("MYYYYYYYYY LOG" +  sessionModeOffController);
 
         List<String> allowedFormats = new ArrayList();
         allowedFormats.add("register user [a-zA-Z0-9]+@[a-z]+.[a-z]+ [a-zA-Z0-9]+");

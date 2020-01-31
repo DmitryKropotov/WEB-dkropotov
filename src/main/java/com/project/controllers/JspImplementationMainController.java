@@ -9,13 +9,17 @@ import com.project.models.UserChecker;
 import com.project.repositories.DatabaseInitializer;
 import com.project.repositories.ProductsRepositoryImpl;
 import com.project.services.ProductsService;
+import lombok.extern.java.Log;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -24,6 +28,7 @@ import java.util.Optional;
 
 @Controller
 @SessionAttributes("userchecker")
+@Log
 public class JspImplementationMainController {
 
     private SessionModeOnControllerJsp sessionModeOnController = null;
@@ -36,7 +41,7 @@ public class JspImplementationMainController {
     public String goToMainPage(Model model) {
         DatabaseInitializer databaseInitializer = new DatabaseInitializer(new ProductsRepositoryImpl());
         databaseInitializer.initializeDatabase();
-        System.out.println("goToMainPage get");
+        log.info("MYYYYYYYYY LOG: goToMainPage get");
         UserChecker userChecker = new UserChecker();
         model.addAttribute("userchecker", userChecker);
         return "main";
@@ -46,29 +51,29 @@ public class JspImplementationMainController {
     public String goToMainPage(@Valid @ModelAttribute("userchecker") UserChecker user, BindingResult result, Model model) {
 
         //debug logs
-        System.out.println("goToMainPage post " + user.getEmail() + " " + user.getPassword() + " " + user.getProductRequest() + " " + ++goToMainPageCall);
-        System.out.println("Amount of errors is " + result.getErrorCount());
+        log.info("MYYYYYYYYY LOG: goToMainPage post " + user.getEmail() + " " + user.getPassword() + " " + user.getProductRequest() + " " + ++goToMainPageCall);
+        log.info("MYYYYYYYYY LOG: Amount of errors is " + result.getErrorCount());
         List<ObjectError> errors = result.getAllErrors();
-        errors.forEach(error -> System.out.println(error + " "));
+        errors.forEach(error ->  log.warning("MYYYYYYYYY LOG: " + error + " "));
         //debug logs
 
         String pageToReturn;
         if (sessionModeOnController == null) {
             //debug logs
-            System.out.println("session mode off");
+            log.info("MYYYYYYYYY LOG: session mode off");
             //debug logs
             pageToReturn = sessionModeOff(user, result, model);
             if (pageToReturn.equals("sessionModeOnMainPage")) {
                 sessionModeOnController =
                         (SessionModeOnControllerJsp) appContext.getBean("sessionModeOnControllerJsp");
-                System.out.println(sessionModeOnController);
+                log.info("MYYYYYYYYY LOG" + sessionModeOnController);
                 ProductRequest productRequest = new ProductRequest(sessionModeOnController.getAllProductsAsString());
                 model.addAttribute("productrequest", productRequest);
                 user.setProductRequest(productRequest);
             }
         } else {
             //debug logs
-            System.out.println("session mode on " + user.getProductRequest());
+            log.info("MYYYYYYYYY LOG: session mode on + user.getProductRequest()");
             //debug logs
             pageToReturn = sessionModeOn(user.getProductRequest(), model);
             if (pageToReturn.equals("main")) {
@@ -82,7 +87,7 @@ public class JspImplementationMainController {
     private String sessionModeOff(UserChecker user, BindingResult result, Model model) {
         SessionModeOffControllerJsp sessionModeOffController =
                 (SessionModeOffControllerJsp) appContext.getBean("sessionModeOffControllerJsp");
-        System.out.println(sessionModeOffController);
+        log.info("MYYYYYYYYY LOG" + sessionModeOffController);
 
         user.setPasswordError("");
         user.setWrongEmailOrPassword("");
@@ -110,7 +115,7 @@ public class JspImplementationMainController {
         //operation register user, passwords match
         else if (!passwordRepeater.equals(" ")) {
             boolean registered = sessionModeOffController.registerUser(user);
-            System.out.println(registered);
+            log.info("MYYYYYYYYY LOG:" + registered);
             if (registered) {
                 user.setSuccessfulRegMessage("User is registered successfully");
             } else {
@@ -132,7 +137,7 @@ public class JspImplementationMainController {
 
     private String sessionModeOn(ProductRequest product, Model model) {
         //log
-        System.out.println("sessionModeOn is called");
+        log.info("MYYYYYYYYY LOG: session mode off");
         //log
         ProductsService productsService = (ProductsService) appContext.getBean("ProductsService");
         model.addAttribute("productrequest", product);
@@ -152,7 +157,8 @@ public class JspImplementationMainController {
 
         if (product.getTitle() != null && product.getAmount() != null) {
             //debug logs
-            System.out.println("1");
+            log.info("MYYYYYYYYY LOG: session mode off");
+            log.info("MYYYYYYYYY LOG: 1");
             //debug logs
             String title = product.getTitle();
             Integer requestedAmount = product.getAmount();
@@ -168,7 +174,7 @@ public class JspImplementationMainController {
             return "sessionModeOnMainPage";
         } else if (product.isDisplayContent()) {
             //debug logs
-            System.out.println("2");
+            log.info("MYYYYYYYYY LOG: 2");
             //debug logs
             String answer = sessionModeOnController.displayCartContent();
             product.setCartContent(answer);
@@ -176,7 +182,7 @@ public class JspImplementationMainController {
             return "sessionModeOnMainPage";
         } else if (product.getItemToRemove() != null) {
             //debug logs
-            System.out.println("3");
+            log.info("MYYYYYYYYY LOG: 3");
             //debug logs
             String productName = product.getItemToRemove();
             if (titleIdProductsAsMap.containsKey(product.getItemToRemove())) {
@@ -190,7 +196,7 @@ public class JspImplementationMainController {
             return "sessionModeOnMainPage";
         } else if (product.getItemToModify() != null && product.getNewAmount() != null) {
             //debug logs
-            System.out.println("4");
+            log.info("MYYYYYYYYY LOG: 4");
             //debug logs
             String productName = product.getItemToModify();
             int productNewAmount = product.getNewAmount();
@@ -217,7 +223,7 @@ public class JspImplementationMainController {
             return "sessionModeOnMainPage";
         } else if (product.isCheckoutBooking()) {
             //debug logs
-            System.out.println("5");
+            log.info("MYYYYYYYYY LOG: 5");
             //debug logs
             boolean successfullyRegistered = sessionModeOnController.checkoutBooking();
             String successfulCheckout = successfullyRegistered ? "Your booking is successfully registered" : "Sorry. There is not enough products in database any more";
@@ -226,12 +232,12 @@ public class JspImplementationMainController {
             return "sessionModeOnMainPage";
         } else if (product.isLogOut()) {
             //debug logs
-            System.out.println("6");
+            log.info("MYYYYYYYYY LOG: 6");
             //debug logs
             return sessionModeOnController.finishSession();
         } else {
             //debug logs
-            System.out.println("7");
+            log.info("MYYYYYYYYY LOG: 7");
             //debug logs
             makeValuesOfLogicVarsAndContentToShowDefault(product, sessionModeOnController);
             return "sessionModeOnMainPage";
