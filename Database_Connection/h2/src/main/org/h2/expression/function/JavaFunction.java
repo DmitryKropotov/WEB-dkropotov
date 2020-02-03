@@ -14,7 +14,6 @@ import org.h2.expression.ExpressionVisitor;
 import org.h2.expression.ValueExpression;
 import org.h2.table.ColumnResolver;
 import org.h2.table.TableFilter;
-import org.h2.value.*;
 
 /**
  * This class wraps a user-defined function.

@@ -11,7 +11,6 @@ import org.h2.index.IndexCondition;
 import org.h2.message.DbException;
 import org.h2.table.ColumnResolver;
 import org.h2.table.TableFilter;
-import org.h2.value.*;
 
 /**
  * An expression representing a constant value.

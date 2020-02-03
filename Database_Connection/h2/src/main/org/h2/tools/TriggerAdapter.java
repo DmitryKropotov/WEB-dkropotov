@@ -5,11 +5,10 @@
  */
 package org.h2.tools;
 
-import org.h2.api.Trigger;
-
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import org.h2.api.Trigger;
 
 /**
  * An adapter for the trigger interface that allows to use the ResultSet

@@ -5,9 +5,11 @@
  */
 package org.h2.build;
 
-import org.h2.build.doc.XMLParser;
-
-import java.io.*;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.lang.reflect.Method;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
@@ -21,6 +23,8 @@ import java.util.TreeMap;
 import java.util.concurrent.TimeUnit;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
+
+import org.h2.build.doc.XMLParser;
 
 /**
  * The build definition.

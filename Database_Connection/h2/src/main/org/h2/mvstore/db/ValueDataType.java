@@ -22,7 +22,6 @@ import org.h2.store.DataHandler;
 import org.h2.util.DateTimeUtils;
 import org.h2.util.JdbcUtils;
 import org.h2.util.Utils;
-import org.h2.value.*;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;

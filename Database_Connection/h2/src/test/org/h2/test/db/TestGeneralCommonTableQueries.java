@@ -5,10 +5,13 @@
  */
 package org.h2.test.db;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import org.h2.test.TestAll;
 import org.h2.test.TestBase;
-
-import java.sql.*;
 
 /**
  * Test non-recursive queries using WITH, but more than one common table defined.

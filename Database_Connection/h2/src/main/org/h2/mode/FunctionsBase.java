@@ -5,11 +5,11 @@
  */
 package org.h2.mode;
 
+import java.util.HashMap;
+
 import org.h2.engine.Database;
 import org.h2.expression.function.Function;
 import org.h2.expression.function.FunctionInfo;
-
-import java.util.HashMap;
 
 /**
  * Base class for mode-specific functions.

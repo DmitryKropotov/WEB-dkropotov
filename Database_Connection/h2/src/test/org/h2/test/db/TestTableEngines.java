@@ -5,19 +5,50 @@
  */
 package org.h2.test.db;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Random;
+import java.util.Set;
+import java.util.TreeSet;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.ThreadFactory;
+import java.util.concurrent.atomic.AtomicInteger;
+
 import org.h2.api.TableEngine;
 import org.h2.command.ddl.CreateTableData;
 import org.h2.command.dml.AllColumnsForPlan;
 import org.h2.engine.Session;
 import org.h2.expression.Expression;
-import org.h2.index.*;
+import org.h2.index.BaseIndex;
+import org.h2.index.Cursor;
+import org.h2.index.Index;
+import org.h2.index.IndexLookupBatch;
+import org.h2.index.IndexType;
+import org.h2.index.SingleRowCursor;
 import org.h2.jdbc.JdbcConnection;
 import org.h2.message.DbException;
 import org.h2.pagestore.db.PageStoreTable;
 import org.h2.result.Row;
 import org.h2.result.SearchRow;
 import org.h2.result.SortOrder;
-import org.h2.table.*;
+import org.h2.table.IndexColumn;
+import org.h2.table.SubQueryInfo;
+import org.h2.table.Table;
+import org.h2.table.TableBase;
+import org.h2.table.TableFilter;
+import org.h2.table.TableType;
 import org.h2.test.TestBase;
 import org.h2.test.TestDb;
 import org.h2.util.DoneFuture;
@@ -25,11 +56,6 @@ import org.h2.value.Value;
 import org.h2.value.ValueInt;
 import org.h2.value.ValueNull;
 import org.h2.value.ValueString;
-
-import java.sql.*;
-import java.util.*;
-import java.util.concurrent.*;
-import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * The class for external table engines mechanism testing.

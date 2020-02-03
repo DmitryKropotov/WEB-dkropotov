@@ -5,6 +5,29 @@
  */
 package org.h2.test.scripts;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.LineNumberReader;
+import java.io.PrintStream;
+import java.io.RandomAccessFile;
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
+import java.nio.charset.StandardCharsets;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
+
 import org.h2.api.ErrorCode;
 import org.h2.command.CommandContainer;
 import org.h2.command.CommandInterface;
@@ -17,13 +40,6 @@ import org.h2.test.TestAll;
 import org.h2.test.TestBase;
 import org.h2.test.TestDb;
 import org.h2.util.StringUtils;
-
-import java.io.*;
-import java.lang.reflect.Field;
-import java.lang.reflect.Modifier;
-import java.nio.charset.StandardCharsets;
-import java.sql.*;
-import java.util.*;
 
 /**
  * This test runs a SQL script file and compares the output with the expected

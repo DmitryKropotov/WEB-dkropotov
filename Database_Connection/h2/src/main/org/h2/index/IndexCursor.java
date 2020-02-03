@@ -5,6 +5,8 @@
  */
 package org.h2.index;
 
+import java.util.ArrayList;
+
 import org.h2.engine.Session;
 import org.h2.expression.condition.Comparison;
 import org.h2.message.DbException;
@@ -19,8 +21,6 @@ import org.h2.table.TableFilter;
 import org.h2.value.Value;
 import org.h2.value.ValueGeometry;
 import org.h2.value.ValueNull;
-
-import java.util.ArrayList;
 
 /**
  * The filter used to walk through an index. This class supports IN(..)

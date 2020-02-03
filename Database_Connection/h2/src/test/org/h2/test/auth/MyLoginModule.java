@@ -5,6 +5,7 @@
  */
 package org.h2.test.auth;
 
+import java.util.Map;
 import javax.security.auth.Subject;
 import javax.security.auth.callback.Callback;
 import javax.security.auth.callback.CallbackHandler;
@@ -12,7 +13,6 @@ import javax.security.auth.callback.NameCallback;
 import javax.security.auth.callback.PasswordCallback;
 import javax.security.auth.login.LoginException;
 import javax.security.auth.spi.LoginModule;
-import java.util.Map;
 
 /**
  * Dummy login module used for test cases

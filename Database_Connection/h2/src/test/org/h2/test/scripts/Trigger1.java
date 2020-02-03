@@ -5,10 +5,10 @@
  */
 package org.h2.test.scripts;
 
-import org.h2.api.Trigger;
-
 import java.sql.Connection;
 import java.sql.SQLException;
+
+import org.h2.api.Trigger;
 
 /**
  * A trigger for tests.

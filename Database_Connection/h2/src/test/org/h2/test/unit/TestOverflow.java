@@ -5,13 +5,13 @@
  */
 package org.h2.test.unit;
 
-import org.h2.test.TestBase;
-import org.h2.value.Value;
-import org.h2.value.ValueString;
-
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Random;
+
+import org.h2.test.TestBase;
+import org.h2.value.Value;
+import org.h2.value.ValueString;
 
 /**
  * Tests numeric overflow on various data types.

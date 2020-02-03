@@ -5,15 +5,14 @@
  */
 package org.h2.build.doc;
 
-import org.h2.dev.ftp.FtpClient;
-import org.h2.engine.Constants;
-import org.h2.store.fs.FileUtils;
-import org.h2.test.utils.OutputCatcher;
-import org.h2.util.IOUtils;
-import org.h2.util.ScriptReader;
-import org.h2.util.StringUtils;
-
-import java.io.*;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.StringReader;
 import java.nio.charset.StandardCharsets;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -23,6 +22,13 @@ import java.util.zip.CRC32;
 import java.util.zip.Deflater;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
+import org.h2.dev.ftp.FtpClient;
+import org.h2.engine.Constants;
+import org.h2.store.fs.FileUtils;
+import org.h2.test.utils.OutputCatcher;
+import org.h2.util.IOUtils;
+import org.h2.util.ScriptReader;
+import org.h2.util.StringUtils;
 
 /**
  * Upload the code coverage result to the H2 web site.

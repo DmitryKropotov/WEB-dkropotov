@@ -5,6 +5,25 @@
  */
 package org.h2.test.unit;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.RandomAccessFile;
+import java.nio.ByteBuffer;
+import java.nio.channels.FileChannel;
+import java.nio.channels.FileChannel.MapMode;
+import java.nio.channels.FileLock;
+import java.nio.channels.NonWritableChannelException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.List;
+import java.util.Random;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
 import org.h2.dev.fs.FilePathZip2;
 import org.h2.message.DbException;
 import org.h2.mvstore.DataUtils;
@@ -20,18 +39,6 @@ import org.h2.tools.Backup;
 import org.h2.tools.DeleteDbFiles;
 import org.h2.util.IOUtils;
 import org.h2.util.Task;
-
-import java.io.*;
-import java.nio.ByteBuffer;
-import java.nio.channels.FileChannel;
-import java.nio.channels.FileChannel.MapMode;
-import java.nio.channels.FileLock;
-import java.nio.channels.NonWritableChannelException;
-import java.sql.*;
-import java.util.List;
-import java.util.Random;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipOutputStream;
 
 /**
  * Tests various file system.

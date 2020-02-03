@@ -5,6 +5,13 @@
  */
 package org.h2.test.db;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicLong;
+
 import org.h2.api.DatabaseEventListener;
 import org.h2.store.fs.FileUtils;
 import org.h2.test.TestBase;
@@ -12,13 +19,6 @@ import org.h2.test.TestDb;
 import org.h2.tools.Backup;
 import org.h2.tools.Restore;
 import org.h2.util.Task;
-
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicLong;
 
 /**
  * Test for the BACKUP SQL statement.

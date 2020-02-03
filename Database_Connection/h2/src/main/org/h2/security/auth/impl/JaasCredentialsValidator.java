@@ -9,7 +9,6 @@ import org.h2.api.CredentialsValidator;
 import org.h2.security.auth.AuthenticationInfo;
 import org.h2.security.auth.ConfigProperties;
 
-import javax.security.auth.callback.*;
 import javax.security.auth.login.LoginContext;
 import java.io.IOException;
 

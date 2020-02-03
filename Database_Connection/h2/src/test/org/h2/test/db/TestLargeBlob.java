@@ -5,14 +5,13 @@
  */
 package org.h2.test.db;
 
-import org.h2.test.TestBase;
-import org.h2.test.TestDb;
-
 import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import org.h2.test.TestBase;
+import org.h2.test.TestDb;
 
 /**
  * Test a BLOB larger than Integer.MAX_VALUE

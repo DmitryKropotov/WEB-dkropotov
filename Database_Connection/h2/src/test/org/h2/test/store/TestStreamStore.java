@@ -5,6 +5,16 @@
  */
 package org.h2.test.store;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
+import java.util.TreeMap;
+import java.util.concurrent.atomic.AtomicInteger;
 import org.h2.mvstore.DataUtils;
 import org.h2.mvstore.MVMap;
 import org.h2.mvstore.MVStore;
@@ -13,13 +23,6 @@ import org.h2.store.fs.FileUtils;
 import org.h2.test.TestBase;
 import org.h2.util.IOUtils;
 import org.h2.util.StringUtils;
-
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.*;
-import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Test the stream store.

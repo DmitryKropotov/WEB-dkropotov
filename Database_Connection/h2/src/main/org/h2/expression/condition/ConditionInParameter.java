@@ -7,7 +7,6 @@ package org.h2.expression.condition;
 
 import org.h2.engine.Database;
 import org.h2.engine.Session;
-import org.h2.expression.*;
 import org.h2.index.IndexCondition;
 import org.h2.result.ResultInterface;
 import org.h2.table.ColumnResolver;

@@ -5,16 +5,16 @@
  */
 package org.h2.mvstore;
 
-import org.h2.compress.Compressor;
-import org.h2.mvstore.type.DataType;
-import org.h2.util.Utils;
-
+import static org.h2.engine.Constants.MEMORY_ARRAY;
+import static org.h2.engine.Constants.MEMORY_OBJECT;
+import static org.h2.engine.Constants.MEMORY_POINTER;
+import static org.h2.mvstore.DataUtils.PAGE_TYPE_LEAF;
 import java.nio.ByteBuffer;
 import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicLongFieldUpdater;
-
-import static org.h2.engine.Constants.*;
-import static org.h2.mvstore.DataUtils.PAGE_TYPE_LEAF;
+import org.h2.compress.Compressor;
+import org.h2.mvstore.type.DataType;
+import org.h2.util.Utils;
 
 /**
  * A page (a node or a leaf).

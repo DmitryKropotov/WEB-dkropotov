@@ -5,6 +5,7 @@
  */
 package org.h2.command.ddl;
 
+import java.util.ArrayList;
 import org.h2.api.ErrorCode;
 import org.h2.command.CommandInterface;
 import org.h2.constraint.ConstraintActionType;
@@ -16,8 +17,6 @@ import org.h2.schema.Schema;
 import org.h2.table.Table;
 import org.h2.table.TableType;
 import org.h2.table.TableView;
-
-import java.util.ArrayList;
 
 /**
  * This class represents the statement

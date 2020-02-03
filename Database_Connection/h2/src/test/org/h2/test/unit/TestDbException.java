@@ -5,15 +5,15 @@
  */
 package org.h2.test.unit;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
+import java.sql.SQLException;
+
 import org.h2.api.ErrorCode;
 import org.h2.jdbc.JdbcException;
 import org.h2.jdbc.JdbcSQLException;
 import org.h2.message.DbException;
 import org.h2.test.TestBase;
-
-import java.lang.reflect.Field;
-import java.lang.reflect.Modifier;
-import java.sql.SQLException;
 
 /**
  * Tests DbException class.

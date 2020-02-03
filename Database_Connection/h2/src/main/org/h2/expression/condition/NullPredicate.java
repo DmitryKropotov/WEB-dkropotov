@@ -5,6 +5,8 @@
  */
 package org.h2.expression.condition;
 
+import java.util.ArrayList;
+
 import org.h2.engine.Session;
 import org.h2.expression.Expression;
 import org.h2.expression.ExpressionColumn;
@@ -16,8 +18,6 @@ import org.h2.value.Value;
 import org.h2.value.ValueBoolean;
 import org.h2.value.ValueNull;
 import org.h2.value.ValueRow;
-
-import java.util.ArrayList;
 
 /**
  * Null predicate (IS [NOT] NULL).

@@ -5,14 +5,13 @@
  */
 package org.h2.test.store;
 
-import org.h2.dev.cache.CacheLIRS;
-import org.h2.test.TestBase;
-
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.Random;
+import org.h2.dev.cache.CacheLIRS;
+import org.h2.test.TestBase;
 
 /**
  * Tests the cache algorithm.

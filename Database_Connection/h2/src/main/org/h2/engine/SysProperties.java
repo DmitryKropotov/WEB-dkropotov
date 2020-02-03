@@ -5,10 +5,10 @@
  */
 package org.h2.engine;
 
+import java.io.File;
+
 import org.h2.util.MathUtils;
 import org.h2.util.Utils;
-
-import java.io.File;
 
 /**
  * The constants defined in this class are initialized from system properties.

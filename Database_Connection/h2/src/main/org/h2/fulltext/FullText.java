@@ -23,8 +23,7 @@ import org.h2.util.Utils;
 import java.io.IOException;
 import java.io.Reader;
 import java.io.StreamTokenizer;
-import java.sql.*;
-import java.util.*;
+import java.sql.SQLException;
 
 /**
  * This class implements the native full text search.

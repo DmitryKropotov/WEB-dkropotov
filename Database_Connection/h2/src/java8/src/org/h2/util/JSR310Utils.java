@@ -9,10 +9,8 @@ import org.h2.api.ErrorCode;
 import org.h2.api.IntervalQualifier;
 import org.h2.engine.CastDataProvider;
 import org.h2.message.DbException;
-import org.h2.value.*;
 
 import java.math.BigInteger;
-import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 

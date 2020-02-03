@@ -5,14 +5,14 @@
  */
 package org.h2.test.jdbc;
 
-import org.h2.test.TestBase;
-import org.h2.test.TestDb;
-import org.h2.util.Task;
-
 import java.io.ByteArrayInputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+
+import org.h2.test.TestBase;
+import org.h2.test.TestDb;
+import org.h2.util.Task;
 
 /**
  * Test concurrent usage of the same connection.

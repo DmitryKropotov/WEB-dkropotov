@@ -5,9 +5,9 @@
  */
 package org.h2.engine;
 
-import org.h2.message.Trace;
-
 import java.util.WeakHashMap;
+
+import org.h2.message.Trace;
 
 /**
  * This class is responsible to close a database on JVM shutdown.

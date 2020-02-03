@@ -5,6 +5,10 @@
  */
 package org.h2.expression.analysis;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+
 import org.h2.api.ErrorCode;
 import org.h2.command.dml.Select;
 import org.h2.command.dml.SelectGroups;
@@ -18,10 +22,6 @@ import org.h2.table.ColumnResolver;
 import org.h2.table.TableFilter;
 import org.h2.value.Value;
 import org.h2.value.ValueInt;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
 
 /**
  * A base class for data analysis operations such as aggregates and window

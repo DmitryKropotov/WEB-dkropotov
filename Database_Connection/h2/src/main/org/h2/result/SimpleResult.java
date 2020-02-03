@@ -5,13 +5,13 @@
  */
 package org.h2.result;
 
+import java.sql.ResultSetMetaData;
+import java.util.ArrayList;
+
 import org.h2.engine.SessionInterface;
 import org.h2.util.Utils;
 import org.h2.value.TypeInfo;
 import org.h2.value.Value;
-
-import java.sql.ResultSetMetaData;
-import java.util.ArrayList;
 
 /**
  * Simple in-memory result.

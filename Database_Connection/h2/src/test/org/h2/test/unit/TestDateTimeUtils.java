@@ -5,19 +5,19 @@
  */
 package org.h2.test.unit;
 
-import org.h2.api.IntervalQualifier;
-import org.h2.test.TestBase;
-import org.h2.util.DateTimeUtils;
-import org.h2.util.IntervalUtils;
-import org.h2.value.ValueInterval;
-import org.h2.value.ValueTimestamp;
+import static org.h2.util.DateTimeUtils.dateValue;
 
 import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.TimeZone;
 
-import static org.h2.util.DateTimeUtils.dateValue;
+import org.h2.api.IntervalQualifier;
+import org.h2.test.TestBase;
+import org.h2.util.DateTimeUtils;
+import org.h2.util.IntervalUtils;
+import org.h2.value.ValueInterval;
+import org.h2.value.ValueTimestamp;
 
 /**
  * Unit tests for the DateTimeUtils and IntervalUtils classes.

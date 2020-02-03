@@ -5,16 +5,16 @@
  */
 package org.h2.build.doc;
 
-import org.h2.samples.Newsfeed;
-import org.h2.util.IOUtils;
-import org.h2.util.StringUtils;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
+
+import org.h2.samples.Newsfeed;
+import org.h2.util.IOUtils;
+import org.h2.util.StringUtils;
 
 /**
  * Create the web site, mainly by copying the regular docs. A few items are

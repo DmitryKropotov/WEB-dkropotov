@@ -5,13 +5,13 @@
  */
 package org.h2.pagestore;
 
-import org.h2.message.DbException;
-import org.h2.message.Trace;
-
 import java.io.EOFException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.BitSet;
+
+import org.h2.message.DbException;
+import org.h2.message.Trace;
 
 /**
  * An input stream that reads from a page store.

@@ -5,6 +5,10 @@
  */
 package org.h2.index;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+
 import org.h2.command.dml.AllColumnsForPlan;
 import org.h2.engine.Constants;
 import org.h2.engine.Session;
@@ -20,10 +24,6 @@ import org.h2.util.Utils;
 import org.h2.value.TypeInfo;
 import org.h2.value.Value;
 import org.h2.value.ValueNull;
-
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.ArrayList;
 
 /**
  * A linked index is a index for a linked (remote) table.

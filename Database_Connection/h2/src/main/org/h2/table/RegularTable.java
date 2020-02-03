@@ -15,7 +15,6 @@ import org.h2.result.SearchRow;
 import org.h2.value.DataType;
 import org.h2.value.Value;
 
-import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**

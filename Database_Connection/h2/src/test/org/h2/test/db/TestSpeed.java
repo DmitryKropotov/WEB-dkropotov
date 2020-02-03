@@ -5,14 +5,14 @@
  */
 package org.h2.test.db;
 
-import org.h2.test.TestBase;
-import org.h2.test.TestDb;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.concurrent.TimeUnit;
+
+import org.h2.test.TestBase;
+import org.h2.test.TestDb;
 
 /**
  * Various small performance tests.

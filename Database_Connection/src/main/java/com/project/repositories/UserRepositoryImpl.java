@@ -15,7 +15,7 @@ import java.util.Optional;
 
 @Repository
 @Log
-public class UserRepositoryImpl extends AbstractDAO<User> implements UserRepository {
+public class UserRepositoryImpl extends AbstractRepository<User> implements UserRepository {
 
     public UserRepositoryImpl() {}
 
@@ -27,7 +27,7 @@ public class UserRepositoryImpl extends AbstractDAO<User> implements UserReposit
     public boolean createUser(String email, String password) {
         Session session = getSession();
         Transaction txn = session.beginTransaction();
-        NativeQuery query = session.createSQLQuery("INSERT INTO Users (email, password) VALUES (:email, :password);");
+        NativeQuery query = session.createSQLQuery("INSERT INTO User (email, password) VALUES (:email, :password);");
         query.setParameter("email", email);
         query.setParameter("password", password);
         Optional<Integer> executeResult = Optional.empty();
@@ -42,21 +42,21 @@ public class UserRepositoryImpl extends AbstractDAO<User> implements UserReposit
     }
 
     @Override
-    public List<User> selectAllUsers() {
+    public List<User> findAll() {
         Query query = getSession().createQuery("from User", User.class);
         List<User> users = query.getResultList();
         return users;
     }
 
     @Override
-    public Optional<User> selectUserByEmail(String email) {
+    public Optional<User> findByEmail(String email) {
         Session session = getSession();
         Optional<User> user = Optional.of(session.load(User.class, email));
         if(user.isPresent()) {
             System.out.println("User is present");
         }
         try {
-            log.info("User is " + user);
+            log.info("User is " + user);//Artem, we need to discuss it
         } catch (HibernateException e) {
              log.warning("hibernateException from load method " + e);
             System.out.println("In catch before return");

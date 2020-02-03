@@ -5,6 +5,11 @@
  */
 package org.h2.pagestore.db;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.TreeMap;
+
 import org.h2.command.dml.AllColumnsForPlan;
 import org.h2.engine.Session;
 import org.h2.index.BaseIndex;
@@ -21,11 +26,6 @@ import org.h2.table.TableFilter;
 import org.h2.util.Utils;
 import org.h2.value.DataType;
 import org.h2.value.Value;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.TreeMap;
 
 /**
  * A non-unique index based on an in-memory hash map.

@@ -5,10 +5,22 @@
  */
 package org.h2.util;
 
-import java.io.*;
+import java.io.ByteArrayOutputStream;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.LineNumberReader;
+import java.io.OutputStream;
+import java.io.Reader;
+import java.io.StringReader;
 import java.lang.instrument.Instrumentation;
 import java.nio.charset.StandardCharsets;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 /**

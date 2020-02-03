@@ -5,14 +5,17 @@
  */
 package org.h2.util;
 
+import static org.h2.util.DateTimeUtils.NANOS_PER_DAY;
+import static org.h2.util.DateTimeUtils.NANOS_PER_HOUR;
+import static org.h2.util.DateTimeUtils.NANOS_PER_MINUTE;
+import static org.h2.util.DateTimeUtils.NANOS_PER_SECOND;
+
+import java.math.BigInteger;
+
 import org.h2.api.ErrorCode;
 import org.h2.api.IntervalQualifier;
 import org.h2.message.DbException;
 import org.h2.value.ValueInterval;
-
-import java.math.BigInteger;
-
-import static org.h2.util.DateTimeUtils.*;
 
 /**
  * This utility class contains interval conversion functions.

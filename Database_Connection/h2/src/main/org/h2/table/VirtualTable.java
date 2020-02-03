@@ -5,14 +5,14 @@
  */
 package org.h2.table;
 
+import java.util.ArrayList;
+
 import org.h2.engine.Session;
 import org.h2.index.Index;
 import org.h2.index.IndexType;
 import org.h2.message.DbException;
 import org.h2.result.Row;
 import org.h2.schema.Schema;
-
-import java.util.ArrayList;
 
 /**
  * A base class for virtual tables.

@@ -5,7 +5,14 @@
  */
 package org.h2.test.utils;
 
-import java.io.*;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FilterOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.PrintStream;
+import java.io.PrintWriter;
 
 /**
  * A tool to capture the output of System.out and System.err. The regular output

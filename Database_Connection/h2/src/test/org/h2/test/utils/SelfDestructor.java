@@ -5,9 +5,8 @@
  */
 package org.h2.test.utils;
 
-import org.h2.util.ThreadDeadlockDetector;
-
 import java.sql.Timestamp;
+import org.h2.util.ThreadDeadlockDetector;
 
 /**
  * This is a self-destructor class to kill a long running process automatically

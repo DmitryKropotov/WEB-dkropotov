@@ -18,7 +18,8 @@ import org.h2.util.ParserUtil;
 import org.h2.util.StringUtils;
 import org.h2.util.Utils;
 
-import java.sql.*;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 /**

@@ -5,11 +5,11 @@
  */
 package org.h2.pagestore;
 
+import java.util.BitSet;
+
 import org.h2.message.DbException;
 import org.h2.message.Trace;
 import org.h2.util.IntArray;
-
-import java.util.BitSet;
 
 /**
  * An output stream that writes into a page store.

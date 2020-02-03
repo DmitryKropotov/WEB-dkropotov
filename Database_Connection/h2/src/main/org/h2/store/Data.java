@@ -14,8 +14,6 @@ import org.h2.engine.Constants;
 import org.h2.message.DbException;
 import org.h2.result.ResultInterface;
 import org.h2.result.SimpleResult;
-import org.h2.util.*;
-import org.h2.value.*;
 
 import java.io.IOException;
 import java.io.OutputStream;

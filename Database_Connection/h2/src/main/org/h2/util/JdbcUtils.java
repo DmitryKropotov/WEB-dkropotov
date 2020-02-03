@@ -5,6 +5,18 @@
  */
 package org.h2.util;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.ObjectStreamClass;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Properties;
+import javax.naming.Context;
+import javax.sql.DataSource;
 import org.h2.api.CustomDataTypesHandler;
 import org.h2.api.ErrorCode;
 import org.h2.api.JavaObjectSerializer;
@@ -13,13 +25,6 @@ import org.h2.jdbc.JdbcConnection;
 import org.h2.message.DbException;
 import org.h2.store.DataHandler;
 import org.h2.util.Utils.ClassFactory;
-
-import javax.naming.Context;
-import javax.sql.DataSource;
-import java.io.*;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Properties;
 
 /**
  * This is a utility class with JDBC helper functions.

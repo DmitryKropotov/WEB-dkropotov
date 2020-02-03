@@ -5,6 +5,8 @@
  */
 package org.h2.command.ddl;
 
+import java.util.ArrayList;
+
 import org.h2.api.ErrorCode;
 import org.h2.command.CommandInterface;
 import org.h2.engine.Constants;
@@ -14,8 +16,6 @@ import org.h2.schema.Schema;
 import org.h2.schema.Sequence;
 import org.h2.table.Column;
 import org.h2.table.IndexColumn;
-
-import java.util.ArrayList;
 
 public abstract class CommandWithColumns extends SchemaCommand {
 

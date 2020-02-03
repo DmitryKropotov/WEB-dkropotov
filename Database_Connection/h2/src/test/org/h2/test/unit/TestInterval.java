@@ -5,11 +5,11 @@
  */
 package org.h2.test.unit;
 
+import static org.h2.util.DateTimeUtils.NANOS_PER_SECOND;
+
 import org.h2.api.Interval;
 import org.h2.test.TestBase;
 import org.h2.util.StringUtils;
-
-import static org.h2.util.DateTimeUtils.NANOS_PER_SECOND;
 
 /**
  * Test cases for Interval.

@@ -5,6 +5,8 @@
  */
 package org.h2.command.dml;
 
+import java.util.HashSet;
+
 import org.h2.api.Trigger;
 import org.h2.command.CommandInterface;
 import org.h2.command.Prepared;
@@ -24,8 +26,6 @@ import org.h2.table.Table;
 import org.h2.table.TableFilter;
 import org.h2.value.Value;
 import org.h2.value.ValueNull;
-
-import java.util.HashSet;
 
 /**
  * This class represents the statement

@@ -5,7 +5,6 @@
  */
 package org.h2.mvstore.rtree;
 
-import org.h2.mvstore.*;
 import org.h2.mvstore.type.DataType;
 
 import java.util.ArrayList;

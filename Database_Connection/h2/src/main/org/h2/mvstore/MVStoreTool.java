@@ -5,18 +5,6 @@
  */
 package org.h2.mvstore;
 
-import org.h2.compress.CompressDeflate;
-import org.h2.compress.CompressLZF;
-import org.h2.compress.Compressor;
-import org.h2.engine.Constants;
-import org.h2.message.DbException;
-import org.h2.mvstore.tx.TransactionStore;
-import org.h2.mvstore.type.DataType;
-import org.h2.mvstore.type.StringDataType;
-import org.h2.store.fs.FilePath;
-import org.h2.store.fs.FileUtils;
-import org.h2.util.Utils;
-
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
@@ -28,6 +16,18 @@ import java.sql.Timestamp;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.TreeMap;
+
+import org.h2.compress.CompressDeflate;
+import org.h2.compress.CompressLZF;
+import org.h2.compress.Compressor;
+import org.h2.engine.Constants;
+import org.h2.message.DbException;
+import org.h2.mvstore.tx.TransactionStore;
+import org.h2.mvstore.type.DataType;
+import org.h2.mvstore.type.StringDataType;
+import org.h2.store.fs.FilePath;
+import org.h2.store.fs.FileUtils;
+import org.h2.util.Utils;
 
 /**
  * Utility methods used in combination with the MVStore.

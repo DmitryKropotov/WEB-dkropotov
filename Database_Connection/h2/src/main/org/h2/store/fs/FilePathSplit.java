@@ -5,9 +5,6 @@
  */
 package org.h2.store.fs;
 
-import org.h2.engine.SysProperties;
-import org.h2.message.DbException;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -17,6 +14,9 @@ import java.nio.channels.FileChannel;
 import java.nio.channels.FileLock;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.h2.engine.SysProperties;
+import org.h2.message.DbException;
 
 /**
  * A file system that may split files into multiple smaller files.

@@ -13,7 +13,6 @@ import org.h2.expression.ExpressionColumn;
 import org.h2.message.DbException;
 import org.h2.result.LocalResult;
 import org.h2.table.Column;
-import org.h2.value.*;
 
 import java.util.ArrayList;
 

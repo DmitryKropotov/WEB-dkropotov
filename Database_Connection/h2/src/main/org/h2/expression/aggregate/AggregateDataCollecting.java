@@ -11,8 +11,6 @@ import org.h2.message.DbException;
 import org.h2.value.Value;
 import org.h2.value.ValueNull;
 
-import java.util.*;
-
 /**
  * Data stored while calculating an aggregate that needs collecting of all
  * values or a distinct aggregate.

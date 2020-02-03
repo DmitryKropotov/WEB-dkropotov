@@ -5,15 +5,18 @@
  */
 package org.h2.test.synth;
 
-import org.h2.test.TestBase;
-import org.h2.test.TestDb;
-import org.h2.util.Task;
-
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Random;
 import java.util.concurrent.CountDownLatch;
+import org.h2.test.TestBase;
+import org.h2.test.TestDb;
+import org.h2.util.Task;
 
 /**
  * A concurrent test.

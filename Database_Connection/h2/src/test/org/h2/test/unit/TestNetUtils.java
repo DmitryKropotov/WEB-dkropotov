@@ -5,17 +5,6 @@
  */
 package org.h2.test.unit;
 
-import org.h2.build.BuildBase;
-import org.h2.engine.SysProperties;
-import org.h2.test.TestBase;
-import org.h2.util.NetUtils;
-import org.h2.util.NetUtils2;
-import org.h2.util.Task;
-
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.SSLServerSocket;
-import javax.net.ssl.SSLSession;
-import javax.net.ssl.SSLSocket;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.ServerSocket;
@@ -23,6 +12,16 @@ import java.net.Socket;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLServerSocket;
+import javax.net.ssl.SSLSession;
+import javax.net.ssl.SSLSocket;
+import org.h2.build.BuildBase;
+import org.h2.engine.SysProperties;
+import org.h2.test.TestBase;
+import org.h2.util.NetUtils;
+import org.h2.util.NetUtils2;
+import org.h2.util.Task;
 
 /**
  * Test the network utilities from {@link NetUtils}.

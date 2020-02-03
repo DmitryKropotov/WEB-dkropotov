@@ -9,7 +9,6 @@ import org.h2.mvstore.type.DataType;
 import org.h2.mvstore.type.ObjectDataType;
 import org.h2.mvstore.type.StringDataType;
 
-import java.util.*;
 import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.atomic.AtomicReference;
 

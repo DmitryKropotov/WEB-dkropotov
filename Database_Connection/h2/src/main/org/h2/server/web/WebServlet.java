@@ -5,13 +5,6 @@
  */
 package org.h2.server.web;
 
-import org.h2.util.NetworkConnectionInfo;
-
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletOutputStream;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -19,6 +12,14 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.Properties;
+
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.h2.util.NetworkConnectionInfo;
 
 /**
  * This servlet lets the H2 Console be used in a standard servlet container

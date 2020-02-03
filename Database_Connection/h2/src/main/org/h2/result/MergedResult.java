@@ -5,13 +5,13 @@
  */
 package org.h2.result;
 
-import org.h2.util.Utils;
-import org.h2.value.Value;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+
+import org.h2.util.Utils;
+import org.h2.value.Value;
 
 /**
  * Merged result. Used to combine several results into one. Merged result will

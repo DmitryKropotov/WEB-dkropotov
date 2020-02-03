@@ -5,11 +5,10 @@
  */
 package org.h2.expression.aggregate;
 
+import java.util.TreeMap;
 import org.h2.engine.Database;
 import org.h2.value.Value;
 import org.h2.value.ValueNull;
-
-import java.util.TreeMap;
 
 /**
  * Data stored while calculating an aggregate that needs distinct values with

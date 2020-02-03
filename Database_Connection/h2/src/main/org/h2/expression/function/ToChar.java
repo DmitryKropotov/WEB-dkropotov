@@ -5,16 +5,6 @@
  */
 package org.h2.expression.function;
 
-import org.h2.api.ErrorCode;
-import org.h2.message.DbException;
-import org.h2.util.DateTimeUtils;
-import org.h2.util.StringUtils;
-import org.h2.util.TimeZoneProvider;
-import org.h2.value.Value;
-import org.h2.value.ValueTimeTimeZone;
-import org.h2.value.ValueTimestamp;
-import org.h2.value.ValueTimestampTimeZone;
-
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.DateFormatSymbols;
@@ -24,6 +14,16 @@ import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Currency;
 import java.util.Locale;
+
+import org.h2.api.ErrorCode;
+import org.h2.message.DbException;
+import org.h2.util.DateTimeUtils;
+import org.h2.util.StringUtils;
+import org.h2.util.TimeZoneProvider;
+import org.h2.value.Value;
+import org.h2.value.ValueTimeTimeZone;
+import org.h2.value.ValueTimestamp;
+import org.h2.value.ValueTimestampTimeZone;
 
 /**
  * Emulates Oracle's TO_CHAR function.

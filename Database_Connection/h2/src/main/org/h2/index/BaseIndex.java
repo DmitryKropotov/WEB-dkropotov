@@ -5,6 +5,7 @@
  */
 package org.h2.index;
 
+import java.util.ArrayList;
 import org.h2.api.ErrorCode;
 import org.h2.command.dml.AllColumnsForPlan;
 import org.h2.engine.Constants;
@@ -24,8 +25,6 @@ import org.h2.util.StringUtils;
 import org.h2.value.DataType;
 import org.h2.value.Value;
 import org.h2.value.ValueNull;
-
-import java.util.ArrayList;
 
 /**
  * Most index implementations extend the base index.

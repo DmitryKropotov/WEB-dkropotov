@@ -10,7 +10,6 @@ import org.h2.bnf.context.DbContents;
 import org.h2.bnf.context.DbContextRule;
 import org.h2.message.DbException;
 
-import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Locale;

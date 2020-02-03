@@ -5,10 +5,9 @@
  */
 package org.h2.compress;
 
-import org.h2.engine.Constants;
-
 import java.io.IOException;
 import java.io.OutputStream;
+import org.h2.engine.Constants;
 
 /**
  * An output stream to write an LZF stream.

@@ -5,6 +5,8 @@
  */
 package org.h2.command.dml;
 
+import java.util.ArrayList;
+
 import org.h2.command.CommandInterface;
 import org.h2.command.Prepared;
 import org.h2.engine.Procedure;
@@ -13,8 +15,6 @@ import org.h2.expression.Expression;
 import org.h2.expression.Parameter;
 import org.h2.result.ResultInterface;
 import org.h2.util.Utils;
-
-import java.util.ArrayList;
 
 /**
  * This class represents the statement

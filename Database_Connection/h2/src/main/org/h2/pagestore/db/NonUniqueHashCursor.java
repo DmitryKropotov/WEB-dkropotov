@@ -5,12 +5,11 @@
  */
 package org.h2.pagestore.db;
 
+import java.util.ArrayList;
 import org.h2.engine.Session;
 import org.h2.index.Cursor;
 import org.h2.result.Row;
 import org.h2.result.SearchRow;
-
-import java.util.ArrayList;
 
 /**
  * Cursor implementation for non-unique hash index

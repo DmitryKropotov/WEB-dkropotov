@@ -5,16 +5,15 @@
  */
 package org.h2.test.unit;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
+import java.util.concurrent.atomic.AtomicInteger;
 import org.h2.engine.Session;
 import org.h2.expression.Expression;
 import org.h2.result.LocalResult;
 import org.h2.result.LocalResultFactory;
 import org.h2.test.TestBase;
-
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.Statement;
-import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Test {@link LocalResultFactory} setting.

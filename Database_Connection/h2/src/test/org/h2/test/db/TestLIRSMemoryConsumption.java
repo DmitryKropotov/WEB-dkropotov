@@ -9,7 +9,6 @@ import org.h2.mvstore.cache.CacheLongKeyLIRS;
 import org.h2.test.TestBase;
 import org.h2.test.TestDb;
 import org.h2.util.Utils;
-
 import java.util.Random;
 
 /**

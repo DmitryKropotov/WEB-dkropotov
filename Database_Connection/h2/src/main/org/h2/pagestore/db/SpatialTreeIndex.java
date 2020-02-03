@@ -5,6 +5,12 @@
  */
 package org.h2.pagestore.db;
 
+import static org.h2.util.geometry.GeometryUtils.MAX_X;
+import static org.h2.util.geometry.GeometryUtils.MAX_Y;
+import static org.h2.util.geometry.GeometryUtils.MIN_X;
+import static org.h2.util.geometry.GeometryUtils.MIN_Y;
+
+import java.util.Iterator;
 import org.h2.command.dml.AllColumnsForPlan;
 import org.h2.engine.Session;
 import org.h2.index.BaseIndex;
@@ -26,10 +32,6 @@ import org.h2.table.TableFilter;
 import org.h2.value.Value;
 import org.h2.value.ValueGeometry;
 import org.h2.value.ValueNull;
-
-import java.util.Iterator;
-
-import static org.h2.util.geometry.GeometryUtils.*;
 
 /**
  * This is an index based on a MVR-TreeMap.

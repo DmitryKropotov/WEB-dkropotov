@@ -21,7 +21,6 @@ package org.h2.jdbcx;
 
 import org.h2.message.DbException;
 
-import javax.sql.*;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.SQLException;

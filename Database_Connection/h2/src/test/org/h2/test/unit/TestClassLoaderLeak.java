@@ -5,8 +5,6 @@
  */
 package org.h2.test.unit;
 
-import org.h2.test.TestBase;
-
 import java.lang.ref.WeakReference;
 import java.lang.reflect.Method;
 import java.net.URLClassLoader;
@@ -14,6 +12,8 @@ import java.sql.Connection;
 import java.sql.Driver;
 import java.sql.DriverManager;
 import java.util.ArrayList;
+
+import org.h2.test.TestBase;
 
 /**
  * Test that static references within the database engine don't reference the

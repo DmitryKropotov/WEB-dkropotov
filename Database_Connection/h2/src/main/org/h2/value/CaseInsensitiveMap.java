@@ -5,9 +5,8 @@
  */
 package org.h2.value;
 
-import org.h2.util.StringUtils;
-
 import java.util.HashMap;
+import org.h2.util.StringUtils;
 
 /**
  * A hash map with a case-insensitive string key.

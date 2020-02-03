@@ -5,17 +5,21 @@
  */
 package org.h2.test.unit;
 
-import org.h2.command.Parser;
-import org.h2.test.TestBase;
-import org.h2.util.ParserUtil;
-import org.objectweb.asm.*;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.HashMap;
 import java.util.Map.Entry;
+
+import org.h2.command.Parser;
+import org.h2.test.TestBase;
+import org.h2.util.ParserUtil;
+import org.objectweb.asm.ClassReader;
+import org.objectweb.asm.ClassVisitor;
+import org.objectweb.asm.FieldVisitor;
+import org.objectweb.asm.MethodVisitor;
+import org.objectweb.asm.Opcodes;
 
 /**
  * Tests keywords.

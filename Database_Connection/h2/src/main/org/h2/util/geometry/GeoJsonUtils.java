@@ -5,16 +5,37 @@
  */
 package org.h2.util.geometry;
 
-import org.h2.api.ErrorCode;
-import org.h2.message.DbException;
-import org.h2.util.geometry.EWKBUtils.EWKBTarget;
-import org.h2.util.geometry.GeometryUtils.*;
-import org.h2.util.json.*;
+import static org.h2.util.geometry.GeometryUtils.DIMENSION_SYSTEM_XYM;
+import static org.h2.util.geometry.GeometryUtils.DIMENSION_SYSTEM_XYZ;
+import static org.h2.util.geometry.GeometryUtils.GEOMETRY_COLLECTION;
+import static org.h2.util.geometry.GeometryUtils.LINE_STRING;
+import static org.h2.util.geometry.GeometryUtils.M;
+import static org.h2.util.geometry.GeometryUtils.MULTI_LINE_STRING;
+import static org.h2.util.geometry.GeometryUtils.MULTI_POINT;
+import static org.h2.util.geometry.GeometryUtils.MULTI_POLYGON;
+import static org.h2.util.geometry.GeometryUtils.POINT;
+import static org.h2.util.geometry.GeometryUtils.POLYGON;
+import static org.h2.util.geometry.GeometryUtils.X;
+import static org.h2.util.geometry.GeometryUtils.Y;
+import static org.h2.util.geometry.GeometryUtils.Z;
 
 import java.io.ByteArrayOutputStream;
 import java.math.BigDecimal;
 
-import static org.h2.util.geometry.GeometryUtils.*;
+import org.h2.api.ErrorCode;
+import org.h2.message.DbException;
+import org.h2.util.geometry.EWKBUtils.EWKBTarget;
+import org.h2.util.geometry.GeometryUtils.DimensionSystemTarget;
+import org.h2.util.geometry.GeometryUtils.Target;
+import org.h2.util.json.JSONArray;
+import org.h2.util.json.JSONByteArrayTarget;
+import org.h2.util.json.JSONBytesSource;
+import org.h2.util.json.JSONNull;
+import org.h2.util.json.JSONNumber;
+import org.h2.util.json.JSONObject;
+import org.h2.util.json.JSONString;
+import org.h2.util.json.JSONValue;
+import org.h2.util.json.JSONValueTarget;
 
 /**
  * GeoJson format support for GEOMETRY data type.

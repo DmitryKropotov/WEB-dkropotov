@@ -10,7 +10,6 @@ import org.h2.command.dml.Select;
 import org.h2.command.dml.SelectOrderBy;
 import org.h2.engine.Database;
 import org.h2.engine.Session;
-import org.h2.expression.*;
 import org.h2.expression.analysis.Window;
 import org.h2.expression.function.Function;
 import org.h2.index.Cursor;
@@ -23,11 +22,9 @@ import org.h2.table.Column;
 import org.h2.table.ColumnResolver;
 import org.h2.table.Table;
 import org.h2.table.TableFilter;
-import org.h2.value.*;
 
 import java.io.ByteArrayOutputStream;
 import java.math.BigDecimal;
-import java.util.*;
 import java.util.Map.Entry;
 
 /**

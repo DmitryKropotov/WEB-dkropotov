@@ -5,12 +5,12 @@
  */
 package org.h2.test.store;
 
+import java.util.Random;
+
 import org.h2.mvstore.MVMap;
 import org.h2.mvstore.MVStore;
 import org.h2.store.fs.FileUtils;
 import org.h2.test.TestBase;
-
-import java.util.Random;
 
 /**
  * Test that the MVStore eventually stops optimizing (does not excessively opti

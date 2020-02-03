@@ -5,6 +5,9 @@
  */
 package org.h2.index;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import org.h2.engine.Session;
 import org.h2.message.DbException;
 import org.h2.result.Row;
@@ -13,10 +16,6 @@ import org.h2.table.Column;
 import org.h2.table.TableLink;
 import org.h2.value.DataType;
 import org.h2.value.Value;
-
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
 /**
  * The cursor implementation for the linked index.

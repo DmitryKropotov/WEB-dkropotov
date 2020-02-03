@@ -5,6 +5,7 @@
  */
 package org.h2.mvstore.db;
 
+import java.util.List;
 import org.h2.command.dml.AllColumnsForPlan;
 import org.h2.engine.Session;
 import org.h2.index.BaseIndex;
@@ -21,8 +22,6 @@ import org.h2.table.TableFilter;
 import org.h2.value.Value;
 import org.h2.value.ValueLong;
 import org.h2.value.VersionedValue;
-
-import java.util.List;
 
 /**
  * An index that delegates indexing to another index.

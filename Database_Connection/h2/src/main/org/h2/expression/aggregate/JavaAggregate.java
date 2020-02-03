@@ -13,7 +13,6 @@ import org.h2.engine.UserAggregate;
 import org.h2.expression.Expression;
 import org.h2.expression.ExpressionVisitor;
 import org.h2.message.DbException;
-import org.h2.value.*;
 
 import java.sql.Connection;
 import java.sql.SQLException;

@@ -5,6 +5,8 @@
  */
 package org.h2.expression.aggregate;
 
+import java.util.ArrayList;
+
 import org.h2.engine.Database;
 import org.h2.expression.Expression;
 import org.h2.expression.ExpressionColumn;
@@ -16,8 +18,6 @@ import org.h2.util.geometry.GeometryUtils;
 import org.h2.value.Value;
 import org.h2.value.ValueGeometry;
 import org.h2.value.ValueNull;
-
-import java.util.ArrayList;
 
 /**
  * Data stored while calculating an aggregate.

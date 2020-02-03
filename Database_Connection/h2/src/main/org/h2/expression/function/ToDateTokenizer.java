@@ -5,18 +5,16 @@
  */
 package org.h2.expression.function;
 
-import org.h2.api.ErrorCode;
-import org.h2.message.DbException;
-import org.h2.util.TimeZoneProvider;
-
+import static java.lang.String.format;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import static java.lang.String.format;
+import org.h2.api.ErrorCode;
+import org.h2.message.DbException;
+import org.h2.util.TimeZoneProvider;
 
 /**
  * Emulates Oracle's TO_DATE function. This class knows all about the

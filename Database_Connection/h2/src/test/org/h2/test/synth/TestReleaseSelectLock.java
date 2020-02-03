@@ -5,14 +5,13 @@
  */
 package org.h2.test.synth;
 
-import org.h2.test.TestBase;
-import org.h2.test.TestDb;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.concurrent.CountDownLatch;
+import org.h2.test.TestBase;
+import org.h2.test.TestDb;
 
 /**
  * Tests lock releasing for concurrent select statements

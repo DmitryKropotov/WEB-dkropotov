@@ -5,10 +5,10 @@
  */
 package org.h2.store;
 
-import org.h2.util.IOUtils;
-
 import java.io.IOException;
 import java.io.Reader;
+
+import org.h2.util.IOUtils;
 
 /**
  * Reader that reads only a specified range from the source reader.

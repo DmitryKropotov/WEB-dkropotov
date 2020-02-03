@@ -5,10 +5,14 @@
  */
 package org.h2.samples;
 
-import org.h2.api.Trigger;
-
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.concurrent.ConcurrentHashMap;
+
+import org.h2.api.Trigger;
 
 /**
  * This sample application shows how to pass data to a trigger. Trigger data can

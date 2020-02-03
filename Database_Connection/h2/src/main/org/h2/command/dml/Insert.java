@@ -13,7 +13,6 @@ import org.h2.engine.DbObject;
 import org.h2.engine.Right;
 import org.h2.engine.Session;
 import org.h2.engine.UndoLogRecord;
-import org.h2.expression.*;
 import org.h2.expression.condition.Comparison;
 import org.h2.expression.condition.ConditionAndOr;
 import org.h2.index.Index;

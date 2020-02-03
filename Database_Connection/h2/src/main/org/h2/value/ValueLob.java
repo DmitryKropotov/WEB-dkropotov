@@ -5,17 +5,30 @@
  */
 package org.h2.value;
 
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.Reader;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
 import org.h2.engine.CastDataProvider;
 import org.h2.engine.Constants;
 import org.h2.engine.SysProperties;
 import org.h2.message.DbException;
-import org.h2.store.*;
+import org.h2.store.DataHandler;
+import org.h2.store.FileStore;
+import org.h2.store.FileStoreInputStream;
+import org.h2.store.RangeInputStream;
+import org.h2.store.RangeReader;
 import org.h2.store.fs.FileUtils;
-import org.h2.util.*;
-
-import java.io.*;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import org.h2.util.Bits;
+import org.h2.util.IOUtils;
+import org.h2.util.MathUtils;
+import org.h2.util.SmallLRUCache;
+import org.h2.util.StringUtils;
+import org.h2.util.Utils;
 
 /**
  * This is the legacy implementation of LOBs for PageStore databases where the

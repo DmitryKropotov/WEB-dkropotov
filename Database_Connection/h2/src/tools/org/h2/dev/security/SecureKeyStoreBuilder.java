@@ -5,13 +5,17 @@
  */
 package org.h2.dev.security;
 
-import org.h2.security.CipherFactory;
-import org.h2.util.StringUtils;
-
-import java.security.*;
+import java.security.Key;
+import java.security.KeyStore;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.UnrecoverableKeyException;
 import java.security.cert.Certificate;
 import java.security.cert.CertificateEncodingException;
 import java.util.Enumeration;
+
+import org.h2.security.CipherFactory;
+import org.h2.util.StringUtils;
 
 /**
  * Tool to generate source code for the SecureSocketFactory. First, create a

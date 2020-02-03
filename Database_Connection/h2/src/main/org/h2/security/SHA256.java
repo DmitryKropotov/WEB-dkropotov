@@ -5,14 +5,15 @@
  */
 package org.h2.security;
 
-import org.h2.util.Bits;
-
-import javax.crypto.Mac;
-import javax.crypto.spec.SecretKeySpec;
 import java.security.GeneralSecurityException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
+
+import javax.crypto.Mac;
+import javax.crypto.spec.SecretKeySpec;
+
+import org.h2.util.Bits;
 
 /**
  * This class implements the cryptographic hash function SHA-256.

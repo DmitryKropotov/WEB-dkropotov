@@ -5,6 +5,14 @@
  */
 package org.h2.test.unit;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.TimeZone;
+
 import org.h2.api.TimestampWithTimeZone;
 import org.h2.engine.CastDataProvider;
 import org.h2.engine.SysProperties;
@@ -13,10 +21,11 @@ import org.h2.test.TestDb;
 import org.h2.util.DateTimeUtils;
 import org.h2.util.JSR310;
 import org.h2.util.JSR310Utils;
-import org.h2.value.*;
-
-import java.sql.*;
-import java.util.TimeZone;
+import org.h2.value.Value;
+import org.h2.value.ValueDate;
+import org.h2.value.ValueTime;
+import org.h2.value.ValueTimestamp;
+import org.h2.value.ValueTimestampTimeZone;
 
 /**
  */

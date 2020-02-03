@@ -5,14 +5,13 @@
  */
 package org.h2.expression;
 
+import java.util.HashSet;
 import org.h2.command.dml.AllColumnsForPlan;
 import org.h2.engine.DbObject;
 import org.h2.table.Column;
 import org.h2.table.ColumnResolver;
 import org.h2.table.Table;
 import org.h2.table.TableFilter;
-
-import java.util.HashSet;
 
 /**
  * The visitor pattern is used to iterate through all expressions of a query

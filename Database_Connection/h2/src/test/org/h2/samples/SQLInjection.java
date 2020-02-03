@@ -7,7 +7,12 @@ package org.h2.samples;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  * SQL Injection is a common security vulnerability for applications that use

@@ -11,7 +11,6 @@ import org.h2.table.ColumnResolver;
 import org.h2.table.TableFilter;
 import org.h2.util.DateTimeUtils;
 import org.h2.util.TimeZoneProvider;
-import org.h2.value.*;
 
 /**
  * A time zone specification (AT { TIME ZONE | LOCAL }).

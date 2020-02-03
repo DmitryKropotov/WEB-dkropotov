@@ -12,7 +12,7 @@ import org.h2.util.IOUtils;
 import org.h2.util.Task;
 import org.h2.value.Value;
 
-import java.io.*;
+import java.io.IOException;
 import java.sql.SQLException;
 
 /**

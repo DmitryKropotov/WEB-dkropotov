@@ -5,9 +5,6 @@
  */
 package org.h2.mvstore;
 
-import org.h2.engine.Constants;
-import org.h2.util.StringUtils;
-
 import java.io.EOFException;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -18,6 +15,9 @@ import java.text.MessageFormat;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+
+import org.h2.engine.Constants;
+import org.h2.util.StringUtils;
 
 /**
  * Utility methods

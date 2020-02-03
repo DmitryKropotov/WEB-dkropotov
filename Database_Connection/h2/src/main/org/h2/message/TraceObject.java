@@ -5,13 +5,13 @@
  */
 package org.h2.message;
 
-import org.h2.api.ErrorCode;
-import org.h2.util.StringUtils;
-
 import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicIntegerArray;
+
+import org.h2.api.ErrorCode;
+import org.h2.util.StringUtils;
 
 /**
  * The base class for objects that can print trace information about themselves.

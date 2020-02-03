@@ -5,11 +5,14 @@
  */
 package org.h2.test.db;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import org.h2.api.Trigger;
 import org.h2.test.TestBase;
 import org.h2.test.TestDb;
-
-import java.sql.*;
 
 /**
  * Test merge using syntax.

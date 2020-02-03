@@ -5,15 +5,15 @@
  */
 package org.h2.test;
 
-import org.h2.test.utils.SelfDestructor;
-import org.h2.tools.DeleteDbFiles;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import org.h2.test.utils.SelfDestructor;
+import org.h2.tools.DeleteDbFiles;
 
 /**
  * The base class for tests that use connections to database.

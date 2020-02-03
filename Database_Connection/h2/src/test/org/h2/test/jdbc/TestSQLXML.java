@@ -5,20 +5,26 @@
  */
 package org.h2.test.jdbc;
 
-import org.h2.api.ErrorCode;
-import org.h2.jdbc.JdbcConnection;
-import org.h2.test.TestBase;
-import org.h2.test.TestDb;
-import org.h2.util.IOUtils;
-import org.w3c.dom.Node;
-import org.xml.sax.InputSource;
-import org.xml.sax.SAXException;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.StringReader;
+import java.io.Writer;
+import java.nio.charset.StandardCharsets;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.SQLXML;
+import java.sql.Statement;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
-import javax.xml.transform.*;
+import javax.xml.transform.Result;
+import javax.xml.transform.Source;
+import javax.xml.transform.TransformerConfigurationException;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMResult;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.sax.SAXResult;
@@ -27,12 +33,15 @@ import javax.xml.transform.stax.StAXResult;
 import javax.xml.transform.stax.StAXSource;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.io.StringReader;
-import java.io.Writer;
-import java.nio.charset.StandardCharsets;
-import java.sql.*;
+
+import org.h2.api.ErrorCode;
+import org.h2.jdbc.JdbcConnection;
+import org.h2.test.TestBase;
+import org.h2.test.TestDb;
+import org.h2.util.IOUtils;
+import org.w3c.dom.Node;
+import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
 
 /**
  * Test the SQLXML implementation.

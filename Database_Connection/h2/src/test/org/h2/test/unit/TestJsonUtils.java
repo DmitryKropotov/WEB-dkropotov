@@ -5,13 +5,21 @@
  */
 package org.h2.test.unit;
 
-import org.h2.test.TestBase;
-import org.h2.util.json.*;
-
 import java.math.BigDecimal;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.concurrent.Callable;
+
+import org.h2.test.TestBase;
+import org.h2.util.json.JSONByteArrayTarget;
+import org.h2.util.json.JSONBytesSource;
+import org.h2.util.json.JSONItemType;
+import org.h2.util.json.JSONStringSource;
+import org.h2.util.json.JSONStringTarget;
+import org.h2.util.json.JSONTarget;
+import org.h2.util.json.JSONValidationTargetWithUniqueKeys;
+import org.h2.util.json.JSONValidationTargetWithoutUniqueKeys;
+import org.h2.util.json.JSONValueTarget;
 
 /**
  * Tests the classes from org.h2.util.json package.

@@ -5,11 +5,11 @@
  */
 package org.h2.value;
 
-import org.h2.engine.CastDataProvider;
-import org.h2.util.StringUtils;
-
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+
+import org.h2.engine.CastDataProvider;
+import org.h2.util.StringUtils;
 
 /**
  * Base implementation of the ENUM data type.

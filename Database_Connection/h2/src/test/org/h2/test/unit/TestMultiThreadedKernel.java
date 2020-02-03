@@ -5,13 +5,13 @@
  */
 package org.h2.test.unit;
 
-import org.h2.test.TestBase;
-import org.h2.test.TestDb;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+
+import org.h2.test.TestBase;
+import org.h2.test.TestDb;
 
 /**
  * Tests the multi-threaded kernel feature.

@@ -21,7 +21,6 @@ import org.h2.table.Column;
 import org.h2.table.ColumnResolver;
 import org.h2.table.Table;
 import org.h2.table.TableFilter;
-import org.h2.value.*;
 
 /**
  * A expression that represents a column of a table or view.

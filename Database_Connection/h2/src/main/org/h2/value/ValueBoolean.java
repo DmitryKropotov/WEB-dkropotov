@@ -5,10 +5,10 @@
  */
 package org.h2.value;
 
-import org.h2.engine.CastDataProvider;
-
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+
+import org.h2.engine.CastDataProvider;
 
 /**
  * Implementation of the BOOLEAN data type.

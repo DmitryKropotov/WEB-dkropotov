@@ -5,14 +5,14 @@
  */
 package org.h2.value;
 
-import org.h2.engine.SysProperties;
-import org.h2.util.StringUtils;
-
 import java.nio.charset.Charset;
 import java.text.Collator;
 import java.util.Comparator;
 import java.util.Locale;
 import java.util.Objects;
+
+import org.h2.engine.SysProperties;
+import org.h2.util.StringUtils;
 
 /**
  * Instances of this class can compare strings. Case sensitive and case

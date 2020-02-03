@@ -9,14 +9,14 @@ import org.h2.api.ErrorCode;
 import org.h2.command.Prepared;
 import org.h2.command.dml.AllColumnsForPlan;
 import org.h2.constraint.Constraint;
-import org.h2.engine.*;
+import org.h2.engine.Session;
 import org.h2.expression.Expression;
 import org.h2.expression.ExpressionVisitor;
 import org.h2.index.Index;
 import org.h2.index.IndexType;
 import org.h2.message.DbException;
 import org.h2.message.Trace;
-import org.h2.result.*;
+import org.h2.result.SearchRow;
 import org.h2.schema.Schema;
 import org.h2.schema.SchemaObjectBase;
 import org.h2.schema.Sequence;
@@ -26,7 +26,6 @@ import org.h2.value.CompareMode;
 import org.h2.value.Value;
 import org.h2.value.ValueNull;
 
-import java.util.*;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 /**

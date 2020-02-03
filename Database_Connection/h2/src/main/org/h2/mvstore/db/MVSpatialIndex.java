@@ -9,7 +9,6 @@ import org.h2.api.ErrorCode;
 import org.h2.command.dml.AllColumnsForPlan;
 import org.h2.engine.Database;
 import org.h2.engine.Session;
-import org.h2.index.*;
 import org.h2.message.DbException;
 import org.h2.mvstore.DataUtils;
 import org.h2.mvstore.MVMap;
@@ -26,7 +25,6 @@ import org.h2.result.SortOrder;
 import org.h2.table.Column;
 import org.h2.table.IndexColumn;
 import org.h2.table.TableFilter;
-import org.h2.value.*;
 
 import java.util.Iterator;
 import java.util.List;

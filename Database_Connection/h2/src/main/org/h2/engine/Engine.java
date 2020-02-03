@@ -5,6 +5,9 @@
  */
 package org.h2.engine;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 import org.h2.api.ErrorCode;
 import org.h2.command.CommandInterface;
 import org.h2.command.dml.SetTypes;
@@ -17,10 +20,6 @@ import org.h2.util.MathUtils;
 import org.h2.util.ParserUtil;
 import org.h2.util.ThreadDeadlockDetector;
 import org.h2.util.Utils;
-
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
 
 /**
  * The engine contains a map of all open databases.

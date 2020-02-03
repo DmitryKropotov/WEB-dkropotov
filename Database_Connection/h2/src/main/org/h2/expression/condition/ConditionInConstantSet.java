@@ -5,6 +5,9 @@
  */
 package org.h2.expression.condition;
 
+import java.util.ArrayList;
+import java.util.TreeSet;
+
 import org.h2.engine.Database;
 import org.h2.engine.Session;
 import org.h2.expression.Expression;
@@ -18,9 +21,6 @@ import org.h2.value.TypeInfo;
 import org.h2.value.Value;
 import org.h2.value.ValueBoolean;
 import org.h2.value.ValueNull;
-
-import java.util.ArrayList;
-import java.util.TreeSet;
 
 /**
  * Used for optimised IN(...) queries where the contents of the IN list are all

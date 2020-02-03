@@ -12,7 +12,6 @@ import org.h2.message.DbException;
 import org.h2.table.Column;
 import org.h2.table.ColumnResolver;
 import org.h2.table.TableFilter;
-import org.h2.value.*;
 
 /**
  * A parameter of a prepared statement.

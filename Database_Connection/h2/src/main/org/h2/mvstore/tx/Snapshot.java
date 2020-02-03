@@ -5,9 +5,9 @@
  */
 package org.h2.mvstore.tx;
 
-import org.h2.mvstore.RootReference;
-
 import java.util.BitSet;
+
+import org.h2.mvstore.RootReference;
 
 /**
  * Snapshot of the map root and committing transactions.

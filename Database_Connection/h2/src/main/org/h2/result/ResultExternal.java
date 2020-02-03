@@ -5,9 +5,8 @@
  */
 package org.h2.result;
 
-import org.h2.value.Value;
-
 import java.util.Collection;
+import org.h2.value.Value;
 
 /**
  * This interface is used to extend the LocalResult class, if data does not fit

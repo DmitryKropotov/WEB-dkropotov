@@ -13,7 +13,6 @@ import org.h2.message.DbException;
 import org.h2.util.DateTimeUtils;
 import org.h2.util.IntervalUtils;
 import org.h2.util.StringUtils;
-import org.h2.value.*;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;

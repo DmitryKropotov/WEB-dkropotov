@@ -5,6 +5,23 @@
  */
 package org.h2.test.unit;
 
+import static org.h2.util.geometry.GeometryUtils.DIMENSION_SYSTEM_XY;
+import static org.h2.util.geometry.GeometryUtils.DIMENSION_SYSTEM_XYM;
+import static org.h2.util.geometry.GeometryUtils.DIMENSION_SYSTEM_XYZ;
+import static org.h2.util.geometry.GeometryUtils.DIMENSION_SYSTEM_XYZM;
+import static org.h2.util.geometry.GeometryUtils.GEOMETRY_COLLECTION;
+import static org.h2.util.geometry.GeometryUtils.M;
+import static org.h2.util.geometry.GeometryUtils.MAX_X;
+import static org.h2.util.geometry.GeometryUtils.MAX_Y;
+import static org.h2.util.geometry.GeometryUtils.MIN_X;
+import static org.h2.util.geometry.GeometryUtils.MIN_Y;
+import static org.h2.util.geometry.GeometryUtils.X;
+import static org.h2.util.geometry.GeometryUtils.Y;
+import static org.h2.util.geometry.GeometryUtils.Z;
+
+import java.io.ByteArrayOutputStream;
+import java.util.Random;
+
 import org.h2.test.TestBase;
 import org.h2.util.StringUtils;
 import org.h2.util.geometry.EWKBUtils;
@@ -12,19 +29,21 @@ import org.h2.util.geometry.EWKBUtils.EWKBTarget;
 import org.h2.util.geometry.EWKTUtils;
 import org.h2.util.geometry.EWKTUtils.EWKTTarget;
 import org.h2.util.geometry.GeometryUtils;
-import org.h2.util.geometry.GeometryUtils.*;
+import org.h2.util.geometry.GeometryUtils.DimensionSystemTarget;
+import org.h2.util.geometry.GeometryUtils.EnvelopeAndDimensionSystemTarget;
+import org.h2.util.geometry.GeometryUtils.Target;
 import org.h2.util.geometry.JTSUtils;
 import org.h2.util.geometry.JTSUtils.GeometryTarget;
 import org.h2.value.ValueGeometry;
-import org.locationtech.jts.geom.*;
+import org.locationtech.jts.geom.CoordinateSequence;
+import org.locationtech.jts.geom.Envelope;
+import org.locationtech.jts.geom.Geometry;
+import org.locationtech.jts.geom.GeometryCollection;
+import org.locationtech.jts.geom.GeometryFactory;
+import org.locationtech.jts.geom.Point;
 import org.locationtech.jts.io.WKBWriter;
 import org.locationtech.jts.io.WKTReader;
 import org.locationtech.jts.io.WKTWriter;
-
-import java.io.ByteArrayOutputStream;
-import java.util.Random;
-
-import static org.h2.util.geometry.GeometryUtils.*;
 
 /**
  * Tests the classes from org.h2.util.geometry package.

@@ -4,12 +4,10 @@
  */
 package org.h2.util;
 
-import org.h2.engine.Mode.ModeEnum;
-import org.h2.message.DbException;
-
 import java.util.regex.Pattern;
-
+import org.h2.engine.Mode.ModeEnum;
 import static org.h2.engine.Mode.ModeEnum.*;
+import org.h2.message.DbException;
 
 /**
  * The configuration for the allowed column names.

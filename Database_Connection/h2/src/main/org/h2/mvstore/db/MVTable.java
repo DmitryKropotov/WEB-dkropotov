@@ -5,6 +5,12 @@
  */
 package org.h2.mvstore.db;
 
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicLong;
+
 import org.h2.api.DatabaseEventListener;
 import org.h2.api.ErrorCode;
 import org.h2.command.ddl.CreateTableData;
@@ -30,12 +36,6 @@ import org.h2.table.RegularTable;
 import org.h2.util.DebuggingThreadLocal;
 import org.h2.util.MathUtils;
 import org.h2.util.Utils;
-
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.concurrent.atomic.AtomicLong;
 
 /**
  * A table stored in a MVStore.

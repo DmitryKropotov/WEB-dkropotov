@@ -18,7 +18,8 @@ import org.h2.value.TypeInfo;
 import org.h2.value.ValueInt;
 import org.h2.value.ValueString;
 
-import java.sql.*;
+import java.sql.DatabaseMetaData;
+import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.Map.Entry;
 import java.util.Properties;

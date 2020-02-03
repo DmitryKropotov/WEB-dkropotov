@@ -31,7 +31,6 @@ import org.h2.util.Utils;
 
 import java.io.IOException;
 import java.nio.file.Paths;
-import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;

@@ -5,6 +5,16 @@
  */
 package org.h2.pagestore.db;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.Reader;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import org.h2.api.ErrorCode;
 import org.h2.engine.Database;
 import org.h2.jdbc.JdbcConnection;
@@ -18,17 +28,6 @@ import org.h2.util.MathUtils;
 import org.h2.util.Utils;
 import org.h2.value.Value;
 import org.h2.value.ValueLobDb;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.Reader;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
 
 /**
  * This class stores LOB objects in the database, in tables. This is the

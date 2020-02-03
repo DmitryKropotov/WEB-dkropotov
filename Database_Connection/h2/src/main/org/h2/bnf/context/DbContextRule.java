@@ -5,7 +5,6 @@
  */
 package org.h2.bnf.context;
 
-import org.h2.bnf.*;
 import org.h2.message.DbException;
 import org.h2.util.ParserUtil;
 import org.h2.util.StringUtils;

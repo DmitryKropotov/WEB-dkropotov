@@ -5,17 +5,21 @@
  */
 package org.h2.test.unit;
 
-import org.h2.engine.Constants;
-import org.h2.test.TestBase;
-import org.h2.test.TestDb;
-import org.h2.util.Utils;
-
-import javax.management.*;
 import java.lang.management.ManagementFactory;
 import java.sql.Connection;
 import java.sql.Statement;
 import java.util.HashMap;
 import java.util.Set;
+import javax.management.Attribute;
+import javax.management.MBeanAttributeInfo;
+import javax.management.MBeanInfo;
+import javax.management.MBeanOperationInfo;
+import javax.management.MBeanServer;
+import javax.management.ObjectName;
+import org.h2.engine.Constants;
+import org.h2.test.TestBase;
+import org.h2.test.TestDb;
+import org.h2.util.Utils;
 
 /**
  * Tests the JMX feature.

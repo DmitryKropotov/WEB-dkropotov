@@ -7,7 +7,6 @@ package org.h2.security.auth;
 
 import org.h2.api.CredentialsValidator;
 import org.h2.api.UserToRolesMapper;
-import org.h2.engine.*;
 import org.h2.message.Trace;
 import org.h2.security.auth.impl.AssignRealmNameRole;
 import org.h2.security.auth.impl.JaasCredentialsValidator;
@@ -17,7 +16,6 @@ import org.xml.sax.SAXException;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.net.URL;
-import java.util.*;
 
 /**
  * Default authenticator implementation.

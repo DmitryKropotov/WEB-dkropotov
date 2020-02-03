@@ -5,11 +5,14 @@
  */
 package org.h2.tools;
 
-import org.h2.server.ShutdownHandler;
-import org.h2.util.*;
-
 import java.sql.Connection;
 import java.sql.SQLException;
+import org.h2.server.ShutdownHandler;
+import org.h2.util.JdbcUtils;
+import org.h2.util.MathUtils;
+import org.h2.util.StringUtils;
+import org.h2.util.Tool;
+import org.h2.util.Utils;
 
 /**
  * Starts the H2 Console (web-) server, as well as the TCP and PG server.

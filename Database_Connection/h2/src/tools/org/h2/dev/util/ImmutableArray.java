@@ -5,10 +5,9 @@
  */
 package org.h2.dev.util;
 
-import org.h2.mvstore.DataUtils;
-
 import java.util.Arrays;
 import java.util.Iterator;
+import org.h2.mvstore.DataUtils;
 
 /**
  * An immutable array.

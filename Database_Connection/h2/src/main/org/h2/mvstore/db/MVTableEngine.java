@@ -28,7 +28,6 @@ import org.h2.util.Utils;
 import java.io.InputStream;
 import java.lang.Thread.UncaughtExceptionHandler;
 import java.nio.channels.FileChannel;
-import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**

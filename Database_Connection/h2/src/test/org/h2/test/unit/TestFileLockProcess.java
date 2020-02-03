@@ -5,13 +5,13 @@
  */
 package org.h2.test.unit;
 
-import org.h2.test.TestBase;
-import org.h2.test.TestDb;
-import org.h2.test.utils.SelfDestructor;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.ArrayList;
+
+import org.h2.test.TestBase;
+import org.h2.test.TestDb;
+import org.h2.test.utils.SelfDestructor;
 
 /**
  * Tests database file locking.

@@ -5,6 +5,8 @@
  */
 package org.h2.security.auth.impl;
 
+import java.util.regex.Pattern;
+
 import org.h2.api.CredentialsValidator;
 import org.h2.security.SHA256;
 import org.h2.security.auth.AuthenticationException;
@@ -13,8 +15,6 @@ import org.h2.security.auth.ConfigProperties;
 import org.h2.util.MathUtils;
 import org.h2.util.StringUtils;
 import org.h2.util.Utils;
-
-import java.util.regex.Pattern;
 
 /**
  * This credentials validator matches the user and password with the configured

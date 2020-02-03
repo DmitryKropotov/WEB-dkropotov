@@ -5,6 +5,15 @@
  */
 package org.h2.value;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.Reader;
+import java.math.BigDecimal;
+import java.net.InetAddress;
+import java.net.Socket;
 import org.h2.api.ErrorCode;
 import org.h2.api.IntervalQualifier;
 import org.h2.engine.CastDataProvider;
@@ -16,12 +25,15 @@ import org.h2.result.SimpleResult;
 import org.h2.security.SHA256;
 import org.h2.store.Data;
 import org.h2.store.DataReader;
-import org.h2.util.*;
-
-import java.io.*;
-import java.math.BigDecimal;
-import java.net.InetAddress;
-import java.net.Socket;
+import org.h2.util.Bits;
+import org.h2.util.CurrentTimestamp;
+import org.h2.util.DateTimeUtils;
+import org.h2.util.IOUtils;
+import org.h2.util.JdbcUtils;
+import org.h2.util.MathUtils;
+import org.h2.util.NetUtils;
+import org.h2.util.StringUtils;
+import org.h2.util.Utils;
 
 /**
  * The transfer class is used to send and receive Value objects.

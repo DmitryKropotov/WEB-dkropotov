@@ -5,16 +5,28 @@
  */
 package org.h2.test.jdbc;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.Reader;
+import java.io.StringReader;
+import java.io.Writer;
+import java.nio.charset.StandardCharsets;
+import java.sql.Blob;
+import java.sql.Clob;
+import java.sql.Connection;
+import java.sql.NClob;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.Random;
+
 import org.h2.api.ErrorCode;
 import org.h2.jdbc.JdbcConnection;
 import org.h2.test.TestBase;
 import org.h2.test.TestDb;
 import org.h2.util.IOUtils;
-
-import java.io.*;
-import java.nio.charset.StandardCharsets;
-import java.sql.*;
-import java.util.Random;
 
 /**
  * Test the Blob, Clob, and NClob implementations.

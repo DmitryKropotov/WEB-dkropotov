@@ -11,7 +11,6 @@ import org.h2.command.Prepared;
 import org.h2.engine.Database;
 import org.h2.engine.DbObject;
 import org.h2.engine.Session;
-import org.h2.expression.*;
 import org.h2.expression.function.FunctionCall;
 import org.h2.message.DbException;
 import org.h2.result.LocalResult;

@@ -5,11 +5,11 @@
  */
 package org.h2.store;
 
-import org.h2.util.IOUtils;
-
 import java.io.FilterInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+
+import org.h2.util.IOUtils;
 
 /**
  * Input stream that reads only a specified range from the source stream.

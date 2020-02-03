@@ -5,9 +5,9 @@
  */
 package org.h2.util;
 
-import org.h2.value.ValueTimestampTimeZone;
-
 import java.time.Instant;
+
+import org.h2.value.ValueTimestampTimeZone;
 
 public final class CurrentTimestamp {
 

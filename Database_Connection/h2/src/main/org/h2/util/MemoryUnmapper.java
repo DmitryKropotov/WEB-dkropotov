@@ -5,11 +5,11 @@
  */
 package org.h2.util;
 
-import org.h2.engine.SysProperties;
-
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.nio.ByteBuffer;
+
+import org.h2.engine.SysProperties;
 
 /**
  * Unsafe memory unmapper.

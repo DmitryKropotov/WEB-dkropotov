@@ -14,14 +14,10 @@ import org.h2.jdbc.JdbcPreparedStatement;
 import org.h2.jdbc.JdbcResultSet;
 import org.h2.jdbc.JdbcStatement;
 import org.h2.message.DbException;
-import org.h2.util.*;
-import org.h2.value.*;
 
-import java.io.*;
 import java.net.Socket;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
-import java.sql.*;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Properties;

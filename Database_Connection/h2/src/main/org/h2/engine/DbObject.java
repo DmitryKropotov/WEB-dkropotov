@@ -5,9 +5,8 @@
  */
 package org.h2.engine;
 
-import org.h2.table.Table;
-
 import java.util.ArrayList;
+import org.h2.table.Table;
 
 /**
  * A database object such as a table, an index, or a user.

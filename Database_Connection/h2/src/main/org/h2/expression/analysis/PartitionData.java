@@ -5,9 +5,9 @@
  */
 package org.h2.expression.analysis;
 
-import org.h2.value.Value;
-
 import java.util.HashMap;
+
+import org.h2.value.Value;
 
 /**
  * Partition data of a window aggregate.

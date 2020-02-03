@@ -18,7 +18,6 @@ import org.h2.result.LocalResult;
 import org.h2.result.ResultInterface;
 import org.h2.table.ColumnResolver;
 import org.h2.table.TableFilter;
-import org.h2.value.*;
 
 /**
  * An IN() condition with a subquery, as in WHERE ID IN(SELECT ...)

@@ -5,14 +5,13 @@
  */
 package org.h2.test.unit;
 
-import org.h2.test.TestBase;
-import org.h2.value.CharsetCollator;
-import org.h2.value.CompareMode;
-
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.charset.UnsupportedCharsetException;
 import java.text.Collator;
+import org.h2.test.TestBase;
+import org.h2.value.CharsetCollator;
+import org.h2.value.CompareMode;
 
 /**
  * Unittest for org.h2.value.CharsetCollator

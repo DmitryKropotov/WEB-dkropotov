@@ -5,12 +5,14 @@
  */
 package org.h2.test.unit;
 
+import static org.h2.util.DateTimeUtils.getIsoDayOfWeek;
+import static org.h2.util.DateTimeUtils.getIsoWeekOfYear;
+import static org.h2.util.DateTimeUtils.getIsoWeekYear;
+
 import org.h2.test.TestBase;
 import org.h2.value.ValueDate;
 import org.h2.value.ValueTimestamp;
 import org.h2.value.ValueTimestampTimeZone;
-
-import static org.h2.util.DateTimeUtils.*;
 
 /**
  * Test cases for DateTimeIso8601Utils.

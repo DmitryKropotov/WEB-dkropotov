@@ -5,6 +5,28 @@
  */
 package org.h2.test.unit;
 
+import java.math.BigDecimal;
+import java.sql.Connection;
+import java.sql.DatabaseMetaData;
+import java.sql.Date;
+import java.sql.DriverManager;
+import java.sql.ParameterMetaData;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.sql.Time;
+import java.sql.Timestamp;
+import java.sql.Types;
+import java.util.Properties;
+import java.util.TimeZone;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+
 import org.h2.api.ErrorCode;
 import org.h2.store.Data;
 import org.h2.test.TestBase;
@@ -12,12 +34,6 @@ import org.h2.test.TestDb;
 import org.h2.tools.Server;
 import org.h2.util.DateTimeUtils;
 import org.h2.util.JSR310;
-
-import java.math.BigDecimal;
-import java.sql.*;
-import java.util.Properties;
-import java.util.TimeZone;
-import java.util.concurrent.*;
 
 /**
  * Tests the PostgreSQL server protocol compliant implementation.

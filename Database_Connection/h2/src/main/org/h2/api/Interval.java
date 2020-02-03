@@ -5,11 +5,11 @@
  */
 package org.h2.api;
 
-import org.h2.message.DbException;
-import org.h2.util.IntervalUtils;
-
 import static org.h2.util.DateTimeUtils.NANOS_PER_MINUTE;
 import static org.h2.util.DateTimeUtils.NANOS_PER_SECOND;
+
+import org.h2.message.DbException;
+import org.h2.util.IntervalUtils;
 
 /**
  * INTERVAL representation for result sets.

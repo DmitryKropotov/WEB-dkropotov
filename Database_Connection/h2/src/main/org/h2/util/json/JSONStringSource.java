@@ -5,9 +5,9 @@
  */
 package org.h2.util.json;
 
-import org.h2.util.StringUtils;
-
 import java.math.BigDecimal;
+
+import org.h2.util.StringUtils;
 
 /**
  * JSON string source.

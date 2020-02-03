@@ -5,6 +5,11 @@
  */
 package org.h2.command.dml;
 
+import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.Map.Entry;
+import java.util.Objects;
+
 import org.h2.api.ErrorCode;
 import org.h2.api.Trigger;
 import org.h2.command.CommandInterface;
@@ -28,11 +33,6 @@ import org.h2.table.Table;
 import org.h2.table.TableFilter;
 import org.h2.value.Value;
 import org.h2.value.ValueNull;
-
-import java.util.HashSet;
-import java.util.LinkedHashMap;
-import java.util.Map.Entry;
-import java.util.Objects;
 
 /**
  * This class represents the statement

@@ -4,12 +4,11 @@
  */
 package org.h2.util;
 
-import org.h2.engine.Session;
-import org.h2.expression.Expression;
-
 import java.util.HashSet;
 import java.util.Set;
 import java.util.regex.Pattern;
+import org.h2.engine.Session;
+import org.h2.expression.Expression;
 
 /**
  * A factory for column names.

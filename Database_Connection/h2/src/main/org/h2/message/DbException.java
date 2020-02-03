@@ -6,7 +6,6 @@
 package org.h2.message;
 
 import org.h2.engine.Constants;
-import org.h2.jdbc.*;
 import org.h2.util.SortedProperties;
 import org.h2.util.StringUtils;
 import org.h2.util.Utils;

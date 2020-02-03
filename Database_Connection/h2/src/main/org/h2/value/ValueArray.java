@@ -5,14 +5,14 @@
  */
 package org.h2.value;
 
-import org.h2.engine.CastDataProvider;
-import org.h2.engine.SysProperties;
-import org.h2.util.MathUtils;
-
 import java.lang.reflect.Array;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Arrays;
+
+import org.h2.engine.CastDataProvider;
+import org.h2.engine.SysProperties;
+import org.h2.util.MathUtils;
 
 /**
  * Implementation of the ARRAY data type.

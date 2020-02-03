@@ -5,6 +5,38 @@
  */
 package org.h2.test.jdbc;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Writer;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.nio.charset.StandardCharsets;
+import java.sql.Array;
+import java.sql.Blob;
+import java.sql.Clob;
+import java.sql.Connection;
+import java.sql.DatabaseMetaData;
+import java.sql.Date;
+import java.sql.NClob;
+import java.sql.PreparedStatement;
+import java.sql.Ref;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.RowId;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.sql.Time;
+import java.sql.Timestamp;
+import java.sql.Types;
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.GregorianCalendar;
+import java.util.TimeZone;
+
 import org.h2.api.ErrorCode;
 import org.h2.api.Interval;
 import org.h2.api.IntervalQualifier;
@@ -15,13 +47,6 @@ import org.h2.util.IOUtils;
 import org.h2.util.JSR310;
 import org.h2.util.MathUtils;
 import org.h2.util.StringUtils;
-
-import java.io.*;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.nio.charset.StandardCharsets;
-import java.sql.*;
-import java.util.*;
 
 /**
  * Tests for the ResultSet implementation.

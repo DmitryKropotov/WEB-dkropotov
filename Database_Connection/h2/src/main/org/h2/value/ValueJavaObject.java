@@ -5,16 +5,16 @@
  */
 package org.h2.value;
 
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Types;
+
 import org.h2.engine.CastDataProvider;
 import org.h2.engine.SysProperties;
 import org.h2.store.DataHandler;
 import org.h2.util.Bits;
 import org.h2.util.JdbcUtils;
 import org.h2.util.Utils;
-
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Types;
 
 /**
  * Implementation of the OBJECT data type.

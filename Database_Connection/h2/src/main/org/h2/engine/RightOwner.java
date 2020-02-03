@@ -5,13 +5,13 @@
  */
 package org.h2.engine;
 
-import org.h2.table.Table;
-import org.h2.util.StringUtils;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
+
+import org.h2.table.Table;
+import org.h2.util.StringUtils;
 
 /**
  * A right owner (sometimes called principal).

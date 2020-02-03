@@ -5,11 +5,10 @@
  */
 package org.h2.test.unit;
 
+import java.text.Collator;
 import org.h2.expression.condition.CompareLike;
 import org.h2.test.TestBase;
 import org.h2.value.CompareMode;
-
-import java.text.Collator;
 
 /**
  * Tests LIKE pattern matching.

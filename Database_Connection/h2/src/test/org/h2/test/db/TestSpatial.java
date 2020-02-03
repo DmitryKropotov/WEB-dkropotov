@@ -5,6 +5,13 @@
  */
 package org.h2.test.db;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Savepoint;
+import java.sql.Statement;
+import java.sql.Types;
+import java.util.Random;
 import org.h2.api.Aggregate;
 import org.h2.test.TestBase;
 import org.h2.test.TestDb;
@@ -13,15 +20,17 @@ import org.h2.tools.SimpleRowSource;
 import org.h2.value.DataType;
 import org.h2.value.Value;
 import org.h2.value.ValueGeometry;
-import org.locationtech.jts.geom.*;
+import org.locationtech.jts.geom.Coordinate;
+import org.locationtech.jts.geom.Envelope;
+import org.locationtech.jts.geom.Geometry;
+import org.locationtech.jts.geom.GeometryFactory;
+import org.locationtech.jts.geom.Point;
+import org.locationtech.jts.geom.Polygon;
 import org.locationtech.jts.geom.util.AffineTransformation;
 import org.locationtech.jts.io.ByteOrderValues;
 import org.locationtech.jts.io.ParseException;
 import org.locationtech.jts.io.WKBWriter;
 import org.locationtech.jts.io.WKTReader;
-
-import java.sql.*;
-import java.util.Random;
 
 /**
  * Spatial datatype and index tests.

@@ -7,14 +7,19 @@
  */
 package org.h2.util;
 
-import org.h2.api.ErrorCode;
-import org.h2.engine.CastDataProvider;
-import org.h2.message.DbException;
-import org.h2.value.*;
-
 import java.sql.Date;
 import java.util.GregorianCalendar;
 import java.util.TimeZone;
+
+import org.h2.api.ErrorCode;
+import org.h2.engine.CastDataProvider;
+import org.h2.message.DbException;
+import org.h2.value.Value;
+import org.h2.value.ValueDate;
+import org.h2.value.ValueTime;
+import org.h2.value.ValueTimeTimeZone;
+import org.h2.value.ValueTimestamp;
+import org.h2.value.ValueTimestampTimeZone;
 
 /**
  * This utility class contains time conversion functions.

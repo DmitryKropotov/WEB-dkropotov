@@ -23,7 +23,6 @@ import org.h2.result.SortOrder;
 import org.h2.table.Column;
 import org.h2.table.IndexColumn;
 import org.h2.table.TableFilter;
-import org.h2.value.*;
 
 import java.util.AbstractMap;
 import java.util.Collections;

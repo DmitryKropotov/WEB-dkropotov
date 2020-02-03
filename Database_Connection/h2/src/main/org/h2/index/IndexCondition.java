@@ -5,6 +5,10 @@
  */
 package org.h2.index;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.TreeSet;
 import org.h2.command.dml.Query;
 import org.h2.engine.Session;
 import org.h2.expression.Expression;
@@ -16,11 +20,6 @@ import org.h2.result.ResultInterface;
 import org.h2.table.Column;
 import org.h2.table.TableType;
 import org.h2.value.Value;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.TreeSet;
 
 /**
  * A index condition object is made for each condition that can potentially use

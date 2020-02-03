@@ -5,6 +5,9 @@
  */
 package org.h2.mvstore.db;
 
+import java.util.Arrays;
+import java.util.BitSet;
+
 import org.h2.engine.Database;
 import org.h2.expression.Expression;
 import org.h2.message.DbException;
@@ -15,9 +18,6 @@ import org.h2.result.ResultExternal;
 import org.h2.result.SortOrder;
 import org.h2.value.Value;
 import org.h2.value.ValueRow;
-
-import java.util.Arrays;
-import java.util.BitSet;
 
 /**
  * Sorted temporary result.

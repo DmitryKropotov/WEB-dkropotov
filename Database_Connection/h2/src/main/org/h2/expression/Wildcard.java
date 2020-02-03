@@ -5,6 +5,9 @@
  */
 package org.h2.expression;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import org.h2.api.ErrorCode;
 import org.h2.engine.Session;
 import org.h2.message.DbException;
@@ -14,9 +17,6 @@ import org.h2.table.TableFilter;
 import org.h2.util.StringUtils;
 import org.h2.value.TypeInfo;
 import org.h2.value.Value;
-
-import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  * A wildcard expression as in SELECT * FROM TEST.

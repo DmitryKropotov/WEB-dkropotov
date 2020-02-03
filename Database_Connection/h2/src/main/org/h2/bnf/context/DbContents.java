@@ -5,16 +5,16 @@
  */
 package org.h2.bnf.context;
 
-import org.h2.jdbc.JdbcConnection;
-import org.h2.util.ParserUtil;
-import org.h2.util.StringUtils;
-import org.h2.util.Utils;
-
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+
+import org.h2.jdbc.JdbcConnection;
+import org.h2.util.ParserUtil;
+import org.h2.util.StringUtils;
+import org.h2.util.Utils;
 
 /**
  * Keeps meta data information about a database.

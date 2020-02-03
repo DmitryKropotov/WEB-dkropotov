@@ -5,6 +5,8 @@
  */
 package org.h2.expression.analysis;
 
+import java.util.ArrayList;
+
 import org.h2.api.ErrorCode;
 import org.h2.command.dml.Select;
 import org.h2.command.dml.SelectOrderBy;
@@ -16,8 +18,6 @@ import org.h2.table.ColumnResolver;
 import org.h2.table.TableFilter;
 import org.h2.value.Value;
 import org.h2.value.ValueRow;
-
-import java.util.ArrayList;
 
 /**
  * Window clause.

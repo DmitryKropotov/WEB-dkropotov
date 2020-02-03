@@ -5,6 +5,10 @@
  */
 package org.h2.mvstore.db;
 
+import java.io.IOException;
+import java.lang.ref.Reference;
+import java.util.Collection;
+
 import org.h2.engine.Constants;
 import org.h2.engine.Database;
 import org.h2.expression.Expression;
@@ -17,10 +21,6 @@ import org.h2.store.fs.FileUtils;
 import org.h2.util.TempFileDeleter;
 import org.h2.value.TypeInfo;
 import org.h2.value.Value;
-
-import java.io.IOException;
-import java.lang.ref.Reference;
-import java.util.Collection;
 
 /**
  * Temporary result.

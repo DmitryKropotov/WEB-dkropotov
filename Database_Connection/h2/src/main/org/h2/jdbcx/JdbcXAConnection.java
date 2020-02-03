@@ -5,11 +5,11 @@
  */
 package org.h2.jdbcx;
 
-import org.h2.api.ErrorCode;
-import org.h2.jdbc.JdbcConnection;
-import org.h2.message.DbException;
-import org.h2.message.TraceObject;
-import org.h2.util.Utils;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 
 import javax.sql.ConnectionEvent;
 import javax.sql.ConnectionEventListener;
@@ -18,11 +18,12 @@ import javax.sql.XAConnection;
 import javax.transaction.xa.XAException;
 import javax.transaction.xa.XAResource;
 import javax.transaction.xa.Xid;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
+
+import org.h2.api.ErrorCode;
+import org.h2.jdbc.JdbcConnection;
+import org.h2.message.DbException;
+import org.h2.message.TraceObject;
+import org.h2.util.Utils;
 
 
 /**

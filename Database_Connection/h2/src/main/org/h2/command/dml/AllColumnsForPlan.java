@@ -5,13 +5,12 @@
  */
 package org.h2.command.dml;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import org.h2.expression.ExpressionVisitor;
 import org.h2.table.Column;
 import org.h2.table.Table;
 import org.h2.table.TableFilter;
-
-import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  * This information is expensive to compute for large queries, so do so

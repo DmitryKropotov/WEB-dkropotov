@@ -5,11 +5,11 @@
  */
 package org.h2.api;
 
+import java.util.Collection;
+
 import org.h2.security.auth.AuthenticationException;
 import org.h2.security.auth.AuthenticationInfo;
 import org.h2.security.auth.Configurable;
-
-import java.util.Collection;
 
 /**
  * A class that implement this interface can be used during authentication to

@@ -5,6 +5,8 @@
  */
 package org.h2.expression;
 
+import java.util.List;
+
 import org.h2.engine.Database;
 import org.h2.engine.Session;
 import org.h2.result.ResultInterface;
@@ -14,8 +16,6 @@ import org.h2.table.TableFilter;
 import org.h2.value.TypeInfo;
 import org.h2.value.Value;
 import org.h2.value.ValueCollectionBase;
-
-import java.util.List;
 
 /**
  * An expression is a operation, a value, or a function in a query.

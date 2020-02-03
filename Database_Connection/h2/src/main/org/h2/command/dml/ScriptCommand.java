@@ -8,7 +8,6 @@ package org.h2.command.dml;
 import org.h2.api.ErrorCode;
 import org.h2.command.CommandInterface;
 import org.h2.constraint.Constraint;
-import org.h2.engine.*;
 import org.h2.expression.Expression;
 import org.h2.expression.ExpressionColumn;
 import org.h2.index.Cursor;
@@ -17,7 +16,6 @@ import org.h2.message.DbException;
 import org.h2.result.LocalResult;
 import org.h2.result.ResultInterface;
 import org.h2.result.Row;
-import org.h2.schema.*;
 import org.h2.table.Column;
 import org.h2.table.PlanItem;
 import org.h2.table.Table;
@@ -29,14 +27,12 @@ import org.h2.util.Utils;
 import org.h2.value.Value;
 import org.h2.value.ValueString;
 
-import java.io.*;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.*;
 
 /**
  * This class represents the statement

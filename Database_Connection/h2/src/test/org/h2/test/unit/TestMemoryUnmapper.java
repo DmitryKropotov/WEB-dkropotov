@@ -5,11 +5,11 @@
  */
 package org.h2.test.unit;
 
-import org.h2.test.TestBase;
-import org.h2.util.MemoryUnmapper;
-
 import java.lang.ProcessBuilder.Redirect;
 import java.nio.ByteBuffer;
+
+import org.h2.test.TestBase;
+import org.h2.util.MemoryUnmapper;
 
 /**
  * Tests memory unmapper.

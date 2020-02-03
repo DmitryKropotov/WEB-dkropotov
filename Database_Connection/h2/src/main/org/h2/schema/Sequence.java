@@ -5,6 +5,7 @@
  */
 package org.h2.schema;
 
+import java.math.BigDecimal;
 import org.h2.api.ErrorCode;
 import org.h2.command.ddl.SequenceOptions;
 import org.h2.engine.DbObject;
@@ -15,8 +16,6 @@ import org.h2.table.Table;
 import org.h2.value.Value;
 import org.h2.value.ValueDecimal;
 import org.h2.value.ValueLong;
-
-import java.math.BigDecimal;
 
 /**
  * A sequence is created using the statement

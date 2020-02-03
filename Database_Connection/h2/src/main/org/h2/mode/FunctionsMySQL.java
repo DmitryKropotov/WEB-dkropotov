@@ -15,7 +15,6 @@ import org.h2.expression.function.FunctionInfo;
 import org.h2.message.DbException;
 import org.h2.util.DateTimeUtils;
 import org.h2.util.StringUtils;
-import org.h2.value.*;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

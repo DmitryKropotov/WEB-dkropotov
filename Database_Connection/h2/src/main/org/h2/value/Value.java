@@ -5,17 +5,6 @@
  */
 package org.h2.value;
 
-import org.h2.api.ErrorCode;
-import org.h2.api.IntervalQualifier;
-import org.h2.engine.CastDataProvider;
-import org.h2.engine.SysProperties;
-import org.h2.message.DbException;
-import org.h2.result.ResultInterface;
-import org.h2.result.SimpleResult;
-import org.h2.store.DataHandler;
-import org.h2.util.*;
-import org.h2.util.geometry.GeoJsonUtils;
-
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.io.Reader;
@@ -24,8 +13,26 @@ import java.lang.ref.SoftReference;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.nio.charset.StandardCharsets;
-import java.sql.*;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Time;
+import java.sql.Timestamp;
 import java.util.TimeZone;
+import org.h2.api.ErrorCode;
+import org.h2.api.IntervalQualifier;
+import org.h2.engine.CastDataProvider;
+import org.h2.engine.SysProperties;
+import org.h2.message.DbException;
+import org.h2.result.ResultInterface;
+import org.h2.result.SimpleResult;
+import org.h2.store.DataHandler;
+import org.h2.util.Bits;
+import org.h2.util.DateTimeUtils;
+import org.h2.util.IntervalUtils;
+import org.h2.util.JdbcUtils;
+import org.h2.util.StringUtils;
+import org.h2.util.geometry.GeoJsonUtils;
 
 /**
  * This is the base class for all value classes.

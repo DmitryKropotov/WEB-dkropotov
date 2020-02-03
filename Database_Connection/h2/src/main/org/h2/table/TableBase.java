@@ -5,6 +5,8 @@
  */
 package org.h2.table;
 
+import java.util.Collections;
+import java.util.List;
 import org.h2.command.ddl.CreateTableData;
 import org.h2.engine.Database;
 import org.h2.engine.DbSettings;
@@ -14,9 +16,6 @@ import org.h2.result.SearchRow;
 import org.h2.result.SortOrder;
 import org.h2.util.StringUtils;
 import org.h2.value.Value;
-
-import java.util.Collections;
-import java.util.List;
 
 /**
  * The base class of a regular table, or a user defined table.

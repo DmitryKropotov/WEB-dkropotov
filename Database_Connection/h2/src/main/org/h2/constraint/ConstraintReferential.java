@@ -5,6 +5,8 @@
  */
 package org.h2.constraint;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import org.h2.api.ErrorCode;
 import org.h2.command.Prepared;
 import org.h2.engine.Session;
@@ -23,9 +25,6 @@ import org.h2.table.Table;
 import org.h2.util.StringUtils;
 import org.h2.value.Value;
 import org.h2.value.ValueNull;
-
-import java.util.ArrayList;
-import java.util.HashSet;
 
 /**
  * A referential constraint.

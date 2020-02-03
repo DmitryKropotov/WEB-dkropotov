@@ -5,9 +5,9 @@
  */
 package org.h2.engine;
 
-import org.h2.message.Trace;
-
 import java.lang.ref.WeakReference;
+
+import org.h2.message.Trace;
 
 /**
  * This class is responsible to close a database after the specified delay. A

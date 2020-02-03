@@ -8,7 +8,6 @@ package org.h2.mvstore.cache;
 import org.h2.mvstore.DataUtils;
 
 import java.lang.ref.WeakReference;
-import java.util.*;
 
 /**
  * A scan resistant cache that uses keys of type long. It is meant to cache

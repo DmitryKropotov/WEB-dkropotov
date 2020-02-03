@@ -5,10 +5,10 @@
  */
 package org.h2.pagestore;
 
+import java.util.BitSet;
+
 import org.h2.engine.Session;
 import org.h2.store.Data;
-
-import java.util.BitSet;
 
 /**
  * The list of free pages of a page store. The format of a free list trunk page

@@ -5,6 +5,9 @@
  */
 package org.h2.command;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 import org.h2.api.DatabaseEventListener;
 import org.h2.api.ErrorCode;
 import org.h2.engine.Database;
@@ -18,10 +21,6 @@ import org.h2.result.ResultInterface;
 import org.h2.table.TableView;
 import org.h2.util.MathUtils;
 import org.h2.value.Value;
-
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
 
 /**
  * A prepared statement.

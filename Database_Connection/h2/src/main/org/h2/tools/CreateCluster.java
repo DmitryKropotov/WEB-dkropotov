@@ -5,16 +5,19 @@
  */
 package org.h2.tools;
 
-import org.h2.util.Tool;
-
 import java.io.IOException;
 import java.io.PipedReader;
 import java.io.PipedWriter;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
+import org.h2.util.Tool;
 
 /**
  * Creates a cluster from a stand-alone database.

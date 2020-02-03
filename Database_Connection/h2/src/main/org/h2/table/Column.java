@@ -22,7 +22,6 @@ import org.h2.schema.Schema;
 import org.h2.schema.Sequence;
 import org.h2.util.MathUtils;
 import org.h2.util.StringUtils;
-import org.h2.value.*;
 
 import java.sql.ResultSetMetaData;
 import java.util.Objects;

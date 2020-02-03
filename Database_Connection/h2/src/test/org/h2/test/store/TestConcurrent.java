@@ -5,18 +5,32 @@
  */
 package org.h2.test.store;
 
-import org.h2.mvstore.*;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.nio.channels.FileChannel;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.ConcurrentModificationException;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Random;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.atomic.AtomicInteger;
+
+import org.h2.mvstore.Chunk;
+import org.h2.mvstore.DataUtils;
+import org.h2.mvstore.MVMap;
+import org.h2.mvstore.MVStore;
+import org.h2.mvstore.WriteBuffer;
 import org.h2.mvstore.type.ObjectDataType;
 import org.h2.store.fs.FileChannelInputStream;
 import org.h2.store.fs.FileUtils;
 import org.h2.test.TestBase;
 import org.h2.util.Task;
-
-import java.io.*;
-import java.nio.channels.FileChannel;
-import java.util.*;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Tests concurrently accessing a tree map store.

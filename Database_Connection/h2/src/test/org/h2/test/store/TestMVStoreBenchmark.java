@@ -5,9 +5,6 @@
  */
 package org.h2.test.store;
 
-import org.h2.mvstore.MVStore;
-import org.h2.test.TestBase;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -15,6 +12,9 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentSkipListMap;
 import java.util.concurrent.TimeUnit;
+
+import org.h2.mvstore.MVStore;
+import org.h2.test.TestBase;
 
 /**
  * Tests the performance and memory usage claims in the documentation.

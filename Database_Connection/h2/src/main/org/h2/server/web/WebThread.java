@@ -7,9 +7,7 @@ package org.h2.server.web;
 
 import org.h2.engine.SysProperties;
 import org.h2.message.DbException;
-import org.h2.util.*;
 
-import java.io.*;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.nio.charset.StandardCharsets;

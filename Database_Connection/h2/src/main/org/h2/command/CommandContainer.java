@@ -5,6 +5,10 @@
  */
 package org.h2.command;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import org.h2.api.DatabaseEventListener;
 import org.h2.api.ErrorCode;
 import org.h2.command.dml.DataChangeStatement;
@@ -32,11 +36,6 @@ import org.h2.util.StringUtils;
 import org.h2.util.Utils;
 import org.h2.value.Value;
 import org.h2.value.ValueNull;
-
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 /**
  * Represents a single SQL statements.

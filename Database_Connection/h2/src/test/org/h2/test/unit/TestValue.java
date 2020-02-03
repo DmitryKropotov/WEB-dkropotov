@@ -5,6 +5,24 @@
  */
 package org.h2.test.unit;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStreamReader;
+import java.math.BigDecimal;
+import java.nio.charset.StandardCharsets;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Time;
+import java.sql.Timestamp;
+import java.sql.Types;
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.TimeZone;
+import java.util.UUID;
+
 import org.h2.api.ErrorCode;
 import org.h2.engine.Database;
 import org.h2.engine.Session;
@@ -18,17 +36,23 @@ import org.h2.test.TestDb;
 import org.h2.test.utils.AssertThrows;
 import org.h2.tools.SimpleResultSet;
 import org.h2.util.Bits;
-import org.h2.value.*;
-
-import java.io.ByteArrayInputStream;
-import java.io.InputStreamReader;
-import java.math.BigDecimal;
-import java.nio.charset.StandardCharsets;
-import java.sql.*;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.TimeZone;
-import java.util.UUID;
+import org.h2.value.DataType;
+import org.h2.value.TypeInfo;
+import org.h2.value.Value;
+import org.h2.value.ValueArray;
+import org.h2.value.ValueBytes;
+import org.h2.value.ValueDecimal;
+import org.h2.value.ValueDouble;
+import org.h2.value.ValueFloat;
+import org.h2.value.ValueInt;
+import org.h2.value.ValueInterval;
+import org.h2.value.ValueJavaObject;
+import org.h2.value.ValueLobDb;
+import org.h2.value.ValueNull;
+import org.h2.value.ValueResultSet;
+import org.h2.value.ValueString;
+import org.h2.value.ValueTimestamp;
+import org.h2.value.ValueUuid;
 
 /**
  * Tests features of values.

@@ -5,13 +5,13 @@
  */
 package org.h2.server.web;
 
-import org.h2.util.StringUtils;
-
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.h2.util.StringUtils;
 
 /**
  * A page parser can parse an HTML page and replace the tags there.

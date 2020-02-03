@@ -9,14 +9,11 @@ import org.h2.Driver;
 import org.h2.api.ErrorCode;
 import org.h2.engine.Constants;
 import org.h2.message.DbException;
-import org.h2.util.*;
 
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.UnknownHostException;
-import java.sql.*;
-import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**

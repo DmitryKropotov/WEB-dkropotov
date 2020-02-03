@@ -5,16 +5,19 @@
  */
 package org.h2.test.synth;
 
-import org.h2.test.TestDb;
-import org.h2.test.utils.SelfDestructor;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Field;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.Random;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
+import org.h2.test.TestDb;
+import org.h2.test.utils.SelfDestructor;
 
 /**
  * Standalone recovery test. A new process is started and then killed while it

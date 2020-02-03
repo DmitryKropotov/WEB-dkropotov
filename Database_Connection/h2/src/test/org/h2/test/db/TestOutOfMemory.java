@@ -5,6 +5,15 @@
  */
 package org.h2.test.db;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Map;
+import java.util.Random;
+import java.util.concurrent.atomic.AtomicReference;
 import org.h2.api.ErrorCode;
 import org.h2.mvstore.MVStore;
 import org.h2.store.fs.FilePath;
@@ -13,11 +22,6 @@ import org.h2.store.fs.FileUtils;
 import org.h2.test.TestBase;
 import org.h2.test.TestDb;
 import org.h2.util.Utils;
-
-import java.sql.*;
-import java.util.Map;
-import java.util.Random;
-import java.util.concurrent.atomic.AtomicReference;
 
 /**
  * Tests out of memory situations. The database must not get corrupted, and

@@ -5,9 +5,9 @@
  */
 package org.h2.engine;
 
-import org.h2.message.DbException;
-
 import java.sql.Connection;
+
+import org.h2.message.DbException;
 
 /**
  * Level of isolation.

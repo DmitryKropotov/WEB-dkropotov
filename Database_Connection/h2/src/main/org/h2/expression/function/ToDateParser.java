@@ -5,15 +5,15 @@
  */
 package org.h2.expression.function;
 
+import static java.lang.String.format;
+
+import java.util.List;
+
 import org.h2.engine.Session;
 import org.h2.util.DateTimeUtils;
 import org.h2.util.TimeZoneProvider;
 import org.h2.value.ValueTimestamp;
 import org.h2.value.ValueTimestampTimeZone;
-
-import java.util.List;
-
-import static java.lang.String.format;
 
 /**
  * Emulates Oracle's TO_DATE function.<br>

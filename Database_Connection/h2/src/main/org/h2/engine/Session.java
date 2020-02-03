@@ -38,10 +38,7 @@ import org.h2.table.SubQueryInfo;
 import org.h2.table.Table;
 import org.h2.table.TableFilter;
 import org.h2.table.TableType;
-import org.h2.util.*;
-import org.h2.value.*;
 
-import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicReference;
 

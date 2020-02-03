@@ -5,6 +5,9 @@
  */
 package org.h2.command.dml;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+
 import org.h2.api.ErrorCode;
 import org.h2.engine.Database;
 import org.h2.engine.Session;
@@ -23,9 +26,6 @@ import org.h2.table.Table;
 import org.h2.table.TableFilter;
 import org.h2.util.ColumnNamer;
 import org.h2.value.Value;
-
-import java.util.ArrayList;
-import java.util.HashSet;
 
 /**
  * Represents a union SELECT statement.

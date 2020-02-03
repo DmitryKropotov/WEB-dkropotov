@@ -5,6 +5,10 @@
  */
 package org.h2.value;
 
+import static org.h2.util.geometry.EWKBUtils.EWKB_SRID;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.Arrays;
 import org.h2.api.ErrorCode;
 import org.h2.engine.CastDataProvider;
 import org.h2.message.DbException;
@@ -18,12 +22,6 @@ import org.h2.util.geometry.GeometryUtils.EnvelopeAndDimensionSystemTarget;
 import org.h2.util.geometry.GeometryUtils.EnvelopeTarget;
 import org.h2.util.geometry.JTSUtils;
 import org.locationtech.jts.geom.Geometry;
-
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.util.Arrays;
-
-import static org.h2.util.geometry.EWKBUtils.EWKB_SRID;
 
 /**
  * Implementation of the GEOMETRY data type.

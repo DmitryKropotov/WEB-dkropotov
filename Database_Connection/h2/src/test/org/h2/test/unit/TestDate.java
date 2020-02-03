@@ -5,6 +5,15 @@
  */
 package org.h2.test.unit;
 
+import java.sql.Date;
+import java.sql.SQLException;
+import java.sql.Time;
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.TimeZone;
+
 import org.h2.api.ErrorCode;
 import org.h2.engine.CastDataProvider;
 import org.h2.engine.Mode;
@@ -14,16 +23,13 @@ import org.h2.test.utils.AssertThrows;
 import org.h2.util.CurrentTimestamp;
 import org.h2.util.DateTimeUtils;
 import org.h2.util.JSR310;
-import org.h2.value.*;
-
-import java.sql.Date;
-import java.sql.SQLException;
-import java.sql.Time;
-import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-import java.util.TimeZone;
+import org.h2.value.TypeInfo;
+import org.h2.value.Value;
+import org.h2.value.ValueDate;
+import org.h2.value.ValueDouble;
+import org.h2.value.ValueTime;
+import org.h2.value.ValueTimestamp;
+import org.h2.value.ValueTimestampTimeZone;
 
 /**
  * Tests the date parsing. The problem is that some dates are not allowed

@@ -5,9 +5,15 @@
  */
 package org.h2.samples;
 
-import org.h2.tools.SimpleResultSet;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.sql.Types;
 
-import java.sql.*;
+import org.h2.tools.SimpleResultSet;
 
 /**
  * User defined functions can return a result set,

@@ -5,6 +5,7 @@
  */
 package org.h2.constraint;
 
+import java.util.HashSet;
 import org.h2.api.ErrorCode;
 import org.h2.engine.Session;
 import org.h2.expression.Expression;
@@ -20,8 +21,6 @@ import org.h2.table.TableFilter;
 import org.h2.util.StringUtils;
 import org.h2.value.Value;
 import org.h2.value.ValueNull;
-
-import java.util.HashSet;
 
 /**
  * A check constraint.

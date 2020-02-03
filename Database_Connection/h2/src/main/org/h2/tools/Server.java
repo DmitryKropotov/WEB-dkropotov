@@ -5,6 +5,10 @@
  */
 package org.h2.tools;
 
+import java.net.URI;
+import java.sql.Connection;
+import java.sql.SQLException;
+
 import org.h2.api.ErrorCode;
 import org.h2.engine.SysProperties;
 import org.h2.message.DbException;
@@ -16,10 +20,6 @@ import org.h2.server.web.WebServer;
 import org.h2.util.StringUtils;
 import org.h2.util.Tool;
 import org.h2.util.Utils;
-
-import java.net.URI;
-import java.sql.Connection;
-import java.sql.SQLException;
 
 /**
  * Starts the H2 Console (web-) server, TCP, and PG server.

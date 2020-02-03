@@ -5,6 +5,13 @@
  */
 package org.h2.test.db;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Arrays;
+import java.util.HashSet;
 import org.h2.api.ErrorCode;
 import org.h2.api.Trigger;
 import org.h2.engine.Session;
@@ -14,10 +21,6 @@ import org.h2.test.TestDb;
 import org.h2.tools.TriggerAdapter;
 import org.h2.util.Task;
 import org.h2.value.ValueLong;
-
-import java.sql.*;
-import java.util.Arrays;
-import java.util.HashSet;
 
 /**
  * Tests for trigger and constraints.

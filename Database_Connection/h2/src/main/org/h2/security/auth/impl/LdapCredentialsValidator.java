@@ -5,14 +5,15 @@
  */
 package org.h2.security.auth.impl;
 
-import org.h2.api.CredentialsValidator;
-import org.h2.security.auth.AuthenticationInfo;
-import org.h2.security.auth.ConfigProperties;
+import java.util.Hashtable;
 
 import javax.naming.Context;
 import javax.naming.directory.DirContext;
 import javax.naming.directory.InitialDirContext;
-import java.util.Hashtable;
+
+import org.h2.api.CredentialsValidator;
+import org.h2.security.auth.AuthenticationInfo;
+import org.h2.security.auth.ConfigProperties;
 
 /**
  * Validate credentials by performing an LDAP bind

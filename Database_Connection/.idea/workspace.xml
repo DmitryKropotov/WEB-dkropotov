@@ -57,7 +57,7 @@
   <component name="RunManager" selected="Application.Unnamed">
     <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.project.main.Main" />
-      <module name="DatabaseConnection" />
+      <module name="DatabaseConnection2" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -141,8 +141,8 @@
     </configuration>
     <list>
       <item itemvalue="Application.Unnamed" />
-      <item itemvalue="Tomcat Server.Tomcat 9.0.29" />
       <item itemvalue="JAR Application.h2-1.4.200.jar" />
+      <item itemvalue="Tomcat Server.Tomcat 9.0.29" />
     </list>
     <recent_temporary>
       <list>
@@ -162,7 +162,8 @@
       <updated>1580136945219</updated>
       <workItem from="1580136948959" duration="5851000" />
       <workItem from="1580196062750" duration="28343000" />
-      <workItem from="1580285569901" duration="46929000" />
+      <workItem from="1580285569901" duration="48013000" />
+      <workItem from="1580740988441" duration="1082000" />
     </task>
     <servers />
   </component>
@@ -176,16 +177,6 @@
           <url>jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_231.jdk/Contents/Home/src.zip!/java/util/Optional.java</url>
           <line>136</line>
           <option name="timeStamp" value="14" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/project/main/Main.java</url>
-          <line>50</line>
-          <option name="timeStamp" value="43" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/project/repositories/UserRepositoryImpl.java</url>
-          <line>61</line>
-          <option name="timeStamp" value="45" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

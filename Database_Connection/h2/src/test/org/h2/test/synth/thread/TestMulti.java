@@ -5,12 +5,12 @@
  */
 package org.h2.test.synth.thread;
 
-import org.h2.test.TestBase;
-import org.h2.test.TestDb;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+
+import org.h2.test.TestBase;
+import org.h2.test.TestDb;
 
 /**
  * Starts multiple threads and performs random operations on each thread.

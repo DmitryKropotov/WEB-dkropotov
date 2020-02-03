@@ -5,8 +5,6 @@
  */
 package org.h2.test.utils;
 
-import org.h2.util.SourceCompiler;
-
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.lang.reflect.Constructor;
@@ -16,6 +14,7 @@ import java.lang.reflect.Modifier;
 import java.util.HashMap;
 import java.util.TreeMap;
 import java.util.TreeSet;
+import org.h2.util.SourceCompiler;
 
 /**
  * A code generator for class proxies.

@@ -5,13 +5,16 @@
  */
 package org.h2.test.db;
 
-import org.h2.test.TestBase;
-import org.h2.test.TestDb;
-
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.h2.test.TestBase;
+import org.h2.test.TestDb;
 
 public class TestSetCollation extends TestDb {
     private static final String[] TEST_STRINGS = new String[]{"A", "\u00c4", "AA", "B", "$", "1A", null};

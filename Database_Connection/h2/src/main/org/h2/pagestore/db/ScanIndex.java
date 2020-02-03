@@ -5,6 +5,8 @@
  */
 package org.h2.pagestore.db;
 
+import java.util.ArrayList;
+
 import org.h2.api.ErrorCode;
 import org.h2.command.dml.AllColumnsForPlan;
 import org.h2.engine.Constants;
@@ -20,8 +22,6 @@ import org.h2.table.Column;
 import org.h2.table.IndexColumn;
 import org.h2.table.TableFilter;
 import org.h2.util.Utils;
-
-import java.util.ArrayList;
 
 /**
  * The scan index is not really an 'index' in the strict sense, because it can

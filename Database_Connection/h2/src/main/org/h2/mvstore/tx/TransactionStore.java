@@ -5,7 +5,6 @@
  */
 package org.h2.mvstore.tx;
 
-import org.h2.mvstore.*;
 import org.h2.mvstore.type.DataType;
 import org.h2.mvstore.type.ObjectDataType;
 import org.h2.util.StringUtils;

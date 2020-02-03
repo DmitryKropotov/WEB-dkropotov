@@ -5,10 +5,13 @@
  */
 package org.h2.test.db;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.sql.Types;
 import org.h2.test.TestBase;
 import org.h2.test.TestDb;
-
-import java.sql.*;
 
 /**
  * Test recursive queries using WITH.

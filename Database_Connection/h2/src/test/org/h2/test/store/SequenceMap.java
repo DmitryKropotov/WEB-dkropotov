@@ -5,12 +5,11 @@
  */
 package org.h2.test.store;
 
-import org.h2.mvstore.MVMap;
-
 import java.util.AbstractSet;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
+import org.h2.mvstore.MVMap;
 
 /**
  * A custom map returning the keys and values 1 .. 10.

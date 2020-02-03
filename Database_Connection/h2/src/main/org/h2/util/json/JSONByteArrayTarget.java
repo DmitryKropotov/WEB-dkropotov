@@ -5,13 +5,15 @@
  */
 package org.h2.util.json;
 
-import org.h2.util.ByteStack;
+import static org.h2.util.json.JSONStringTarget.ARRAY;
+import static org.h2.util.json.JSONStringTarget.HEX;
+import static org.h2.util.json.JSONStringTarget.OBJECT;
 
 import java.io.ByteArrayOutputStream;
 import java.math.BigDecimal;
 import java.nio.charset.StandardCharsets;
 
-import static org.h2.util.json.JSONStringTarget.*;
+import org.h2.util.ByteStack;
 
 /**
  * JSON byte array target.

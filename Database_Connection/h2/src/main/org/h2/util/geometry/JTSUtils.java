@@ -5,17 +5,44 @@
  */
 package org.h2.util.geometry;
 
-import org.h2.message.DbException;
-import org.h2.util.geometry.EWKBUtils.EWKBTarget;
-import org.h2.util.geometry.GeometryUtils.*;
-import org.locationtech.jts.geom.*;
-import org.locationtech.jts.geom.impl.CoordinateArraySequenceFactory;
-import org.locationtech.jts.geom.impl.PackedCoordinateSequenceFactory;
+import static org.h2.util.geometry.GeometryUtils.DIMENSION_SYSTEM_XYM;
+import static org.h2.util.geometry.GeometryUtils.DIMENSION_SYSTEM_XYZ;
+import static org.h2.util.geometry.GeometryUtils.GEOMETRY_COLLECTION;
+import static org.h2.util.geometry.GeometryUtils.LINE_STRING;
+import static org.h2.util.geometry.GeometryUtils.M;
+import static org.h2.util.geometry.GeometryUtils.MULTI_LINE_STRING;
+import static org.h2.util.geometry.GeometryUtils.MULTI_POINT;
+import static org.h2.util.geometry.GeometryUtils.MULTI_POLYGON;
+import static org.h2.util.geometry.GeometryUtils.POINT;
+import static org.h2.util.geometry.GeometryUtils.POLYGON;
+import static org.h2.util.geometry.GeometryUtils.X;
+import static org.h2.util.geometry.GeometryUtils.Y;
+import static org.h2.util.geometry.GeometryUtils.Z;
+import static org.h2.util.geometry.GeometryUtils.checkFinite;
+import static org.h2.util.geometry.GeometryUtils.toCanonicalDouble;
 
 import java.io.ByteArrayOutputStream;
 import java.lang.reflect.Method;
 
-import static org.h2.util.geometry.GeometryUtils.*;
+import org.h2.message.DbException;
+import org.h2.util.geometry.EWKBUtils.EWKBTarget;
+import org.h2.util.geometry.GeometryUtils.DimensionSystemTarget;
+import org.h2.util.geometry.GeometryUtils.Target;
+import org.locationtech.jts.geom.CoordinateSequence;
+import org.locationtech.jts.geom.CoordinateSequenceFactory;
+import org.locationtech.jts.geom.Geometry;
+import org.locationtech.jts.geom.GeometryCollection;
+import org.locationtech.jts.geom.GeometryFactory;
+import org.locationtech.jts.geom.LineString;
+import org.locationtech.jts.geom.LinearRing;
+import org.locationtech.jts.geom.MultiLineString;
+import org.locationtech.jts.geom.MultiPoint;
+import org.locationtech.jts.geom.MultiPolygon;
+import org.locationtech.jts.geom.Point;
+import org.locationtech.jts.geom.Polygon;
+import org.locationtech.jts.geom.PrecisionModel;
+import org.locationtech.jts.geom.impl.CoordinateArraySequenceFactory;
+import org.locationtech.jts.geom.impl.PackedCoordinateSequenceFactory;
 
 /**
  * Utilities for Geometry data type from JTS library.

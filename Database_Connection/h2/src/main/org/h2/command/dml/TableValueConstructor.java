@@ -16,7 +16,6 @@ import org.h2.message.DbException;
 import org.h2.result.LocalResult;
 import org.h2.result.ResultInterface;
 import org.h2.result.ResultTarget;
-import org.h2.table.*;
 import org.h2.value.Value;
 
 import java.util.ArrayList;

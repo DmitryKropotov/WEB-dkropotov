@@ -5,11 +5,6 @@
  */
 package org.h2.store.fs;
 
-import org.h2.security.AES;
-import org.h2.security.BlockCipher;
-import org.h2.security.SHA256;
-import org.h2.util.MathUtils;
-
 import java.io.EOFException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -19,6 +14,11 @@ import java.nio.channels.FileChannel;
 import java.nio.channels.FileLock;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
+
+import org.h2.security.AES;
+import org.h2.security.BlockCipher;
+import org.h2.security.SHA256;
+import org.h2.util.MathUtils;
 
 /**
  * An encrypted file.

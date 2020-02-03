@@ -5,11 +5,11 @@
  */
 package org.h2.store;
 
-import org.h2.engine.Constants;
-import org.h2.tools.CompressTool;
-
 import java.io.OutputStream;
 import java.util.Arrays;
+
+import org.h2.engine.Constants;
+import org.h2.tools.CompressTool;
 
 /**
  * An output stream that is backed by a file store.

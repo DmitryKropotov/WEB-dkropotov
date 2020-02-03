@@ -5,6 +5,11 @@
  */
 package org.h2.expression.analysis;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+
 import org.h2.api.ErrorCode;
 import org.h2.engine.Session;
 import org.h2.expression.BinaryOperation;
@@ -16,11 +21,6 @@ import org.h2.result.SortOrder;
 import org.h2.table.ColumnResolver;
 import org.h2.value.Value;
 import org.h2.value.ValueNull;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.NoSuchElementException;
 
 /**
  * Window frame clause.

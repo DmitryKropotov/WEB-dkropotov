@@ -22,7 +22,6 @@ import org.h2.table.Table;
 import org.h2.table.TableFilter;
 import org.h2.util.DateTimeUtils;
 import org.h2.util.IntervalUtils;
-import org.h2.value.*;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;

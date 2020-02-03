@@ -5,10 +5,10 @@
  */
 package org.h2.bnf;
 
-import org.h2.util.Utils;
-
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import org.h2.util.Utils;
 
 /**
  * Represents a sequence of BNF rules, or a list of alternative rules.

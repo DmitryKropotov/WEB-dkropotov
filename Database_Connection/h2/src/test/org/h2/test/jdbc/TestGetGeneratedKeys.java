@@ -5,14 +5,19 @@
  */
 package org.h2.test.jdbc;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.UUID;
+
 import org.h2.api.ErrorCode;
 import org.h2.jdbc.JdbcPreparedStatement;
 import org.h2.jdbc.JdbcStatement;
 import org.h2.test.TestBase;
 import org.h2.test.TestDb;
-
-import java.sql.*;
-import java.util.UUID;
 
 /**
  * Tests for the {@link Statement#getGeneratedKeys()}.

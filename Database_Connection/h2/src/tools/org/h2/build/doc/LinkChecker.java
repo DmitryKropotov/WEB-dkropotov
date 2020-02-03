@@ -5,10 +5,6 @@
  */
 package org.h2.build.doc;
 
-import org.h2.tools.Server;
-import org.h2.util.IOUtils;
-import org.h2.util.StringUtils;
-
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
@@ -17,6 +13,10 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+
+import org.h2.tools.Server;
+import org.h2.util.IOUtils;
+import org.h2.util.StringUtils;
 
 /**
  * The link checker makes sure that each link in the documentation

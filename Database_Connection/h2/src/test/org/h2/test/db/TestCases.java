@@ -5,18 +5,25 @@
  */
 package org.h2.test.db;
 
+import java.io.File;
+import java.io.StringReader;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.sql.Time;
+import java.sql.Timestamp;
+import java.util.List;
+import java.util.Random;
+import java.util.concurrent.TimeUnit;
 import org.h2.api.ErrorCode;
 import org.h2.engine.SysProperties;
 import org.h2.store.fs.FileUtils;
 import org.h2.test.TestBase;
 import org.h2.test.TestDb;
-
-import java.io.File;
-import java.io.StringReader;
-import java.sql.*;
-import java.util.List;
-import java.util.Random;
-import java.util.concurrent.TimeUnit;
 
 /**
  * Various test cases.

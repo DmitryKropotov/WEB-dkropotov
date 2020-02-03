@@ -5,6 +5,7 @@
  */
 package org.h2.test.unit;
 
+import java.util.Random;
 import org.h2.api.JavaObjectSerializer;
 import org.h2.pagestore.db.LobStorageBackend;
 import org.h2.store.DataHandler;
@@ -14,8 +15,6 @@ import org.h2.test.TestBase;
 import org.h2.util.SmallLRUCache;
 import org.h2.util.TempFileDeleter;
 import org.h2.value.CompareMode;
-
-import java.util.Random;
 
 /**
  * Tests the in-memory file store.

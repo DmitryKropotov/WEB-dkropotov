@@ -5,6 +5,9 @@
  */
 package org.h2.command;
 
+import java.io.IOException;
+import java.util.ArrayList;
+
 import org.h2.engine.Constants;
 import org.h2.engine.GeneratedKeysMode;
 import org.h2.engine.SessionRemote;
@@ -20,9 +23,6 @@ import org.h2.util.Utils;
 import org.h2.value.Transfer;
 import org.h2.value.Value;
 import org.h2.value.ValueNull;
-
-import java.io.IOException;
-import java.util.ArrayList;
 
 /**
  * Represents the client-side part of a SQL statement.

@@ -5,14 +5,13 @@
  */
 package org.h2.test.unit;
 
-import org.h2.test.TestBase;
-import org.h2.test.TestDb;
-
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Locale;
+import org.h2.test.TestBase;
+import org.h2.test.TestDb;
 
 /**
  * Tests that change the default locale.

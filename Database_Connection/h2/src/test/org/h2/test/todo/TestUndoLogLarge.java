@@ -5,10 +5,14 @@
  */
 package org.h2.test.todo;
 
-import org.h2.tools.DeleteDbFiles;
-
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.concurrent.TimeUnit;
+
+import org.h2.tools.DeleteDbFiles;
 
 /**
  * A test with an undo log size of 2 GB.

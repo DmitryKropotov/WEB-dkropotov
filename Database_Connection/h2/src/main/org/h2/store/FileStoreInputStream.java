@@ -5,13 +5,12 @@
  */
 package org.h2.store;
 
+import java.io.IOException;
+import java.io.InputStream;
 import org.h2.engine.Constants;
 import org.h2.message.DbException;
 import org.h2.tools.CompressTool;
 import org.h2.util.Utils;
-
-import java.io.IOException;
-import java.io.InputStream;
 
 /**
  * An input stream that is backed by a file store.

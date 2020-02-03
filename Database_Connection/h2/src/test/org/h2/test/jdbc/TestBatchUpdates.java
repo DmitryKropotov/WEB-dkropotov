@@ -5,11 +5,18 @@
  */
 package org.h2.test.jdbc;
 
+import java.sql.BatchUpdateException;
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.DatabaseMetaData;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 import org.h2.api.ErrorCode;
 import org.h2.test.TestBase;
 import org.h2.test.TestDb;
-
-import java.sql.*;
 
 /**
  * Test for batch updates.

@@ -5,6 +5,26 @@
  */
 package org.h2.value;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.Reader;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.nio.charset.StandardCharsets;
+import java.sql.Array;
+import java.sql.Blob;
+import java.sql.Clob;
+import java.sql.Date;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.sql.Time;
+import java.sql.Timestamp;
+import java.sql.Types;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.UUID;
+
 import org.h2.api.ErrorCode;
 import org.h2.api.Interval;
 import org.h2.api.IntervalQualifier;
@@ -12,23 +32,16 @@ import org.h2.api.TimestampWithTimeZone;
 import org.h2.engine.Mode;
 import org.h2.engine.SessionInterface;
 import org.h2.engine.SysProperties;
-import org.h2.jdbc.*;
+import org.h2.jdbc.JdbcArray;
+import org.h2.jdbc.JdbcBlob;
+import org.h2.jdbc.JdbcClob;
+import org.h2.jdbc.JdbcConnection;
+import org.h2.jdbc.JdbcLob;
 import org.h2.message.DbException;
 import org.h2.util.JSR310;
 import org.h2.util.JSR310Utils;
 import org.h2.util.JdbcUtils;
 import org.h2.util.Utils;
-
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.Reader;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.nio.charset.StandardCharsets;
-import java.sql.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.UUID;
 
 /**
  * This class contains meta data information about data types,

@@ -5,10 +5,10 @@
  */
 package org.h2.util;
 
-import jdk.net.ExtendedSocketOptions;
-
 import java.io.IOException;
 import java.net.Socket;
+
+import jdk.net.ExtendedSocketOptions;
 
 /**
  * This utility class contains specialized implementation of additional socket

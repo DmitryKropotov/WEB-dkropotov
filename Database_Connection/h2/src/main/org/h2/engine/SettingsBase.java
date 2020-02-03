@@ -5,15 +5,15 @@
  */
 package org.h2.engine;
 
-import org.h2.api.ErrorCode;
-import org.h2.message.DbException;
-import org.h2.util.Utils;
-
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
+
+import org.h2.api.ErrorCode;
+import org.h2.message.DbException;
+import org.h2.util.Utils;
 
 /**
  * The base class for settings.

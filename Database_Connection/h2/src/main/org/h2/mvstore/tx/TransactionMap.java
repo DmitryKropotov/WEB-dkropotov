@@ -6,11 +6,8 @@
 package org.h2.mvstore.tx;
 
 import org.h2.engine.IsolationLevel;
-import org.h2.mvstore.*;
 import org.h2.mvstore.type.DataType;
 import org.h2.value.VersionedValue;
-
-import java.util.*;
 
 /**
  * A map that supports transactions.

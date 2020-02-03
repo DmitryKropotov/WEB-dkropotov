@@ -5,7 +5,25 @@
  */
 package org.h2.test.auth;
 
-import org.h2.engine.*;
+import java.io.ByteArrayInputStream;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Properties;
+import java.util.UUID;
+
+import javax.security.auth.login.AppConfigurationEntry;
+import javax.security.auth.login.AppConfigurationEntry.LoginModuleControlFlag;
+import javax.security.auth.login.Configuration;
+import javax.sql.DataSource;
+
+import org.h2.engine.ConnectionInfo;
+import org.h2.engine.Database;
+import org.h2.engine.Engine;
+import org.h2.engine.Role;
+import org.h2.engine.Session;
+import org.h2.engine.User;
 import org.h2.jdbcx.JdbcConnectionPool;
 import org.h2.security.auth.DefaultAuthenticator;
 import org.h2.security.auth.H2AuthConfig;
@@ -15,18 +33,6 @@ import org.h2.security.auth.impl.JaasCredentialsValidator;
 import org.h2.security.auth.impl.StaticRolesMapper;
 import org.h2.security.auth.impl.StaticUserCredentialsValidator;
 import org.h2.test.TestBase;
-
-import javax.security.auth.login.AppConfigurationEntry;
-import javax.security.auth.login.AppConfigurationEntry.LoginModuleControlFlag;
-import javax.security.auth.login.Configuration;
-import javax.sql.DataSource;
-import java.io.ByteArrayInputStream;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.Properties;
-import java.util.UUID;
 
 /**
  * Test for custom authentication.

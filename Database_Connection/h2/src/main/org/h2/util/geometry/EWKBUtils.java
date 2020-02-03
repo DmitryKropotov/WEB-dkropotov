@@ -5,13 +5,29 @@
  */
 package org.h2.util.geometry;
 
-import org.h2.util.Bits;
-import org.h2.util.StringUtils;
-import org.h2.util.geometry.GeometryUtils.*;
+import static org.h2.util.geometry.GeometryUtils.DIMENSION_SYSTEM_XYM;
+import static org.h2.util.geometry.GeometryUtils.DIMENSION_SYSTEM_XYZ;
+import static org.h2.util.geometry.GeometryUtils.DIMENSION_SYSTEM_XYZM;
+import static org.h2.util.geometry.GeometryUtils.GEOMETRY_COLLECTION;
+import static org.h2.util.geometry.GeometryUtils.LINE_STRING;
+import static org.h2.util.geometry.GeometryUtils.MAX_X;
+import static org.h2.util.geometry.GeometryUtils.MAX_Y;
+import static org.h2.util.geometry.GeometryUtils.MIN_X;
+import static org.h2.util.geometry.GeometryUtils.MIN_Y;
+import static org.h2.util.geometry.GeometryUtils.MULTI_LINE_STRING;
+import static org.h2.util.geometry.GeometryUtils.MULTI_POINT;
+import static org.h2.util.geometry.GeometryUtils.MULTI_POLYGON;
+import static org.h2.util.geometry.GeometryUtils.POINT;
+import static org.h2.util.geometry.GeometryUtils.POLYGON;
+import static org.h2.util.geometry.GeometryUtils.checkFinite;
+import static org.h2.util.geometry.GeometryUtils.toCanonicalDouble;
 
 import java.io.ByteArrayOutputStream;
 
-import static org.h2.util.geometry.GeometryUtils.*;
+import org.h2.util.Bits;
+import org.h2.util.StringUtils;
+import org.h2.util.geometry.GeometryUtils.DimensionSystemTarget;
+import org.h2.util.geometry.GeometryUtils.Target;
 
 /**
  * EWKB format support for GEOMETRY data type.

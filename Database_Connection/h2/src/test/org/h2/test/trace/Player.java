@@ -20,13 +20,12 @@
  */
 package org.h2.test.trace;
 
-import org.h2.store.fs.FileUtils;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.LineNumberReader;
 import java.util.HashMap;
+import org.h2.store.fs.FileUtils;
 
 /**
  * This tool can re-run Java style log files. There is no size limit.

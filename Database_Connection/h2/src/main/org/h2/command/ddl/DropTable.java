@@ -5,6 +5,10 @@
  */
 package org.h2.command.ddl;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 import org.h2.api.ErrorCode;
 import org.h2.command.CommandInterface;
 import org.h2.constraint.Constraint;
@@ -18,11 +22,6 @@ import org.h2.table.Table;
 import org.h2.table.TableView;
 import org.h2.util.StringUtils;
 import org.h2.util.Utils;
-
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * This class represents the statement

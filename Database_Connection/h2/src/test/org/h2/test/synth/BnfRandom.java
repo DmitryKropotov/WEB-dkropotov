@@ -5,10 +5,14 @@
  */
 package org.h2.test.synth;
 
-import org.h2.bnf.*;
-
 import java.util.ArrayList;
 import java.util.Random;
+
+import org.h2.bnf.Bnf;
+import org.h2.bnf.BnfVisitor;
+import org.h2.bnf.Rule;
+import org.h2.bnf.RuleFixed;
+import org.h2.bnf.RuleHead;
 
 /**
  * A BNF visitor that generates a random SQL statement.

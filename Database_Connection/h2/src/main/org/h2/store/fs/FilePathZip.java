@@ -5,9 +5,6 @@
  */
 package org.h2.store.fs;
 
-import org.h2.message.DbException;
-import org.h2.util.IOUtils;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -19,6 +16,8 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
+import org.h2.message.DbException;
+import org.h2.util.IOUtils;
 
 /**
  * This is a read-only file system that allows

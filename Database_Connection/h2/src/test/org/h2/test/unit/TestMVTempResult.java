@@ -5,12 +5,16 @@
  */
 package org.h2.test.unit;
 
+import java.lang.ProcessBuilder.Redirect;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.BitSet;
+
 import org.h2.test.TestBase;
 import org.h2.tools.DeleteDbFiles;
-
-import java.lang.ProcessBuilder.Redirect;
-import java.sql.*;
-import java.util.BitSet;
 
 /**
  * Tests that MVTempResult implementations do not produce OOME.

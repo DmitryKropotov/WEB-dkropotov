@@ -5,6 +5,8 @@
  */
 package org.h2.expression;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import org.h2.api.ErrorCode;
 import org.h2.command.dml.Query;
 import org.h2.engine.Session;
@@ -16,9 +18,6 @@ import org.h2.value.TypeInfo;
 import org.h2.value.Value;
 import org.h2.value.ValueNull;
 import org.h2.value.ValueRow;
-
-import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * A query returning a single value.

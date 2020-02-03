@@ -15,7 +15,6 @@ import org.h2.util.Utils;
 import java.lang.Thread.UncaughtExceptionHandler;
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
-import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.PriorityBlockingQueue;
 import java.util.concurrent.TimeUnit;

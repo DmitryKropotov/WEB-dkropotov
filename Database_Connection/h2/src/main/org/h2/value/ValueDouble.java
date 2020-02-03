@@ -5,13 +5,13 @@
  */
 package org.h2.value;
 
-import org.h2.api.ErrorCode;
-import org.h2.engine.CastDataProvider;
-import org.h2.message.DbException;
-
 import java.math.BigDecimal;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+
+import org.h2.api.ErrorCode;
+import org.h2.engine.CastDataProvider;
+import org.h2.message.DbException;
 
 /**
  * Implementation of the DOUBLE data type.

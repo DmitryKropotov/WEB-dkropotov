@@ -5,10 +5,10 @@
  */
 package org.h2.result;
 
+import java.io.IOException;
+
 import org.h2.value.Transfer;
 import org.h2.value.TypeInfo;
-
-import java.io.IOException;
 
 /**
  * A result set column of a remote result.

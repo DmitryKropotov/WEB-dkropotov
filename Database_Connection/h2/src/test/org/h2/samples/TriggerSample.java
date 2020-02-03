@@ -5,10 +5,15 @@
  */
 package org.h2.samples;
 
-import org.h2.api.Trigger;
-
 import java.math.BigDecimal;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import org.h2.api.Trigger;
 
 /**
  * This sample application shows how to use database triggers.

@@ -8,12 +8,10 @@ package org.h2.expression.condition;
 import org.h2.api.ErrorCode;
 import org.h2.engine.Database;
 import org.h2.engine.Session;
-import org.h2.expression.*;
 import org.h2.index.IndexCondition;
 import org.h2.message.DbException;
 import org.h2.table.ColumnResolver;
 import org.h2.table.TableFilter;
-import org.h2.value.*;
 
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;

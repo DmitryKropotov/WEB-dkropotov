@@ -5,9 +5,9 @@
  */
 package org.h2.dev.util;
 
-import org.h2.mvstore.DataUtils;
-
 import java.util.Iterator;
+
+import org.h2.mvstore.DataUtils;
 
 /**
  * A very simple linked list that supports concurrent access.

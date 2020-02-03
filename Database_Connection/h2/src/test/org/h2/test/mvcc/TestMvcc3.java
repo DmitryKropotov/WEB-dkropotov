@@ -5,11 +5,15 @@
  */
 package org.h2.test.mvcc;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Savepoint;
+import java.sql.Statement;
+
 import org.h2.api.ErrorCode;
 import org.h2.test.TestBase;
 import org.h2.test.TestDb;
-
-import java.sql.*;
 
 /**
  * Additional MVCC (multi version concurrency) test cases.

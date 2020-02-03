@@ -5,13 +5,12 @@
  */
 package org.h2.result;
 
+import java.util.Arrays;
 import org.h2.engine.SessionInterface;
 import org.h2.util.MathUtils;
 import org.h2.value.TypeInfo;
 import org.h2.value.Value;
 import org.h2.value.ValueString;
-
-import java.util.Arrays;
 
 /**
  * Result with padded fixed length strings.

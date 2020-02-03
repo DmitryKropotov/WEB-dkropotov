@@ -5,6 +5,15 @@
  */
 package org.h2.test.jdbc;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Savepoint;
+import java.sql.Statement;
+import java.util.Arrays;
+import java.util.HashMap;
+
 import org.h2.api.ErrorCode;
 import org.h2.engine.SysProperties;
 import org.h2.jdbc.JdbcPreparedStatementBackwardsCompat;
@@ -13,10 +22,6 @@ import org.h2.jdbc.JdbcStatementBackwardsCompat;
 import org.h2.store.fs.FileUtils;
 import org.h2.test.TestBase;
 import org.h2.test.TestDb;
-
-import java.sql.*;
-import java.util.Arrays;
-import java.util.HashMap;
 
 /**
  * Tests for the Statement implementation.

@@ -28,8 +28,6 @@ import org.h2.util.StringUtils;
 import org.h2.util.TempFileDeleter;
 import org.h2.value.CompareMode;
 
-import java.io.*;
-
 /**
  * This class is the base for RunScriptCommand and ScriptCommand.
  */

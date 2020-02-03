@@ -12,7 +12,6 @@ import org.h2.expression.analysis.PartitionData;
 import org.h2.value.Value;
 import org.h2.value.ValueRow;
 
-import java.util.*;
 import java.util.Map.Entry;
 
 /**

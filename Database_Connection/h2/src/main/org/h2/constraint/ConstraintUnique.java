@@ -5,6 +5,7 @@
  */
 package org.h2.constraint;
 
+import java.util.HashSet;
 import org.h2.engine.Session;
 import org.h2.index.Index;
 import org.h2.result.Row;
@@ -13,8 +14,6 @@ import org.h2.table.Column;
 import org.h2.table.IndexColumn;
 import org.h2.table.Table;
 import org.h2.util.StringUtils;
-
-import java.util.HashSet;
 
 /**
  * A unique constraint. This object always backed by a unique index.

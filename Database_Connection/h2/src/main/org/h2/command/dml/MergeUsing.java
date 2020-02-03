@@ -5,6 +5,10 @@
  */
 package org.h2.command.dml;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+
 import org.h2.api.ErrorCode;
 import org.h2.api.Trigger;
 import org.h2.command.CommandInterface;
@@ -27,10 +31,6 @@ import org.h2.table.Table;
 import org.h2.table.TableFilter;
 import org.h2.util.Utils;
 import org.h2.value.Value;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
 
 /**
  * This class represents the statement syntax

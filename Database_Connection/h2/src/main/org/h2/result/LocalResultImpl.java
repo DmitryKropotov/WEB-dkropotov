@@ -5,6 +5,9 @@
  */
 package org.h2.result;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.TreeMap;
 import org.h2.engine.Database;
 import org.h2.engine.Session;
 import org.h2.engine.SessionInterface;
@@ -15,10 +18,6 @@ import org.h2.util.Utils;
 import org.h2.value.TypeInfo;
 import org.h2.value.Value;
 import org.h2.value.ValueRow;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.TreeMap;
 
 /**
  * A local result set contains all row data of a result set.

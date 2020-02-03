@@ -5,19 +5,27 @@
  */
 package org.h2.test.db;
 
+import java.io.Reader;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Random;
+import java.util.StringTokenizer;
+import java.util.UUID;
+import java.util.concurrent.TimeUnit;
+
 import org.h2.fulltext.FullText;
 import org.h2.store.fs.FileUtils;
 import org.h2.test.TestBase;
 import org.h2.test.TestDb;
 import org.h2.util.IOUtils;
 import org.h2.util.Task;
-
-import java.io.Reader;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.sql.*;
-import java.util.*;
-import java.util.concurrent.TimeUnit;
 
 /**
  * Fulltext search tests.

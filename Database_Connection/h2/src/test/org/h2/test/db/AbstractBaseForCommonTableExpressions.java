@@ -5,12 +5,16 @@
  */
 package org.h2.test.db;
 
-import org.h2.test.TestDb;
-
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+
+import org.h2.test.TestDb;
 
 /**
  * Base class for common table expression tests

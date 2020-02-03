@@ -11,7 +11,6 @@ import org.h2.command.Parser;
 import org.h2.engine.Constants;
 import org.h2.engine.Database;
 import org.h2.engine.Session;
-import org.h2.expression.*;
 import org.h2.expression.analysis.DataAnalysisOperation;
 import org.h2.expression.analysis.Window;
 import org.h2.expression.condition.Comparison;
@@ -23,8 +22,6 @@ import org.h2.index.Index;
 import org.h2.index.IndexType;
 import org.h2.index.ViewIndex;
 import org.h2.message.DbException;
-import org.h2.result.*;
-import org.h2.table.*;
 import org.h2.table.TableFilter.TableFilterVisitor;
 import org.h2.util.ColumnNamer;
 import org.h2.util.StringUtils;
@@ -33,7 +30,6 @@ import org.h2.value.DataType;
 import org.h2.value.Value;
 import org.h2.value.ValueRow;
 
-import java.util.*;
 import java.util.Map.Entry;
 
 /**

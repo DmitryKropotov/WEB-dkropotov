@@ -10,7 +10,6 @@ import org.h2.engine.SysProperties;
 import org.h2.message.DbException;
 import org.h2.util.IOUtils;
 
-import java.io.*;
 import java.net.URL;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;

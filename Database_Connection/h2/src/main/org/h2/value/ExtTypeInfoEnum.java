@@ -5,11 +5,11 @@
  */
 package org.h2.value;
 
-import org.h2.api.ErrorCode;
-import org.h2.message.DbException;
-
 import java.util.Arrays;
 import java.util.Locale;
+
+import org.h2.api.ErrorCode;
+import org.h2.message.DbException;
 
 /**
  * Extended parameters of the ENUM data type.

@@ -5,17 +5,17 @@
  */
 package org.h2.value;
 
-import org.h2.api.ErrorCode;
-import org.h2.engine.CastDataProvider;
-import org.h2.message.DbException;
-import org.h2.util.MathUtils;
-
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.math.MathContext;
 import java.math.RoundingMode;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+
+import org.h2.api.ErrorCode;
+import org.h2.engine.CastDataProvider;
+import org.h2.message.DbException;
+import org.h2.util.MathUtils;
 
 /**
  * Implementation of the DECIMAL data type.

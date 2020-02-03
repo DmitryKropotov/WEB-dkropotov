@@ -5,6 +5,10 @@
  */
 package org.h2.value;
 
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.util.TimeZone;
 import org.h2.api.ErrorCode;
 import org.h2.api.TimestampWithTimeZone;
 import org.h2.engine.CastDataProvider;
@@ -13,11 +17,6 @@ import org.h2.message.DbException;
 import org.h2.util.DateTimeUtils;
 import org.h2.util.JSR310;
 import org.h2.util.JSR310Utils;
-
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Timestamp;
-import java.util.TimeZone;
 
 /**
  * Implementation of the TIMESTAMP WITH TIME ZONE data type.

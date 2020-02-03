@@ -5,20 +5,24 @@
  */
 package org.h2.value;
 
-import org.h2.api.ErrorCode;
-import org.h2.engine.CastDataProvider;
-import org.h2.message.DbException;
-import org.h2.util.Bits;
-import org.h2.util.StringUtils;
-import org.h2.util.Utils;
-import org.h2.util.json.*;
-
 import java.io.ByteArrayOutputStream;
 import java.math.BigDecimal;
 import java.nio.charset.StandardCharsets;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Arrays;
+
+import org.h2.api.ErrorCode;
+import org.h2.engine.CastDataProvider;
+import org.h2.message.DbException;
+import org.h2.util.Bits;
+import org.h2.util.StringUtils;
+import org.h2.util.Utils;
+import org.h2.util.json.JSONByteArrayTarget;
+import org.h2.util.json.JSONBytesSource;
+import org.h2.util.json.JSONItemType;
+import org.h2.util.json.JSONStringSource;
+import org.h2.util.json.JSONStringTarget;
 
 /**
  * Implementation of the JSON data type.

@@ -5,6 +5,9 @@
  */
 package org.h2.pagestore.db;
 
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 import org.h2.api.DatabaseEventListener;
 import org.h2.api.ErrorCode;
 import org.h2.command.ddl.CreateTableData;
@@ -25,10 +28,6 @@ import org.h2.table.RegularTable;
 import org.h2.util.MathUtils;
 import org.h2.util.Utils;
 import org.h2.value.CompareMode;
-
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.concurrent.TimeUnit;
 
 /**
  * A table store in a PageStore.

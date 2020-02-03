@@ -5,12 +5,12 @@
  */
 package org.h2.security.auth;
 
-import org.h2.util.Utils;
-
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+
+import org.h2.util.Utils;
 
 /**
  * wrapper for configuration properties

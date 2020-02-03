@@ -5,14 +5,18 @@
  */
 package org.h2.test.synth;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Random;
+
 import org.h2.api.ErrorCode;
 import org.h2.test.TestBase;
 import org.h2.test.TestDb;
 import org.h2.test.utils.FilePathDebug;
-
-import java.sql.*;
-import java.util.ArrayList;
-import java.util.Random;
 
 /**
  * Tests that use the debug file system to simulate power failure.

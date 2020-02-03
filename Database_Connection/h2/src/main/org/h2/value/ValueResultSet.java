@@ -5,17 +5,17 @@
  */
 package org.h2.value;
 
-import org.h2.engine.CastDataProvider;
-import org.h2.engine.SessionInterface;
-import org.h2.message.DbException;
-import org.h2.result.ResultInterface;
-import org.h2.result.SimpleResult;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.Arrays;
+
+import org.h2.engine.CastDataProvider;
+import org.h2.engine.SessionInterface;
+import org.h2.message.DbException;
+import org.h2.result.ResultInterface;
+import org.h2.result.SimpleResult;
 
 /**
  * Implementation of the RESULT_SET data type.

@@ -5,16 +5,16 @@
  */
 package org.h2.command;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
+
 import org.h2.engine.DbObject;
 import org.h2.engine.Session;
 import org.h2.expression.Parameter;
 import org.h2.expression.ParameterInterface;
 import org.h2.result.ResultInterface;
 import org.h2.result.ResultWithGeneratedKeys;
-
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * Represents a list of SQL statements.

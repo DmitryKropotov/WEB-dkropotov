@@ -7,7 +7,6 @@ package org.h2.expression.aggregate;
 
 import org.h2.engine.Database;
 import org.h2.message.DbException;
-import org.h2.value.*;
 
 /**
  * Data stored while calculating an aggregate.

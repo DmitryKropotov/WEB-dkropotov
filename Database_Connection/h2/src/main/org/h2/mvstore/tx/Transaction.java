@@ -13,7 +13,6 @@ import org.h2.mvstore.RootReference;
 import org.h2.mvstore.type.DataType;
 import org.h2.value.VersionedValue;
 
-import java.util.*;
 import java.util.concurrent.atomic.AtomicLong;
 
 /**

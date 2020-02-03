@@ -5,13 +5,12 @@
  */
 package org.h2.table;
 
-import org.h2.message.DbException;
-import org.h2.util.JdbcUtils;
-
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Objects;
+import org.h2.message.DbException;
+import org.h2.util.JdbcUtils;
 
 /**
  * A connection for a linked table. The same connection may be used for multiple

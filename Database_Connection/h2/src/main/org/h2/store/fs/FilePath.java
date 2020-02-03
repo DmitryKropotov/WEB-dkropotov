@@ -5,14 +5,13 @@
  */
 package org.h2.store.fs;
 
-import org.h2.util.MathUtils;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.channels.FileChannel;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
+import org.h2.util.MathUtils;
 
 /**
  * A path to a file. It similar to the Java 7 <code>java.nio.file.Path</code>,
