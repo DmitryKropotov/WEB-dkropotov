@@ -1,9 +1,9 @@
-package com.project.configuration;
+package com.databaseConnection.configuration;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@ComponentScan({"com.project"})
+@ComponentScan({"com.databaseConnection"})
 public class AppConfig {
 }

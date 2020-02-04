@@ -1,6 +1,6 @@
-package com.project.repositories;
+package com.databaseConnection.repositories;
 
-import com.project.models.User;
+import com.databaseConnection.models.User;
 
 import java.util.List;
 import java.util.Optional;

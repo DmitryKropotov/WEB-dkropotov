@@ -1,7 +1,7 @@
-package com.project.service;
+package com.databaseConnection.service;
 
-import com.project.models.User;
-import com.project.repositories.UserRepository;
+import com.databaseConnection.models.User;
+import com.databaseConnection.repositories.UserRepository;
 
 import java.util.List;
 import java.util.Optional;

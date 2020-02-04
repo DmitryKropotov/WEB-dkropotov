@@ -1,7 +1,7 @@
-package com.project.service;
+package com.databaseConnection.service;
 
-import com.project.models.User;
-import com.project.repositories.UserRepository;
+import com.databaseConnection.models.User;
+import com.databaseConnection.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

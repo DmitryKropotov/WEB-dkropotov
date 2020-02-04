@@ -1,4 +1,4 @@
-package com.project.configuration;
+package com.databaseConnection.configuration;
 
 import org.h2.Driver;
 import org.hibernate.SessionFactory;
@@ -17,7 +17,7 @@ import java.util.Properties;
 
 @Configuration
 @EnableTransactionManagement
-@ComponentScan({ "com.project" })
+@ComponentScan({"com.databaseConnection"})
 public class HibernateConfiguration {
 
     @Bean
@@ -29,7 +29,7 @@ public class HibernateConfiguration {
     @Transactional
     public SessionFactory sessionFactory() {
         System.out.println("This is getSessionFactory method in class HibernateConfiguration");
-        return new LocalSessionFactoryBuilder(dataSource()).scanPackages("com.project.models").
+        return new LocalSessionFactoryBuilder(dataSource()).scanPackages("com.databaseConnection.models").
                 addProperties(hibernateProperties()).buildSessionFactory();
     }
 

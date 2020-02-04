@@ -1,8 +1,8 @@
-package com.project.main;
+package com.databaseConnection.main;
 
-import com.project.configuration.AppConfig;
-import com.project.models.User;
-import com.project.service.UserService;
+import com.databaseConnection.configuration.AppConfig;
+import com.databaseConnection.models.User;
+import com.databaseConnection.service.UserService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 

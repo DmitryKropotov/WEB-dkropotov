@@ -1,6 +1,6 @@
-package com.project.repositories;
+package com.databaseConnection.repositories;
 
-import com.project.models.User;
+import com.databaseConnection.models.User;
 import lombok.extern.java.Log;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;

@@ -1,4 +1,4 @@
-package com.project.repositories;
+package com.databaseConnection.repositories;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -28,10 +28,6 @@ public abstract class AbstractRepository<T> {
         Type type = this.getClass().getGenericSuperclass();
         this.persistentClass = (Class) ((ParameterizedType) type).getActualTypeArguments()[0];
         System.out.println("sessionFactory in no args constructor is " + sessionFactory);
-    }
-
-    protected SessionFactory getSessionFactory() {
-        return sessionFactory;
     }
 
     protected Session getSession() {
