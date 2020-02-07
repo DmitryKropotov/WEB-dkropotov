@@ -1,4 +1,6 @@
 .idea
+.h2
+.lib
 .target
 .targetDB
 databaseConnection.iml

@@ -7,10 +7,7 @@ import javax.persistence.*;
 @Entity
 @Table(name="user")
 @NoArgsConstructor
-@AllArgsConstructor
-@Getter
-@Setter
-@ToString
+@Data
 public class User {
 
     @Id

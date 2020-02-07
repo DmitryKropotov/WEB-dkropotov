@@ -2,7 +2,7 @@ package com.database_connection.service;
 
 import com.database_connection.model.User;
 import com.database_connection.repository.UserRepository;
-import lombok.extern.slf4j.Slf4j;
+import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,9 +10,10 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-@Slf4j
+@Log
 public class UserServiceImpl implements UserService {
 
+    @Autowired
     private UserRepository userRepository;
 
     @Override
@@ -20,14 +21,8 @@ public class UserServiceImpl implements UserService {
         return userRepository;
     }
 
-    @Autowired
-    public void setUserRepository(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
-
     @Override
     public boolean createUser(String email, String password) {
-        System.out.println("log is " + log);
         log.info("createUser method in service");
         return userRepository.createUser(email, password);
     }

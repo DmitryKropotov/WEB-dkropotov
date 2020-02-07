@@ -53,17 +53,17 @@ public class UserRepositoryImpl extends AbstractRepository<User> implements User
         Session session = getSession();
         Optional<User> user = Optional.of(session.load(User.class, email));
         if(user.isPresent()) {
-            System.out.println("User is present");
+            log.info("MYYYYY LOG: User is present");
         }
         try {
             log.info("User is " + user);//Artem, we need to discuss it
         } catch (HibernateException e) {
-             log.warning("hibernateException from load method " + e);
-            System.out.println("In catch before return");
+            log.warning("hibernateException from load method " + e);
+            log.info("MYYYYY LOG: In catch before return");
             return Optional.empty();
         }
 
-        System.out.println("After catch");
+        log.info("MYYYYY LOG: After catch");
         return user;
     }
 }

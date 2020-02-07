@@ -1,5 +1,6 @@
 package com.database_connection.configuration;
 
+import lombok.extern.java.Log;
 import org.h2.Driver;
 import org.hibernate.SessionFactory;
 import org.springframework.context.annotation.Bean;
@@ -18,6 +19,7 @@ import java.util.Properties;
 @Configuration
 @EnableTransactionManagement
 @ComponentScan({"com.database_connection"})
+@Log
 public class HibernateConfiguration {
 
     @Bean
@@ -28,8 +30,8 @@ public class HibernateConfiguration {
     @Bean
     @Transactional
     public SessionFactory sessionFactory() {
-        System.out.println("This is getSessionFactory method in class HibernateConfiguration");
-        return new LocalSessionFactoryBuilder(dataSource()).scanPackages("com.databaseConnection.model").
+        log.info("MYYYYY LOG: This is getSessionFactory method in class HibernateConfiguration");
+        return new LocalSessionFactoryBuilder(dataSource()).scanPackages("com.database_connection.model").
                 addProperties(hibernateProperties()).buildSessionFactory();
     }
 
@@ -39,18 +41,18 @@ public class HibernateConfiguration {
         dataSource.setUrl("jdbc:h2:~/Desktop/idea_projects/Web-dkropotov2/test");
         dataSource.setDriver(new Driver());
         dataSource.setUsername("sa");
-        System.out.println("dataSource bean in HibernateConfiguration " + dataSource);
+        log.info("MYYYYY LOG: dataSource bean in HibernateConfiguration " + dataSource);
         return dataSource;
     }
 
     @Bean
     public Properties hibernateProperties() {
-        System.out.println("This is beginning of hibernateProperties in HibernateConfiguration");
+        log.info("MYYYYY LOG: This is beginning of hibernateProperties in HibernateConfiguration");
         Properties properties = new Properties();
         properties.put("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
         properties.put("hibernate.show_sql", "hibernate.show_sql");
         properties.put("hibernate.format_sql", "hibernate.format_sql");
-        System.out.println("This is the end of hibernateProperties in HibernateConfiguration. Properties is " + properties);
+        log.info("MYYYYY LOG: This is the end of hibernateProperties in HibernateConfiguration. Properties is " + properties);
         return properties;
     }
 }
