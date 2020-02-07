@@ -9,7 +9,7 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
 
     <mvc:annotation-driven/>
-    <context:component-scan base-package="com.project"/>
+    <context:component-scan base-package="com.webapp"/>
 
     <!--
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">

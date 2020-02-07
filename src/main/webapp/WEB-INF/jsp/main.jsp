@@ -66,29 +66,18 @@
             </table>
             </form:form>
     </tr>
-    <tr>
-        <h2>Login to the system</h2>
-          <form:form>
-            <table>
 
-               <!--tr-->
-                  Email: <input type="email" name="email"/>
-                  <!--form:errors path="email" cssClass="error"/>
-               </tr-->
-               </br>
-
-               <!--tr-->
-                  Password: <input type="password" name="password"/>
-                  <!--form:errors path="password" cssClass="error"/>
-               </tr-->
-               </br>
-
-               <input type = "hidden" name="passwordRepeater" value=" "/></td>
-               <h2>${userchecker.wrongEmailOrPassword}</h2>
-               <input type="submit" value="Login user"/>
-            </table>
-          </form:form>
-    </tr>
+    <c:if test="${not empty SPRING_SECURITY_LAST_EXCEPTION}">
+        <font color="red">
+            Your login attempt was not successful due to <c:out value="${SPRING_SECURITY_LAST_EXCEPTION.message}"/>.
+        </font>
+    </c:if>
+    <form name="loginForm" action="authenticateUser" method="post">
+        User-name<input type="text" name="username" /><br />
+        Password <input type="password" name="password" />
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+        <input type="submit" value="Submit">
+    </form>
 </table>
 </body>
 </html>
