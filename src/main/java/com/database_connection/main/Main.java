@@ -23,10 +23,10 @@ public class Main {
         }
         UserService userService = (UserService) appContext.getBean("userServiceImpl");
         log.info("MYYYYY LOG:" + userService.getUserRepository());
-        userService.createUser("Grid@Dynamicus.com", "grid");
+        userService.saveUser("Grid@Dynamiconoshian.com", "grid");
 
         String email = "Grid@Dynamics.com";
-        Optional<User> optionalUser = userService.findByEmail(email);
+        Optional<User> optionalUser = userService.findById(email);
         log.info("MYYYYY LOG: We got optionalUser");
         log.info("MYYYYY LOG: OptionalUser is " + optionalUser);
         log.info("MYYYYY LOG: " + (optionalUser.isPresent() ? optionalUser.get(): "There is no user with email " + email));

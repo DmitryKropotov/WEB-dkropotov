@@ -8,62 +8,137 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.NativeQuery;
 import org.hibernate.query.Query;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
+
 import javax.persistence.PersistenceException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @Repository
 @Log
-public class UserRepositoryImpl extends AbstractRepository<User> implements UserRepository {
+public class UserRepositoryImpl implements CrudRepository<User, String> {
 
-    public UserRepositoryImpl() {}
+    private SessionFactory sessionFactory;
 
+    Session session;
+
+    @Autowired
     public UserRepositoryImpl(SessionFactory sessionFactory) {
-        super(sessionFactory);
+        log.info("MYYYYY LOG: constructor in UserRepositoryImpl");
+        this.sessionFactory = sessionFactory;
+        Session session;
+        try {
+            session = sessionFactory.getCurrentSession();
+        } catch (HibernateException e) {
+            session = sessionFactory.openSession();
+        }
+        this.session = session;
     }
 
     @Override
-    public boolean createUser(String email, String password) {
-        Session session = getSession();
+    public <S extends User> S save(S user) {
         Transaction txn = session.beginTransaction();
         NativeQuery query = session.createSQLQuery("INSERT INTO User (email, password) VALUES (:email, :password);");
-        query.setParameter("email", email);
-        query.setParameter("password", password);
-        Optional<Integer> executeResult = Optional.empty();
+        query.setParameter("email", user.getEmail());
+        query.setParameter("password", user.getPassword());
+        int amountOfUpdatedUsers = 0;
         try {
-            executeResult = Optional.of(query.executeUpdate());
+            amountOfUpdatedUsers = query.executeUpdate();
         } catch (PersistenceException e) {
             log.warning("" + e);
-            return false;
         }
+        log.info("amount of updatedUsers are " + amountOfUpdatedUsers);
         txn.commit();
-        return executeResult.isPresent();
+        return amountOfUpdatedUsers == 0 ? user: null;
+    }
+
+    @Override
+    public <S extends User> Iterable<S> saveAll(Iterable<S> users) {
+        NativeQuery query = session.createSQLQuery("INSERT INTO User (email, password) VALUES (:email, :password);");
+        List<S> updatedUsers = new ArrayList<S>();
+        users.forEach(user -> {
+            Transaction txn = session.beginTransaction();
+            query.setParameter("email", user.getEmail());
+            query.setParameter("password", user.getPassword());
+            int amountOfUpdatedUsers = 0;
+            try {
+                amountOfUpdatedUsers = query.executeUpdate();
+            } catch (PersistenceException e) {
+                log.warning("" + e + " updatedUsers are " + amountOfUpdatedUsers);
+            }
+            if (amountOfUpdatedUsers != 0) {
+                updatedUsers.add(user);
+            }
+            txn.commit();
+        });
+        return updatedUsers;
+    }
+
+    @Override
+    public Optional<User> findById(String id) {
+        User user = session.load(User.class, id);
+        if (user == null) {
+            log.info("MYYYYY LOG: User is not present");
+            return Optional.empty();
+        }
+        log.info("User is present");
+        return Optional.of(user);
+    }
+
+    @Override
+    public Iterable<User> findAllById(Iterable<String> ids) {
+        List<User> updatedUsers = new ArrayList<>();
+        ids.forEach(id -> {
+           User user = session.load(User.class, id);
+            if (user != null) {
+                updatedUsers.add(user);
+                log.info("MYYYYY LOG: User is present");
+            }
+        });
+        return updatedUsers;
     }
 
     @Override
     public List<User> findAll() {
-        Query query = getSession().createQuery("from User", User.class);
-        List<User> users = query.getResultList();
-        return users;
+        Query query = session.createQuery("from User", User.class);
+        return query.getResultList();
     }
 
     @Override
-    public Optional<User> findByEmail(String email) {
-        Session session = getSession();
-        Optional<User> user = Optional.of(session.load(User.class, email));
-        if(user.isPresent()) {
-            log.info("MYYYYY LOG: User is present");
-        }
-        try {
-            log.info("User is " + user);//Artem, we need to discuss it
-        } catch (HibernateException e) {
-            log.warning("hibernateException from load method " + e);
-            log.info("MYYYYY LOG: In catch before return");
-            return Optional.empty();
-        }
+    public boolean existsById(String id) {
+        User user = session.load(User.class, id);
+        return user != null;
+    }
 
-        log.info("MYYYYY LOG: After catch");
-        return user;
+    @Override
+    public long count() {
+        Query query = session.createQuery("from User", User.class);
+        return query.getResultList().size();
+    }
+
+    @Override
+    public void deleteById(String id) {
+        session.remove(findById(id));
+    }
+
+    @Override
+    public void delete(User user) {
+        session.remove(user);
+    }
+
+    @Override
+    public void deleteAll(Iterable<? extends User> users) {
+        users.forEach(user -> {
+            session.remove(user);
+        });
+    }
+
+    @Override
+    public void deleteAll() {
+       List<User> users = findAll();
+       deleteAll(users);
     }
 }

@@ -4,3 +4,5 @@
 .target
 .targetDB
 databaseConnection.iml
+/test.mv.db
+/test.trace.db

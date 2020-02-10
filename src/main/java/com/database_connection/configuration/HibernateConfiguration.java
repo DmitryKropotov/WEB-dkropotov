@@ -3,15 +3,16 @@ package com.database_connection.configuration;
 import lombok.extern.java.Log;
 import org.h2.Driver;
 import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.SimpleDriverDataSource;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.sql.DataSource;
 import java.util.Properties;
@@ -20,7 +21,15 @@ import java.util.Properties;
 @EnableTransactionManagement
 @ComponentScan({"com.database_connection"})
 @Log
+@PropertySource("classpath:db.properties")
 public class HibernateConfiguration {
+
+    @Value("${url}")
+    private String url;
+    @Value("${username}")
+    private String username;
+    @Value("${driverClassName}")
+    private String driverClassName;
 
     @Bean
     public PlatformTransactionManager txManager() {
@@ -28,7 +37,6 @@ public class HibernateConfiguration {
     }
 
     @Bean
-    @Transactional
     public SessionFactory sessionFactory() {
         log.info("MYYYYY LOG: This is getSessionFactory method in class HibernateConfiguration");
         return new LocalSessionFactoryBuilder(dataSource()).scanPackages("com.database_connection.model").
@@ -38,9 +46,14 @@ public class HibernateConfiguration {
     @Bean
     public DataSource dataSource() {
         SimpleDriverDataSource dataSource = new SimpleDriverDataSource();
-        dataSource.setUrl("jdbc:h2:~/Desktop/idea_projects/Web-dkropotov2/test");
-        dataSource.setDriver(new Driver());
-        dataSource.setUsername("sa");
+        try {
+            dataSource.setUrl(url);
+            dataSource.setDriverClass((Class<? extends Driver>) Class.forName(driverClassName));
+            dataSource.setUsername(username);
+        } catch (ClassNotFoundException e) {
+            log.warning("MYYYYY LOG: " + e);
+            return null;
+        }
         log.info("MYYYYY LOG: dataSource bean in HibernateConfiguration " + dataSource);
         return dataSource;
     }
