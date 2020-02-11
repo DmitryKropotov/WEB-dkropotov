@@ -1,7 +1,7 @@
-package com.webapp.services;
+package com.webapp.service;
 
-import com.webapp.models.User;
-import com.webapp.repositories.UserRepository;
+import com.webapp.model.User;
+import com.webapp.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

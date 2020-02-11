@@ -1,4 +1,4 @@
-package com.webapp.servlets;
+package com.webapp.servlet;
 
 import javax.servlet.annotation.WebInitParam;
 import javax.servlet.annotation.WebServlet;

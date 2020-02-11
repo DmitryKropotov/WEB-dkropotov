@@ -1,6 +1,6 @@
-package com.webapp.services;
+package com.webapp.service;
 
-import com.webapp.models.Session;
+import com.webapp.model.Session;
 
 public interface SessionService {
 

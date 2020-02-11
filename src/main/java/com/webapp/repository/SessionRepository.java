@@ -1,6 +1,6 @@
-package com.webapp.repositories;
+package com.webapp.repository;
 
-import com.webapp.models.Session;
+import com.webapp.model.Session;
 
 public interface SessionRepository {
 

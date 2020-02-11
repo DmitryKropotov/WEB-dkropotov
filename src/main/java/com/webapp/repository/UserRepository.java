@@ -1,6 +1,6 @@
-package com.webapp.repositories;
+package com.webapp.repository;
 
-import com.webapp.models.User;
+import com.webapp.model.User;
 
 import java.util.Optional;
 

@@ -1,14 +1,16 @@
 package com.webapp.controllers.sessionModeControllers;
 
-import com.webapp.models.UserChecker;
-import com.webapp.services.UserService;
+import com.webapp.model.UserChecker;
+import com.webapp.service.UserService;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Controller;
 
 import java.util.Optional;
 
 @Controller("sessionModeOffControllerJsp")
+@Primary
 @Log
 public class SessionModeOffControllerJsp implements SessionModeOffController {
 

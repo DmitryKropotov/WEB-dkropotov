@@ -1,6 +1,6 @@
-package com.webapp.repositories;
+package com.webapp.repository;
 
-import com.webapp.models.Product;
+import com.webapp.model.Product;
 
 import java.util.List;
 import java.util.Map;

@@ -1,5 +1,8 @@
 package com.webapp.authentication;
 
+import com.webapp.controllers.sessionModeControllers.SessionModeOffController;
+import com.webapp.model.UserChecker;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -14,12 +17,15 @@ import java.util.List;
 @Component
 public class CustomAuthenticationProvider implements AuthenticationProvider {
 
+    @Autowired
+    SessionModeOffController sessionModeOffController;
+
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         System.out.println("This is authenticate in class CustomAuthenticationProvider");
         String userName = authentication.getName();
         String password = authentication.getCredentials().toString();
-        if (authorizedUser(userName, password)) {
+        if (sessionModeOffController.loginUserAndGetSessionId(new UserChecker(userName, password)).isPresent()) {
             List<GrantedAuthority> grantedAuths = new ArrayList();
             grantedAuths.add(()-> {return "AUTH_USER";});
             Authentication auth = new UsernamePasswordAuthenticationToken(userName, password, grantedAuths);

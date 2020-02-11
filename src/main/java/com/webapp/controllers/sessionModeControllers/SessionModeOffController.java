@@ -1,7 +1,7 @@
 package com.webapp.controllers.sessionModeControllers;
 
 import com.webapp.controllers.MainController;
-import com.webapp.models.UserChecker;
+import com.webapp.model.UserChecker;
 
 import java.util.Optional;
 

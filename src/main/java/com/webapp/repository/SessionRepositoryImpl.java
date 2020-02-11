@@ -1,57 +1,29 @@
-package com.webapp.repositories;
+package com.webapp.repository;
 
-import com.webapp.models.User;
+import com.webapp.model.Session;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 
 @Repository
-public class UserRepositoryImpl implements UserRepository {
+public class SessionRepositoryImpl implements SessionRepository {
 
     private Connection conn = ConnectionSaver.getConnection();
 
     @Override
-    public boolean createUser(String email, String password) {
-        if (selectUserByEmail(email).isPresent()) {
-            return false;
-        }
-        Statement stmt = null;
-        boolean result;
-        try {
-            stmt = conn.createStatement();
-            stmt.executeUpdate("INSERT INTO Users (email, password) VALUES ('" + email + "', '" + password + "');");
-            result = true;
-        } catch (SQLException e) {
-            e.printStackTrace();
-            result = false;
-        } finally {
-            if (stmt != null) {
-                try {
-                    stmt.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-        return result;
-    }
-
-    @Override
-    public Optional<User> selectUserByEmail(String email) {
-        List<User> users = new ArrayList();
+    public int createUserSessionAndGetItsId(int userId) {
         Statement stmt = null;
         ResultSet rs = null;
+        int sessionId = -1;
         try {
             stmt = conn.createStatement();
-            rs = stmt.executeQuery("SELECT * FROM Users where email = '"  + email + "'");
+            stmt.execute("INSERT INTO Sessions (UserId) VALUES (" + userId + ");");
+            rs = stmt.getGeneratedKeys();
             while (rs.next()) {
-                users.add(new User(rs.getInt("id"), email, rs.getString("password")));
+                sessionId = rs.getInt("last_insert_rowid()");
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -71,7 +43,37 @@ public class UserRepositoryImpl implements UserRepository {
                 }
             }
         }
-        return users.isEmpty() ? Optional.empty(): Optional.ofNullable(users.get(0));
+        return sessionId;
     }
 
+    @Override
+    public Session getSessionById(int id) {
+        Session session = null;
+        Statement stmt = null;
+        ResultSet rs = null;
+        try {
+            stmt = conn.createStatement();
+            stmt.execute("SELECT * FROM Sessions (id) VALUES (" + id + ")");
+            rs = stmt.getResultSet();
+            session = new Session(rs.getInt(1), rs.getInt(2));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return session;
+    }
 }

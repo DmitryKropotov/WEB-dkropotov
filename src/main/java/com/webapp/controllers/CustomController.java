@@ -27,6 +27,12 @@ public class CustomController {
         return "main";
     }
 
+    @RequestMapping(value="/sessionModeOnMainPage", method = RequestMethod.GET)
+    public String sessionModeOnMainPage (HttpServletRequest request, HttpServletResponse response) {
+        System.out.println("sessionModeOnMainPage myJSPPage");
+        return "sessionModeOnMainPage";
+    }
+
     @RequestMapping(value="/logout", method = RequestMethod.GET)
     public String logoutPage (HttpServletRequest request, HttpServletResponse response) {
         System.out.println("requestMapping logout");

@@ -1,6 +1,6 @@
 package com.webapp.controllers;
 
-import com.webapp.repositories.ConnectionSaver;
+import com.webapp.repository.ConnectionSaver;
 
 public interface MainController {
     default void exitApp() {

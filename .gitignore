@@ -2,3 +2,5 @@
 .lib
 .target
 .targetDB
+/test.mv.db
+/test.trace.db

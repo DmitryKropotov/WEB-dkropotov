@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <html>
 <head>
@@ -73,14 +74,16 @@
                    <!--error message for version with a better validation-->
                    <td><form:errors path="number" cssClass="error" /></td><br>
                    <h2>${productrequest.answerForGoodRespond}</h2>
-                   <input type="submit" value="Submit choice"/>
+                   <!--input type="submit" value="Submit choice"/-->
+                   <a href="<c:url value="/addItem" />">Submit choice</a>
                 </table>
             </form:form>
             <form:form>
                 <table>
                     <input type="hidden" name="productRequest.displayContent" value="true"/></td>
                    <h2>${productrequest.cartContent}</h2>
-                   <input type="submit" value="Show cart content"/>
+                   <!--input type="submit" value="Show cart content"/-->
+                   <a href="<c:url value="/displayCartContent" />">Show cart content</a>
                 </table>
             </form:form>
 
@@ -90,7 +93,8 @@
                <table>
                   <input type="text" name="productRequest.itemToRemove"/></td><br>
                   <h2>${productrequest.removedSuccessfully}</h2>
-                  <input type="submit" value="Remove item from cart"/>
+                  <!--input type="submit" value="Remove item from cart"/-->
+                   <a href="<c:url value="/removeItem" />">Remove item from cart</a>
                </table>
             </form:form>
             <form:form>
@@ -100,19 +104,23 @@
                    <!--error message for version with a better validation-->
                    <td><form:errors path="number" cssClass="error" /></td><br>
                    <h2>${productrequest.modificationResult}</h2>
-                   <input type="submit" value="Modify cart item"/>
+                   <!--input type="submit" value="Modify cart item"/-->
+                   <a href="<c:url value="/modifyItem" />">Modify cart item</a>
                 </table>
             </form:form>
             <form:form>
                 <table>
                    <input type="hidden" name="productRequest.checkoutBooking" value="true"/></td>
                    <h2>${productrequest.checkOutResult}</h2>
-                   <input type="submit" value="Checkout booking"/>
+                   <!--input type="submit" value="Checkout booking"/-->
+                   <a href="<c:url value="/checkoutBooking" />">Checkout booking</a>
                 </table>
             </form:form>
             <form:form>
                 <input type="hidden" name="productRequest.logOut" value="true">
-                <input type="submit" value="Log out"/>
+                <!--input type="submit" value="Log out"/-->
+                <!--input type="submit" href="<!-c:url value="/logout" />"/-->
+                <a href="<c:url value="/logout" />">Logout</a>
             </form:form>
          </form:form>
     </tr>

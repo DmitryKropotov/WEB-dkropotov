@@ -1,14 +1,17 @@
 package com.webapp.controllers.sessionModeControllers;
 
 import com.webapp.controllers.sessionModeControllers.enums.ModifyCartItemsResults;
-import com.webapp.services.ProductsServiceWithUserCart;
+import com.webapp.service.ProductsServiceWithUserCart;
+import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
-import java.util.*;
+
+import java.util.Map;
 
 @Controller("sessionModeOnControllerConsole")
 @Scope("prototype")
+@Log
 public class SessionModeOnControllerConsole implements SessionModeOnController {
 
     @Autowired
@@ -55,6 +58,7 @@ public class SessionModeOnControllerConsole implements SessionModeOnController {
 
     @Override
     public String finishSession() {
+        log.info("logout session");
         productsService.returnGoodsToStore();
         System.out.println("Session is over");
         return "";

@@ -1,7 +1,7 @@
-package com.webapp.services;
+package com.webapp.service;
 
-import com.webapp.models.Session;
-import com.webapp.repositories.SessionRepository;
+import com.webapp.model.Session;
+import com.webapp.repository.SessionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

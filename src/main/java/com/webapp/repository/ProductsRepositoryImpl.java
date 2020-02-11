@@ -1,6 +1,6 @@
-package com.webapp.repositories;
+package com.webapp.repository;
 
-import com.webapp.models.Product;
+import com.webapp.model.Product;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;

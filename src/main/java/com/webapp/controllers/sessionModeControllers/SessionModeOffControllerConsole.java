@@ -1,7 +1,7 @@
 package com.webapp.controllers.sessionModeControllers;
 
-import com.webapp.models.UserChecker;
-import com.webapp.services.UserService;
+import com.webapp.model.UserChecker;
+import com.webapp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 

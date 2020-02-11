@@ -1,4 +1,4 @@
-package com.webapp.repositories;
+package com.webapp.repository;
 
 import org.sqlite.JDBC;
 

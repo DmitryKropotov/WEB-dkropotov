@@ -1,4 +1,4 @@
-package com.webapp.services;
+package com.webapp.service;
 
 import com.webapp.cart.UserCart;
 

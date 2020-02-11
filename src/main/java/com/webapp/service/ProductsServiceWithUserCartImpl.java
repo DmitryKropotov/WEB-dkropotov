@@ -1,8 +1,8 @@
-package com.webapp.services;
+package com.webapp.service;
 
 import com.webapp.controllers.sessionModeControllers.enums.ModifyCartItemsResults;
-import com.webapp.models.Product;
-import com.webapp.repositories.ProductsRepository;
+import com.webapp.model.Product;
+import com.webapp.repository.ProductsRepository;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
