@@ -1,9 +1,9 @@
-package com.webapp.controllers;
+package com.webapp.controller;
 
 import com.webapp.configuration.AppConfig;
-import com.webapp.controllers.sessionModeControllers.SessionModeOffControllerJsp;
-import com.webapp.controllers.sessionModeControllers.SessionModeOnControllerJsp;
-import com.webapp.controllers.sessionModeControllers.enums.ModifyCartItemsResults;
+import com.webapp.controller.sessionModeControllers.SessionModeOffControllerJsp;
+import com.webapp.controller.sessionModeControllers.SessionModeOnControllerJsp;
+import com.webapp.controller.sessionModeControllers.enums.ModifyCartItemsResults;
 import com.webapp.model.ProductRequest;
 import com.webapp.model.UserChecker;
 import com.webapp.repository.DatabaseInitializer;
@@ -165,7 +165,7 @@ public class JspImplementationMainController {
             if (requestedAmount <= 0) {
                 product.setAnswerForGoodRespond("Amount of quantity should be positive");
             } else if (titleIdProductsAsMap.containsKey(title)) {
-                String answer = sessionModeOnController.addItemToCardProducts(titleIdProductsAsMap.get(title), requestedAmount);
+                String answer = sessionModeOnController.addItemToCartProducts(titleIdProductsAsMap.get(title), requestedAmount);
                 product.setAnswerForGoodRespond(answer);
             } else {
                 product.setAnswerForGoodRespond("There is no product with name " + title);

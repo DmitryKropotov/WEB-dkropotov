@@ -21,6 +21,10 @@
 
         <sec:intercept-url pattern="/login" access="permitAll" />
 
+        <sec:intercept-url pattern="/registerUser" access="permitAll" />
+
+        <sec:intercept-url pattern="/loginUserAndGetSession" access="permitAll" />
+
         <sec:intercept-url pattern="/sessionModeOnMainPage" access="hasAuthority('AUTH_USER')" />
 
         <sec:intercept-url pattern="/addItem" access="hasAuthority('AUTH_USER')" />

@@ -1,4 +1,4 @@
-package com.webapp.controllers.sessionModeControllers.enums;
+package com.webapp.controller.sessionModeControllers.enums;
 
 public enum ModifyCartItemsResults {
     MODIFIED,

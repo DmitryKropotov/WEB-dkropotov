@@ -1,9 +1,9 @@
 package com.webapp.main;
 
 import com.webapp.configuration.AppConfig;
-import com.webapp.controllers.sessionModeControllers.SessionModeOffControllerConsole;
-import com.webapp.controllers.sessionModeControllers.SessionModeOnController;
-import com.webapp.controllers.sessionModeControllers.enums.ModifyCartItemsResults;
+import com.webapp.controller.sessionModeControllers.SessionModeOffControllerConsole;
+import com.webapp.controller.sessionModeControllers.SessionModeOnController;
+import com.webapp.controller.sessionModeControllers.enums.ModifyCartItemsResults;
 import com.webapp.model.UserChecker;
 import com.webapp.repository.DatabaseInitializer;
 import com.webapp.repository.ProductsRepositoryImpl;
@@ -127,7 +127,7 @@ public class Main {
                 respond = sessionModeOnController.getAllProductsAsString();
                 break;
             case 1:
-                respond = sessionModeOnController.addItemToCardProducts(Integer.parseInt(strings.get(5)), Integer.parseInt(strings.get(7)));
+                respond = sessionModeOnController.addItemToCartProducts(Integer.parseInt(strings.get(5)), Integer.parseInt(strings.get(7)));
                 break;
             case 2:
                 respond = sessionModeOnController.displayCartContent();

@@ -4,9 +4,9 @@ import lombok.*;
 
 @Data
 @AllArgsConstructor
-public class Product {
+public class ProductForCart {
     private int id;
     private String title;
-    private int available;
+    private int quantityInCart;
     private double price;
 }

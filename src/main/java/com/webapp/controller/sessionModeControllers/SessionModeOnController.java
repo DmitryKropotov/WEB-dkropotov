@@ -1,8 +1,10 @@
-package com.webapp.controllers.sessionModeControllers;
+package com.webapp.controller.sessionModeControllers;
 
-import com.webapp.controllers.MainController;
-import com.webapp.controllers.sessionModeControllers.enums.ModifyCartItemsResults;
+import com.webapp.controller.MainController;
+import com.webapp.controller.sessionModeControllers.enums.ModifyCartItemsResults;
+import com.webapp.model.ProductForCart;
 
+import java.util.List;
 import java.util.Map;
 
 public interface SessionModeOnController extends MainController {
@@ -11,10 +13,13 @@ public interface SessionModeOnController extends MainController {
     String getAllProductsAsString();
 
     //additional operation
+    List<ProductForCart> getProductsInCart();
+
+    //additional operation
     Map<String, Integer> getTitleIdProductsAsMap();
 
     //user operation
-    String addItemToCardProducts(final int ASKED_ITEM_ID, final int ASKED_QUANTITY);
+    String addItemToCartProducts(final int ASKED_ITEM_ID, final int ASKED_QUANTITY);
 
     //user operation
     String displayCartContent();

@@ -1,6 +1,6 @@
-package com.webapp.controllers.sessionModeControllers;
+package com.webapp.controller.sessionModeControllers;
 
-import com.webapp.controllers.MainController;
+import com.webapp.controller.MainController;
 import com.webapp.model.UserChecker;
 
 import java.util.Optional;

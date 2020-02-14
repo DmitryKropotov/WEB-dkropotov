@@ -1,4 +1,4 @@
-package com.webapp.controllers;
+package com.webapp.controller;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;

@@ -1,4 +1,4 @@
-package com.webapp.controllers;
+package com.webapp.controller;
 
 import com.webapp.repository.ConnectionSaver;
 

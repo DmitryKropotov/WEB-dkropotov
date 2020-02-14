@@ -117,6 +117,30 @@
             <version>1.1.2</version>
             <scope>compile</scope>
         </dependency>
+        <!-- Jackson for REST JSON Support -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.9.6</version>
+        </dependency>
+        <!-- JAXB for XML Response, needed to explicitly define from Java 9 onwards -->
+        <dependency>
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
+            <version>2.3.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.jaxb</groupId>
+            <artifactId>jaxb-runtime</artifactId>
+            <version>2.3.0</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.activation</groupId>
+            <artifactId>javax.activation-api</artifactId>
+            <version>1.2.0</version>
+        </dependency>
+        <!-- end of JAXB for XML Response, needed to explicitly define from Java 9 onwards -->
     </dependencies>
 
 

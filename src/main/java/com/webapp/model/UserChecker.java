@@ -1,19 +1,17 @@
 package com.webapp.model;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import org.hibernate.validator.constraints.NotEmpty;
+import lombok.*;
 
 @Getter
 @Setter
 @NoArgsConstructor
+@RequiredArgsConstructor
 public class UserChecker {
-    @NotEmpty
+    @NonNull
     private String email;
-    @NotEmpty
+    @NonNull
     private String password;
-    @NotEmpty
+    @NonNull
     private String passwordRepeater;
 
     private String successfulRegMessage;

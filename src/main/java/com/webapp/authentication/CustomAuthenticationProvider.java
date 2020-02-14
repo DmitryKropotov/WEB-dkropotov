@@ -1,6 +1,6 @@
 package com.webapp.authentication;
 
-import com.webapp.controllers.sessionModeControllers.SessionModeOffController;
+import com.webapp.controller.sessionModeControllers.SessionModeOffController;
 import com.webapp.model.UserChecker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
