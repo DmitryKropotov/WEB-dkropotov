@@ -41,17 +41,24 @@ public class JspToJSONAdapter implements UserFunctionalController {
     private ProductsRepository productsRepository;
 
     @Override
+    @SuppressWarnings("unchecked")
     @RequestMapping(value = "/registerUser", method = RequestMethod.GET)
     public ResponseEntity<Boolean> registerUser(String email, String password, String repeatingPassword) {
-        log.info("registerUser in JspToJSONAdapter");
+        log.info("MYYYYYYYYY LOG: registerUser in JspToJSONAdapter");
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        log.info("User is authenticated " + auth.isAuthenticated() + " Authorities are " + auth.getAuthorities() + " Credentials are " + auth.getCredentials());
+        log.info("MYYYYYYYYY LOG: User is authenticated " + auth.isAuthenticated() + " Authorities are " + auth.getAuthorities() + " Credentials are " + auth.getCredentials());
         Collection<? extends GrantedAuthority> grantedAuthorities = auth.getAuthorities();
         if (!grantedAuthorities.isEmpty()) {
             GrantedAuthority grantedAuthority = grantedAuthorities.stream().findFirst().get();
             if (!grantedAuthority.getAuthority().equals("ROLE_ANONYMOUS")) {
                 return new ResponseEntity(false, HttpStatus.CONFLICT);
             }
+        }
+        if (!email.matches("[a-zA-Z0-9]+@[a-zA-Z0-9]+")) {
+            return new ResponseEntity("Email format does not satisfy format ?*@?*", HttpStatus.FORBIDDEN);
+        }
+        if (!password.equals(repeatingPassword)) {
+            return new ResponseEntity("Passwords don't match", HttpStatus.FORBIDDEN);
         }
         boolean result = sessionModeOffController.registerUser(new UserChecker(email, password, repeatingPassword));
         return result ? new ResponseEntity(result, HttpStatus.OK): new ResponseEntity(result, HttpStatus.CONFLICT);
@@ -60,9 +67,9 @@ public class JspToJSONAdapter implements UserFunctionalController {
     @Override
     @RequestMapping(value = "/loginUserAndGetSession", method = RequestMethod.GET)
     public String loginUserAndGetSessionId(String email, String password) {
-        log.info("loginUserAndGetSessionId in JspToJSONAdapter");
+        log.info("MYYYYYYYYY LOG: loginUserAndGetSessionId in JspToJSONAdapter");
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        log.info("User is authenticated " + auth.isAuthenticated() + " Authorities are " + auth.getAuthorities() + " Credentials are " + auth.getCredentials());
+        log.info("MYYYYYYYYY LOG: User is authenticated " + auth.isAuthenticated() + " Authorities are " + auth.getAuthorities() + " Credentials are " + auth.getCredentials());
         Collection<? extends GrantedAuthority> grantedAuthorities = auth.getAuthorities();
         if (!grantedAuthorities.isEmpty()) {
             GrantedAuthority grantedAuthority = grantedAuthorities.stream().findFirst().get();
@@ -77,61 +84,71 @@ public class JspToJSONAdapter implements UserFunctionalController {
     @Override
     @RequestMapping(value = "/getAllProductsFromStore", method = RequestMethod.GET)
     public List<Product> getAllProductsFromStore() {
-        log.info("getAllProductsFromStore in JspToJSONAdapter");
+        log.info("MYYYYYYYYY LOG: getAllProductsFromStore in JspToJSONAdapter");
         return productsRepository.selectProducts(new HashMap<>());
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     @RequestMapping(value = "/addItem", method = RequestMethod.GET)
-    public String addItemToCartProducts(int ASKED_ITEM_ID, int ASKED_QUANTITY) {
-        log.info("addItemToCartProducts in JspToJSONAdapter");
-        return sessionModeOnController.addItemToCartProducts(ASKED_ITEM_ID, ASKED_QUANTITY);
+    public ResponseEntity<String> addItemToCartProducts(final int ASKED_ITEM_ID, final int ASKED_QUANTITY) {
+        log.info("MYYYYYYYYY LOG: addItemToCartProducts in JspToJSONAdapter");
+        if (ASKED_QUANTITY <= 0 ) {
+            return new ResponseEntity("Asked quantity should be positive", HttpStatus.BAD_REQUEST);
+        }
+        String legacyResult = sessionModeOnController.addItemToCartProducts(ASKED_ITEM_ID, ASKED_QUANTITY);
+        return new ResponseEntity(legacyResult, legacyResult.equals("There is not enough product") ? HttpStatus.GONE: HttpStatus.OK);
     }
 
     @Override
     @RequestMapping(value = "/displayCartContent", method = RequestMethod.GET)
-    public List<ProductForCart> displayCartContent() {
-        log.info("displayCartContent in JspToJSONAdapter");
-        return sessionModeOnController.getProductsInCart();
+    public DisplayCartContentObject displayCartContent() {
+        log.info("MYYYYYYYYY LOG: displayCartContent in JspToJSONAdapter");
+        List<ProductForCart> productForCartList = sessionModeOnController.getProductsInCart();
+        return new DisplayCartContentObject(productForCartList);
     }
 
     @Override
     @RequestMapping(value = "/removeItem", method = RequestMethod.GET)
     public boolean removeItemFromCartById(int id) {
-        log.info("removeItem in JspToJSONAdapter");
+        log.info("MYYYYYYYYY LOG: removeItem in JspToJSONAdapter");
         return sessionModeOnController.removeItemFromCartById(id);
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     @RequestMapping(value = "/modifyItem", method = RequestMethod.GET)
-    public ModifyCartReturnedObject modifyCartItem(int id, int newQuantity) {
-        log.info("modifyCartItem in JspToJSONAdapter");
-        Optional<ProductForCart> product = sessionModeOnController.getProductsInCart().stream().filter(productFromCart -> productFromCart.getId() == id).findFirst();
+    public ResponseEntity modifyCartItem(final int ID, final int NEW_QUANTITY) {
+        log.info("MYYYYYYYYY LOG: modifyCartItem in JspToJSONAdapter");
+        if (NEW_QUANTITY <= 0) {
+            return new ResponseEntity("Asked quantity should be positive", HttpStatus.BAD_REQUEST);
+        }
+        Optional<ProductForCart> product = sessionModeOnController.getProductsInCart().stream().filter(productFromCart -> productFromCart.getId() == ID).findFirst();
         int oldQuantity = 0;
         if (product.isPresent()) {
             oldQuantity = product.get().getQuantityInCart();
         }
-        ModifyCartItemsResults result = sessionModeOnController.modifyCartItem(id, newQuantity);
+        ModifyCartItemsResults result = sessionModeOnController.modifyCartItem(ID, NEW_QUANTITY);
         if (result.equals(ModifyCartItemsResults.MODIFIED)) {
-            return new ModifyCartReturnedObject(result, oldQuantity, newQuantity);
+            return new ResponseEntity(new ModifyCartReturnedObject(result, oldQuantity, NEW_QUANTITY), HttpStatus.OK);
         }
-        return new ModifyCartReturnedObject(result, 0, 0);
+        return new ResponseEntity(new ModifyCartReturnedObject(result, 0, 0), HttpStatus.OK);
     }
 
     @Override
     @RequestMapping(value = "/checkoutBooking", method = RequestMethod.GET)
     public boolean checkoutBooking() {
-        log.info("checkoutBooking in JspToJSONAdapter");
+        log.info("MYYYYYYYYY LOG: checkoutBooking in JspToJSONAdapter");
         return sessionModeOnController.checkoutBooking();
     }
 
     @Override
     @RequestMapping(value = "/finishSession", method = RequestMethod.GET)
     public boolean finishSession(HttpServletRequest request, HttpServletResponse response) {
-        log.info("finishSession in JspToJSONAdapter");
+        log.info("MYYYYYYYYY LOG: finishSession in JspToJSONAdapter");
         String legacyResult = sessionModeOnController.finishSession();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if (legacyResult.equals("main") && auth != null){
+        if (legacyResult.equals("main") && auth != null) {
             new SecurityContextLogoutHandler().logout(request, response, auth);
             return true;
         }

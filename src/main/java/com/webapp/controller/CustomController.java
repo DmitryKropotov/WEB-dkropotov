@@ -1,5 +1,6 @@
 package com.webapp.controller;
 
+import lombok.extern.java.Log;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
@@ -13,29 +14,29 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @Controller
+@Log
 public class CustomController {
     @RequestMapping(value="/welcome")
-    public ModelAndView welcomeUser()
-    {
-        System.out.println("requestMapping welcome");
+    public ModelAndView welcomeUser() {
+        log.info("MYYYYYYYYY LOG: requestMapping welcome");
         return new ModelAndView("welcome");
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login(ModelMap model) {
-        System.out.println("requestMapping login");
+        log.info("MYYYYYYYYY LOG: requestMapping login");
         return "main";
     }
 
     @RequestMapping(value="/sessionModeOnMainPage", method = RequestMethod.GET)
     public String sessionModeOnMainPage (HttpServletRequest request, HttpServletResponse response) {
-        System.out.println("sessionModeOnMainPage myJSPPage");
+        log.info("MYYYYYYYYY LOG: sessionModeOnMainPage myJSPPage");
         return "sessionModeOnMainPage";
     }
 
     @RequestMapping(value="/logout", method = RequestMethod.GET)
     public String logoutPage (HttpServletRequest request, HttpServletResponse response) {
-        System.out.println("requestMapping logout");
+        log.info("MYYYYYYYYY LOG: requestMapping logout");
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (auth != null){
             new SecurityContextLogoutHandler().logout(request, response, auth);
@@ -45,7 +46,7 @@ public class CustomController {
 
     @RequestMapping(value="/myJSPPage", method = RequestMethod.GET)
     public String myJSPPage (HttpServletRequest request, HttpServletResponse response) {
-        System.out.println("requestMapping myJSPPage");
+        log.info("MYYYYYYYYY LOG: requestMapping myJSPPage");
         return "myJSPPage";
     }
 }

@@ -1,8 +1,7 @@
 package com.webapp.controller.user_functional;
 
-import com.webapp.controller.adapter.ModifyCartReturnedObject;
+import com.webapp.controller.adapter.DisplayCartContentObject;
 import com.webapp.model.Product;
-import com.webapp.model.ProductForCart;
 import org.springframework.http.ResponseEntity;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,13 +16,13 @@ public interface UserFunctionalController {
 
     List<Product> getAllProductsFromStore();
 
-    String addItemToCartProducts(final int ASKED_ITEM_ID, final int ASKED_QUANTITY);
+    ResponseEntity<String> addItemToCartProducts(final int ASKED_ITEM_ID, final int ASKED_QUANTITY);
 
-    List<ProductForCart> displayCartContent();
+    DisplayCartContentObject displayCartContent();
 
     boolean removeItemFromCartById(int id);
 
-    ModifyCartReturnedObject modifyCartItem(int id, int newAmount);
+    ResponseEntity modifyCartItem(int id, int newAmount);
 
     boolean checkoutBooking();
 
