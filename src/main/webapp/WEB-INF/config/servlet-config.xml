@@ -11,13 +11,6 @@
     <mvc:annotation-driven/>
     <context:component-scan base-package="com.webapp"/>
 
-    <!--
-    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix" value="/WEB-INF/jsp/"/>
-        <property name="suffix" value=".jsp"/>
-    </bean>
-     -->
-
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"
           p:prefix="/WEB-INF/jsp/" p:suffix=".jsp" />
 

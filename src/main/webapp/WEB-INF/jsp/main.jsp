@@ -68,6 +68,7 @@
     </tr>
 
     <c:if test="${not empty SPRING_SECURITY_LAST_EXCEPTION}">
+        ${SPRING_SECURITY_LAST_EXCEPTION}
         <font color="red">
             Your login attempt was not successful due to <c:out value="${SPRING_SECURITY_LAST_EXCEPTION.message}"/>.
         </font>

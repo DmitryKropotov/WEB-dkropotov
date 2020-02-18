@@ -35,6 +35,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
             return auth;
         }
         else {
+            log.info("MYYYYYYYYY LOG: AuthenticationCredentialsNotFoundException is gonna be thrown");
             throw new AuthenticationCredentialsNotFoundException ("Invalid Credentials!");
         }
     }
