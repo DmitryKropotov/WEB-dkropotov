@@ -54,14 +54,14 @@ public class JspToJSONAdapter implements UserFunctionalController {
                 return new ResponseEntity(false, HttpStatus.CONFLICT);
             }
         }
-        if (!email.matches("[a-zA-Z0-9]+@[a-zA-Z0-9]+")) {
-            return new ResponseEntity("Email format does not satisfy format ?*@?*", HttpStatus.FORBIDDEN);
+        if (!email.matches("[a-zA-Z0-9]+@[a-zA-Z0-9]+.?[a-zA-Z0-9]+")) {
+            return new ResponseEntity("Email format does not satisfy format [a-zA-Z0-9]+@[a-zA-Z0-9]+.?[a-zA-Z0-9]+", HttpStatus.FORBIDDEN);
         }
         if (!password.equals(repeatingPassword)) {
             return new ResponseEntity("Passwords don't match", HttpStatus.FORBIDDEN);
         }
         boolean result = sessionModeOffController.registerUser(new UserChecker(email, password, repeatingPassword));
-        return result ? new ResponseEntity(result, HttpStatus.OK): new ResponseEntity(result, HttpStatus.CONFLICT);
+        return new ResponseEntity(result, result ? HttpStatus.OK: HttpStatus.CONFLICT);
     }
 
     @Override
