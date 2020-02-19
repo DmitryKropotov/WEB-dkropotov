@@ -2,10 +2,7 @@ package com.database_connection.repository;
 
 import com.database_connection.model.User;
 import lombok.extern.java.Log;
-import org.hibernate.HibernateException;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
+import org.hibernate.*;
 import org.hibernate.query.NativeQuery;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -79,7 +76,8 @@ public class UserRepositoryImpl implements CrudRepository<User, String> {
 
     @Override
     public Optional<User> findById(String id) {
-        User user = session.load(User.class, id);
+        User user = (User) Hibernate.unproxy(session.load(User.class, id));
+        log.info("MYYYYY LOG: Class of user in findById method is " + user.getClass());
         if (user == null) {
             log.info("MYYYYY LOG: User is not present");
             return Optional.empty();
@@ -93,6 +91,7 @@ public class UserRepositoryImpl implements CrudRepository<User, String> {
         List<User> updatedUsers = new ArrayList<>();
         ids.forEach(id -> {
            User user = session.load(User.class, id);
+            log.info("MYYYYY LOG: Class of user in findAllById method is " + user.getClass());
             if (user != null) {
                 updatedUsers.add(user);
                 log.info("MYYYYY LOG: User is present");
@@ -104,7 +103,9 @@ public class UserRepositoryImpl implements CrudRepository<User, String> {
     @Override
     public List<User> findAll() {
         Query query = session.createQuery("from User", User.class);
-        return query.getResultList();
+        List<User> users = query.getResultList();
+        users.forEach(user -> log.info("MYYYYY LOG: Class of user in findAll is " + user.getClass()));
+        return users;
     }
 
     @Override
