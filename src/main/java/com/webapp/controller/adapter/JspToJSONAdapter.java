@@ -7,9 +7,9 @@ import com.webapp.controller.user_functional.UserFunctionalController;
 import com.webapp.model.Product;
 import com.webapp.model.ProductForCart;
 import com.webapp.model.UserChecker;
-import com.webapp.repository.ProductsRepository;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -23,7 +23,6 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
@@ -38,12 +37,12 @@ public class JspToJSONAdapter implements UserFunctionalController {
     SessionModeOnController sessionModeOnController;
 
     @Autowired
-    private ProductsRepository productsRepository;
+    private CrudRepository<Product, Integer> productRepository;
 
     @Override
     @SuppressWarnings("unchecked")
     @RequestMapping(value = "/registerUser", method = RequestMethod.GET)
-    public ResponseEntity<Boolean> registerUser(String email, String password, String repeatingPassword) {
+    public ResponseEntity registerUser(String email, String password, String repeatingPassword) {
         log.info("MYYYYYYYYY LOG: registerUser in JspToJSONAdapter");
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         log.info("MYYYYYYYYY LOG: User is authenticated " + auth.isAuthenticated() + " Authorities are " + auth.getAuthorities() + " Credentials are " + auth.getCredentials());
@@ -85,7 +84,7 @@ public class JspToJSONAdapter implements UserFunctionalController {
     @RequestMapping(value = "/getAllProductsFromStore", method = RequestMethod.GET)
     public List<Product> getAllProductsFromStore() {
         log.info("MYYYYYYYYY LOG: getAllProductsFromStore in JspToJSONAdapter");
-        return productsRepository.selectProducts(new HashMap<>());
+        return (List<Product>)productRepository.findAll();
     }
 
     @Override

@@ -2,10 +2,12 @@ package com.webapp.service;
 
 import com.webapp.model.Session;
 
+import java.util.Optional;
+
 public interface SessionService {
 
-    int createUserSessionAndGetItsId(int userId);
+    int createUserSessionAndGetItsId(String userEmail);
 
-    Session getSessionById(int id);
+    Optional<Session> getSessionById(int id);
 
 }

@@ -1,14 +1,21 @@
 package com.webapp.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
-@Getter
-@Setter
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="user")
+@NoArgsConstructor
 @AllArgsConstructor
+@Data
 public class User {
-    private int id;
+    @Id
+    @Column(name = "email")
     private String email;
+    @Column(name = "password")
     private String password;
 }

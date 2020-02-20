@@ -6,7 +6,7 @@ import com.webapp.controller.sessionModeControllers.SessionModeOnController;
 import com.webapp.controller.sessionModeControllers.enums.ModifyCartItemsResults;
 import com.webapp.model.UserChecker;
 import com.webapp.repository.DatabaseInitializer;
-import com.webapp.repository.ProductsRepositoryImpl;
+import com.webapp.repository.ProductRepository;
 import lombok.extern.java.Log;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -22,7 +22,9 @@ public class Main {
 
     public static void main(String[] args) {
 
-        DatabaseInitializer databaseInitializer = new DatabaseInitializer(new ProductsRepositoryImpl());
+        //update db
+        ProductRepository productRepository = (ProductRepository) appContext.getBean("ProductRepositoryImpl");
+        DatabaseInitializer databaseInitializer = new DatabaseInitializer(productRepository);
         databaseInitializer.initializeDatabase();
 
         while (true) {
@@ -45,8 +47,8 @@ public class Main {
         log.info("MYYYYYYYYY LOG" +  sessionModeOffController);
 
         List<String> allowedFormats = new ArrayList();
-        allowedFormats.add("register user [a-zA-Z0-9]+@[a-z]+.[a-z]+ [a-zA-Z0-9]+");
-        allowedFormats.add("login user [a-zA-Z0-9]+@[a-z]+.[a-z]+ [a-zA-Z0-9]+");
+        allowedFormats.add("register user [a-zA-Z0-9]+@[a-zA-Z0-9]+.[a-z]+ [a-zA-Z0-9]+");
+        allowedFormats.add("login user [a-zA-Z0-9]+@[a-zA-Z0-9]+.[a-z]+ [a-zA-Z0-9]+");
 
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please print command in format 'register user [email] [password]'," +

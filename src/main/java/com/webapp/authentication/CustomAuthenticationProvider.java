@@ -24,17 +24,17 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-        log.info("MYYYYYYYYY LOG: This is authenticate in class CustomAuthenticationProvider");
+        log.info("MYYYYYYYYY LOG: This is authenticate method in class CustomAuthenticationProvider");
         String userName = authentication.getName();
         String password = authentication.getCredentials().toString();
         if (sessionModeOffController.loginUserAndGetSessionId(new UserChecker(userName, password)).isPresent()) {
+            log.info("MYYYYYYYYY LOG: this is if branch in authentication process");
             List<GrantedAuthority> grantedAuths = new ArrayList();
             grantedAuths.add(()-> {return "AUTH_USER";});
             Authentication auth = new UsernamePasswordAuthenticationToken(userName, password, grantedAuths);
-            log.info("MYYYYYYYYY LOG: " + auth.getAuthorities());
+            log.info("MYYYYYYYYY LOG: Authentication auth is " + auth.getAuthorities());
             return auth;
-        }
-        else {
+        } else {
             log.info("MYYYYYYYYY LOG: AuthenticationCredentialsNotFoundException is gonna be thrown");
             throw new AuthenticationCredentialsNotFoundException ("Invalid Credentials!");
         }

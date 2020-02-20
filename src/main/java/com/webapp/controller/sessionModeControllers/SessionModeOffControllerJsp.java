@@ -20,7 +20,7 @@ public class SessionModeOffControllerJsp implements SessionModeOffController {
     @Override
     public boolean registerUser(UserChecker user) {
         //debug logs
-        log.info("MYYYYYYYYY LOG: This is registerUser method " + user);
+        log.info("MYYYYYYYYY LOG: This is registerUser method in SessionModeOffControllerJsp" + user);
         //debug logs
         return userService.registerUser(user.getEmail(), encryptPassword(user.getPassword()));
     }
@@ -28,7 +28,7 @@ public class SessionModeOffControllerJsp implements SessionModeOffController {
     @Override
     public Optional<Integer> loginUserAndGetSessionId(UserChecker user) {
         //debug logs
-        log.info("MYYYYYYYYY LOG: This is loginUserAndGetSessionId method " + user);
+        log.info("MYYYYYYYYY LOG: This is loginUserAndGetSessionId method in SessionModeOffControllerJsp" + user);
         //debug logs
         return userService.loginUserAndGetSessionId(user.getEmail(), encryptPassword(user.getPassword()));
     }

@@ -1,7 +1,7 @@
 package com.webapp.service;
 
 import com.webapp.model.Product;
-import com.webapp.repository.ProductsRepository;
+import com.webapp.repository.ProductRepository;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -12,24 +12,24 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Service("ProductsService")
+@Service
 @Scope("prototype")
 @Log
-public class ProductsServiceWithUserCartImpl implements ProductsService {
+public class ProductServiceImpl implements ProductService {
 
     private List<Product> cartProducts = new ArrayList<>();
 
     @Autowired
-    private ProductsRepository productsRepository;
+    private ProductRepository productRepository;
 
     @Override
     public List<Product> getAllProductsAsList() {
-        return productsRepository.selectProducts(new HashMap<>());
+        return (List<Product>)productRepository.findAll();
     }
 
     @Override
     public String getAllProductsAsString() {
-        List<Product> products = productsRepository.selectProducts(new HashMap<>());
+        Iterable<Product> products = productRepository.findAll();
         String result = "";
         for (Product product : products) {
             result = result + product.toString() + " ";
@@ -39,7 +39,7 @@ public class ProductsServiceWithUserCartImpl implements ProductsService {
 
     @Override
     public Map<String, Integer> getTitleAmountProductsAsMap(){
-        List<Product> products = productsRepository.selectProducts(new HashMap<>());
+        Iterable<Product> products = productRepository.findAll();
         Map<String, Integer> result = new HashMap<>();
         for (Product product : products) {
             result.put(product.getTitle(), product.getAvailable());
@@ -49,7 +49,7 @@ public class ProductsServiceWithUserCartImpl implements ProductsService {
 
     @Override
     public Map<String, Integer> getTitleIdProductsAsMap() {
-        List<Product> products = productsRepository.selectProducts(new HashMap<>());
+        Iterable<Product> products = productRepository.findAll();
         Map<String, Integer> result = new HashMap<>();
         for (Product product : products) {
             result.put(product.getTitle(), product.getId());
@@ -58,13 +58,13 @@ public class ProductsServiceWithUserCartImpl implements ProductsService {
     }
 
     @Override
-    public List<Product> selectProducts(Map<String, Object> conditions) {
-        return productsRepository.selectProducts(conditions);
+    public List<Product> findProducts(Map<String, Object> columns) {
+        return productRepository.findProducts(columns);
     }
 
     @Override
     public int updateProducts(Map<String, Object> columns, Map<String, Object> conditions) {
-        return productsRepository.updateProducts(columns, conditions);
+        return productRepository.updateProducts(columns, conditions);
     }
 
 }

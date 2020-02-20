@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface UserFunctionalController {
 
-    ResponseEntity<Boolean> registerUser(String email, String password, String repeatingPassword);
+    ResponseEntity registerUser(String email, String password, String repeatingPassword);
 
     String loginUserAndGetSessionId(String email, String password);
 

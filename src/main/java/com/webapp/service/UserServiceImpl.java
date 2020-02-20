@@ -1,8 +1,8 @@
 package com.webapp.service;
 
 import com.webapp.model.User;
-import com.webapp.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -11,21 +11,21 @@ import java.util.Optional;
 public class UserServiceImpl implements UserService {
 
     @Autowired
-    private UserRepository userRepository;
+    private CrudRepository<User, String> userRepository;
     @Autowired
     private SessionService sessionService;
 
     @Override
     public boolean registerUser(String email, String password) {
-         return userRepository.createUser(email, password);
+         return userRepository.save(new User(email, password)) == null;
     }
 
     @Override
     public Optional<Integer> loginUserAndGetSessionId(String email, String password) {
-        User user = userRepository.selectUserByEmail(email).orElseGet(() -> null);
+        User user = userRepository.findById(email).orElseGet(() -> null);
         boolean loginSucceed = user != null && validateLogin(password, user.getPassword());
         if (loginSucceed) {
-            return Optional.of(sessionService.createUserSessionAndGetItsId(user.getId()));
+            return Optional.of(sessionService.createUserSessionAndGetItsId(user.getEmail()));
         } else {
             return Optional.empty();
         }

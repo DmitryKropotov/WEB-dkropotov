@@ -5,7 +5,7 @@ import com.webapp.model.Product;
 import java.util.List;
 import java.util.Map;
 
-public interface ProductsService {
+public interface ProductService {
 
     List<Product> getAllProductsAsList();
 
@@ -15,7 +15,7 @@ public interface ProductsService {
 
     Map<String, Integer> getTitleIdProductsAsMap();
 
-    List<Product> selectProducts(Map<String, Object> conditions);
+    List<Product> findProducts(Map<String, Object> columns);
 
     int updateProducts(Map<String, Object> columns, Map<String, Object> conditions);
 

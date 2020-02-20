@@ -3,7 +3,7 @@ package com.webapp.controller.sessionModeControllers;
 import com.webapp.cart.UserCart;
 import com.webapp.controller.sessionModeControllers.enums.ModifyCartItemsResults;
 import com.webapp.model.ProductForCart;
-import com.webapp.service.ProductsService;
+import com.webapp.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Scope;
@@ -18,14 +18,14 @@ import java.util.Map;
 public class SessionModeOnControllerJsp implements SessionModeOnController {
 
     @Autowired
-    private ProductsService productsService;
+    private ProductService productService;
 
     @Autowired
     UserCart userCart;
 
     @Override
     public String getAllProductsAsString() {
-        return productsService.getAllProductsAsString();
+        return productService.getAllProductsAsString();
     }
 
     @Override
@@ -35,7 +35,7 @@ public class SessionModeOnControllerJsp implements SessionModeOnController {
 
     @Override
     public Map<String, Integer> getTitleIdProductsAsMap() {
-        return productsService.getTitleIdProductsAsMap();
+        return productService.getTitleIdProductsAsMap();
     }
 
     @Override

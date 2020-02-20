@@ -3,7 +3,7 @@ package com.webapp.cart;
 import com.webapp.controller.sessionModeControllers.enums.ModifyCartItemsResults;
 import com.webapp.model.Product;
 import com.webapp.model.ProductForCart;
-import com.webapp.service.ProductsService;
+import com.webapp.service.ProductService;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 public class UserCartImpl implements UserCart {
 
     @Autowired
-    ProductsService productsService;
+    ProductService productService;
 
     private List<ProductForCart> cartProduct = new ArrayList<>();
 
@@ -30,7 +30,7 @@ public class UserCartImpl implements UserCart {
         String respond = null;
         Map<String, Object> conditions = new HashMap();
         conditions.put("id", ASKED_ITEM_ID);
-        List<Product> selectedProducts = productsService.selectProducts(conditions);
+        List<Product> selectedProducts = productService.findProducts(conditions);
 
         if (selectedProducts.isEmpty()) {
             respond = "There is no product with id " + ASKED_ITEM_ID;
@@ -49,7 +49,7 @@ public class UserCartImpl implements UserCart {
                 }
                 Map<String, Object> fieldsToUpdate = new HashMap();
                 fieldsToUpdate.put("available", AVAILABLE - ASKED_QUANTITY);
-                productsService.updateProducts(fieldsToUpdate, conditions);
+                productService.updateProducts(fieldsToUpdate, conditions);
                 respond = ASKED_QUANTITY + " items with id " + ASKED_ITEM_ID + " is added";
             }
         }
@@ -74,10 +74,10 @@ public class UserCartImpl implements UserCart {
         if (productToRemove.isPresent()) {
             Map<String, Object> conditionsToSelect = new HashMap();
             conditionsToSelect.put("id", id);
-            int availableInDB = productsService.selectProducts(conditionsToSelect).get(0).getAvailable();
+            int availableInDB = productService.findProducts(conditionsToSelect).get(0).getAvailable();
             Map<String, Object> columnsToUpdate = new HashMap<>();
             columnsToUpdate.put("available", availableInDB + productToRemove.get().getQuantityInCart());
-            productsService.updateProducts(columnsToUpdate, conditionsToSelect);
+            productService.updateProducts(columnsToUpdate, conditionsToSelect);
             cartProduct.remove(productToRemove.get());
             return true;
         }
@@ -92,15 +92,15 @@ public class UserCartImpl implements UserCart {
         }
         Map<String, Object> conditionsToSelect = new HashMap();
         conditionsToSelect.put("id", id);
-        int availableInDB = productsService.selectProducts(conditionsToSelect).get(0).getAvailable();
+        int availableInDB = productService.findProducts(conditionsToSelect).get(0).getAvailable();
         ProductForCart productFromCart = modifiedProductsFromCart.get(0);
         if (newAmount > availableInDB + productFromCart.getQuantityInCart()) {
             return ModifyCartItemsResults.NOT_ENOUGH_IN_DATABASE;
         } else {
-            Product productFromDb = productsService.selectProducts(conditionsToSelect).get(0);
+            Product productFromDb = productService.findProducts(conditionsToSelect).get(0);
             Map<String, Object> columnsToUpdate = new HashMap<>();
             columnsToUpdate.put("available", productFromDb.getAvailable() - (newAmount - productFromCart.getQuantityInCart()));
-            productsService.updateProducts(columnsToUpdate, conditionsToSelect);
+            productService.updateProducts(columnsToUpdate, conditionsToSelect);
             productFromCart.setQuantityInCart(newAmount);
         }
         return ModifyCartItemsResults.MODIFIED;
@@ -111,7 +111,7 @@ public class UserCartImpl implements UserCart {
         for (ProductForCart product : cartProduct) {
             Map<String, Object> conditions = new HashMap<>();
             conditions.put("id", product.getId());
-            List<Product> products = productsService.selectProducts(conditions);
+            List<Product> products = productService.findProducts(conditions);
             int productAvailable = products.get(0).getAvailable();
             if (products.isEmpty() || productAvailable < product.getQuantityInCart()) {
                 return false;
@@ -127,7 +127,7 @@ public class UserCartImpl implements UserCart {
 
     @Override
     public void returnGoodsToStore() {
-        List<Product> productsFromDataBase = productsService.getAllProductsAsList();
+        List<Product> productsFromDataBase = productService.getAllProductsAsList();
         cartProduct.forEach(product -> {
             Optional<Product> productFromDB = productsFromDataBase.stream().filter(productFromDBInFilter -> productFromDBInFilter.getId() == product.getId()).findFirst();
             if (!productFromDB.isPresent()) {
@@ -138,7 +138,7 @@ public class UserCartImpl implements UserCart {
             columnsToUpdate.put("available", productFromDB.get().getAvailable() + product.getQuantityInCart());
             Map<String, Object> conditions = new HashMap<>();
             conditions.put("id", product.getId());
-            productsService.updateProducts(columnsToUpdate, conditions);
+            productService.updateProducts(columnsToUpdate, conditions);
         });
     }
 }

@@ -7,8 +7,8 @@ import com.webapp.controller.sessionModeControllers.enums.ModifyCartItemsResults
 import com.webapp.model.ProductRequest;
 import com.webapp.model.UserChecker;
 import com.webapp.repository.DatabaseInitializer;
-import com.webapp.repository.ProductsRepositoryImpl;
-import com.webapp.service.ProductsService;
+import com.webapp.repository.ProductRepository;
+import com.webapp.service.ProductService;
 import lombok.extern.java.Log;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -39,8 +39,11 @@ public class JspImplementationMainController {
 
     @RequestMapping(value = "/main", method = RequestMethod.GET)
     public String goToMainPage(Model model) {
-        DatabaseInitializer databaseInitializer = new DatabaseInitializer(new ProductsRepositoryImpl());
+        //update db
+        ProductRepository productRepository = (ProductRepository) appContext.getBean("ProductRepositoryImpl");
+        DatabaseInitializer databaseInitializer = new DatabaseInitializer(productRepository);
         databaseInitializer.initializeDatabase();
+
         log.info("MYYYYYYYYY LOG: goToMainPage get");
         UserChecker userChecker = new UserChecker();
         model.addAttribute("userchecker", userChecker);
@@ -139,7 +142,7 @@ public class JspImplementationMainController {
         //log
         log.info("MYYYYYYYYY LOG: session mode off");
         //log
-        ProductsService productsService = (ProductsService) appContext.getBean("ProductsService");
+        ProductService productService = (ProductService) appContext.getBean("ProductsService");
         model.addAttribute("productrequest", product);
 
         //update values which will be displayed on jsp page
@@ -150,7 +153,7 @@ public class JspImplementationMainController {
         product.setCheckOutResult("");
 
 
-        Map<String, Integer> titleAmountProducts = productsService.getTitleAmountProductsAsMap();
+        Map<String, Integer> titleAmountProducts = productService.getTitleAmountProductsAsMap();
         product.setTitleAmountProducts(titleAmountProducts);
         Map<String, Integer> titleIdProductsAsMap = sessionModeOnController.getTitleIdProductsAsMap();
         product.setTitleIdProducts(titleIdProductsAsMap);
