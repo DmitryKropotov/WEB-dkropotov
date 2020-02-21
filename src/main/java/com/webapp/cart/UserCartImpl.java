@@ -47,9 +47,8 @@ public class UserCartImpl implements UserCart {
                     ProductForCart productFromCartWithAskedId = productsFromCartWithAskedId.get(0);
                     productFromCartWithAskedId.setQuantityInCart(productFromCartWithAskedId.getQuantityInCart() + ASKED_QUANTITY);
                 }
-                Map<String, Object> fieldsToUpdate = new HashMap();
-                fieldsToUpdate.put("available", AVAILABLE - ASKED_QUANTITY);
-                productService.updateProducts(fieldsToUpdate, conditions);
+                foundProduct.setAvailable(AVAILABLE - ASKED_QUANTITY);
+                productService.updateProducts(selectedProducts);
                 respond = ASKED_QUANTITY + " items with id " + ASKED_ITEM_ID + " is added";
             }
         }
@@ -75,9 +74,11 @@ public class UserCartImpl implements UserCart {
             Map<String, Object> conditionsToSelect = new HashMap();
             conditionsToSelect.put("id", id);
             int availableInDB = productService.findProducts(conditionsToSelect).get(0).getAvailable();
-            Map<String, Object> columnsToUpdate = new HashMap<>();
-            columnsToUpdate.put("available", availableInDB + productToRemove.get().getQuantityInCart());
-            productService.updateProducts(columnsToUpdate, conditionsToSelect);
+            ProductForCart productForCart = productToRemove.get();
+            Product product = new Product(id, productForCart.getTitle(), productForCart.getQuantityInCart() + availableInDB, productForCart.getPriceForOneItem());
+            List<Product> products = new ArrayList<>();
+            products.add(product);
+            productService.updateProducts(products);
             cartProduct.remove(productToRemove.get());
             return true;
         }
@@ -98,9 +99,10 @@ public class UserCartImpl implements UserCart {
             return ModifyCartItemsResults.NOT_ENOUGH_IN_DATABASE;
         } else {
             Product productFromDb = productService.findProducts(conditionsToSelect).get(0);
-            Map<String, Object> columnsToUpdate = new HashMap<>();
-            columnsToUpdate.put("available", productFromDb.getAvailable() - (newAmount - productFromCart.getQuantityInCart()));
-            productService.updateProducts(columnsToUpdate, conditionsToSelect);
+            productFromDb.setAvailable(productFromDb.getAvailable() - (newAmount - productFromCart.getQuantityInCart()));
+            List<Product> productsToUpdate = new ArrayList<>();
+            productsToUpdate.add(productFromDb);
+            productService.updateProducts(productsToUpdate);
             productFromCart.setQuantityInCart(newAmount);
         }
         return ModifyCartItemsResults.MODIFIED;
@@ -129,16 +131,15 @@ public class UserCartImpl implements UserCart {
     public void returnGoodsToStore() {
         List<Product> productsFromDataBase = productService.getAllProductsAsList();
         cartProduct.forEach(product -> {
-            Optional<Product> productFromDB = productsFromDataBase.stream().filter(productFromDBInFilter -> productFromDBInFilter.getId() == product.getId()).findFirst();
-            if (!productFromDB.isPresent()) {
+            Optional<Product> productFromDBOptional = productsFromDataBase.stream().filter(productFromDBInFilter -> productFromDBInFilter.getId() == product.getId()).findFirst();
+            if (!productFromDBOptional.isPresent()) {
                 log.warning("MYYYYYYYYY LOG: database error");
                 return;
             }
-            Map<String, Object> columnsToUpdate = new HashMap<>();
-            columnsToUpdate.put("available", productFromDB.get().getAvailable() + product.getQuantityInCart());
-            Map<String, Object> conditions = new HashMap<>();
-            conditions.put("id", product.getId());
-            productService.updateProducts(columnsToUpdate, conditions);
+            Product realProductFromDb = productFromDBOptional.get();
+            realProductFromDb.setAvailable(realProductFromDb.getAvailable() + product.getQuantityInCart());
+            cartProduct.remove(product);
         });
+        productService.updateProducts(productsFromDataBase);
     }
 }

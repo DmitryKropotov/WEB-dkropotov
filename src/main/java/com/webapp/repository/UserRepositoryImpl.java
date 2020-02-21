@@ -3,13 +3,11 @@ package com.webapp.repository;
 import com.webapp.model.User;
 import lombok.extern.java.Log;
 import org.hibernate.*;
-import org.hibernate.query.NativeQuery;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import javax.persistence.PersistenceException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -37,41 +35,18 @@ public class UserRepositoryImpl implements CrudRepository<User, String> {
 
     @Override
     public <S extends User> S save(S user) {
-        Transaction txn = session.beginTransaction();
-        NativeQuery query = session.createSQLQuery("INSERT INTO User (email, password) VALUES (:email, :password);");
-        query.setParameter("email", user.getEmail());
-        query.setParameter("password", user.getPassword());
-        int amountOfUpdatedUsers = 0;
-        try {
-            amountOfUpdatedUsers = query.executeUpdate();
-        } catch (PersistenceException e) {
-            log.warning("" + e);
-        }
-        log.info("amount of updatedUsers are " + amountOfUpdatedUsers);
-        txn.commit();
-        return amountOfUpdatedUsers == 0 ? user: null;
+        session.save(user);
+        return user;
     }
 
     @Override
     public <S extends User> Iterable<S> saveAll(Iterable<S> users) {
-        NativeQuery query = session.createSQLQuery("INSERT INTO User (email, password) VALUES (:email, :password);");
-        List<S> updatedUsers = new ArrayList<S>();
+        List<S> savedUsers = new ArrayList<S>();
         users.forEach(user -> {
-            Transaction txn = session.beginTransaction();
-            query.setParameter("email", user.getEmail());
-            query.setParameter("password", user.getPassword());
-            int amountOfUpdatedUsers = 0;
-            try {
-                amountOfUpdatedUsers = query.executeUpdate();
-            } catch (PersistenceException e) {
-                log.warning("" + e + " updatedUsers are " + amountOfUpdatedUsers);
-            }
-            if (amountOfUpdatedUsers != 0) {
-                updatedUsers.add(user);
-            }
-            txn.commit();
+            session.save(user);
+            savedUsers.add(user);
         });
-        return updatedUsers;
+        return savedUsers;
     }
 
     @Override

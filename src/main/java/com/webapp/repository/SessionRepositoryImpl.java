@@ -14,6 +14,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.PersistenceException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -41,40 +42,18 @@ public class SessionRepositoryImpl implements CrudRepository<Session, Integer> {
 
     @Override
     public <S extends Session> S save(S userSession) {
-        Transaction txn = session.beginTransaction();
-        NativeQuery query = session.createSQLQuery("INSERT INTO Session (userId) VALUES (:userId);");
-        query.setParameter("userId", userSession.getUserEmail());
-        int amountOfSavedSessions = 0;
-        try {
-            amountOfSavedSessions = query.executeUpdate();
-        } catch (PersistenceException e) {
-            log.warning("" + e);
-        }
-        log.info("MYYYYYY LOG: amount of saved Sessions are " + amountOfSavedSessions);
-        txn.commit();
-        return amountOfSavedSessions == 0 ? userSession: null;
+        session.save(userSession);
+        return userSession;
     }
 
     @Override
     public <S extends Session> Iterable<S> saveAll(Iterable<S> userSessions) {
-        NativeQuery query = session.createSQLQuery("INSERT INTO Product (id, userId) VALUES (:id, :userId);");
-        List<S> updatedproducts = new ArrayList<S>();
+        List<S> savedSessions = new ArrayList<S>();
         userSessions.forEach(userSession -> {
-            Transaction txn = session.beginTransaction();
-            query.setParameter("id", userSession.getId());
-            query.setParameter("userId", userSession.getUserEmail());
-            int amountOfUpdatedUserSessions = 0;
-            try {
-                amountOfUpdatedUserSessions = query.executeUpdate();
-            } catch (PersistenceException e) {
-                log.warning("" + e + " updatedSessions are " + amountOfUpdatedUserSessions);
-            }
-            if (amountOfUpdatedUserSessions != 0) {
-                updatedproducts.add(userSession);
-            }
-            txn.commit();
+            session.save(userSession);
+            savedSessions.add(userSession);
         });
-        return updatedproducts;
+        return savedSessions;
     }
 
     @Override

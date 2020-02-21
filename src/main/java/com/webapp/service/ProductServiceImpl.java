@@ -63,8 +63,8 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public int updateProducts(Map<String, Object> columns, Map<String, Object> conditions) {
-        return productRepository.updateProducts(columns, conditions);
+    public void updateProducts(List<Product> products) {
+        productRepository.updateProducts(products);
     }
 
 }

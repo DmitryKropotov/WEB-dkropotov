@@ -15,6 +15,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 public class Session {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     int id;
     @Column(name = "userId")

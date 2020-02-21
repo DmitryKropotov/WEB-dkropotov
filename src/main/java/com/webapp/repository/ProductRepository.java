@@ -10,5 +10,5 @@ public interface ProductRepository extends CrudRepository<Product, Integer> {
 
     List<Product> findProducts(Map<String, Object> columns);
 
-    int updateProducts(Map<String, Object> columns, Map<String, Object> conditions);
+    void updateProducts(List<Product> productsToUpdate);
 }

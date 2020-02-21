@@ -3,12 +3,9 @@ package com.webapp.repository;
 import com.webapp.model.Product;
 import lombok.extern.java.Log;
 import org.hibernate.*;
-import org.hibernate.query.NativeQuery;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
-import javax.persistence.PersistenceException;
 import java.util.*;
 
 @Repository("ProductRepositoryImpl")
@@ -34,45 +31,18 @@ public class ProductRepositoryImpl implements ProductRepository {
 
     @Override
     public <S extends Product> S save(S product) {
-        Transaction txn = session.beginTransaction();
-        NativeQuery query = session.createSQLQuery("INSERT INTO Product (id, title, available, price) VALUES (:id, :title, :available, :price);");
-        query.setParameter("id", product.getId());
-        query.setParameter("title", product.getTitle());
-        query.setParameter("available", product.getAvailable());
-        query.setParameter("price", product.getPrice());
-        int amountOfUpdatedProducts = 0;
-        try {
-            amountOfUpdatedProducts = query.executeUpdate();
-        } catch (PersistenceException e) {
-            log.warning("MYYYYY LOG: " + e);
-        }
-        log.info("MYYYYY LOG: amount of updatedProducts are " + amountOfUpdatedProducts);
-        txn.commit();
-        return amountOfUpdatedProducts == 0 ? product: null;
+        session.save(product);
+        return  product;
     }
 
     @Override
     public <S extends Product> Iterable<S> saveAll(Iterable<S> products) {
-        NativeQuery query = session.createSQLQuery("INSERT INTO Product (id, title, available, price) VALUES (:id, :title, :available, :price);");
-        List<S> updatedproducts = new ArrayList<S>();
+        List<S> savedProducts = new ArrayList<S>();
         products.forEach(product -> {
-            Transaction txn = session.beginTransaction();
-            query.setParameter("id", product.getId());
-            query.setParameter("title", product.getTitle());
-            query.setParameter("available", product.getAvailable());
-            query.setParameter("price", product.getPrice());
-            int amountOfUpdatedProducts = 0;
-            try {
-                amountOfUpdatedProducts = query.executeUpdate();
-            } catch (PersistenceException e) {
-                log.warning("MYYYYY LOG: " + e + " updatedProducts are " + amountOfUpdatedProducts);
-            }
-            if (amountOfUpdatedProducts != 0) {
-                updatedproducts.add(product);
-            }
-            txn.commit();
+            session.save(product);
+            savedProducts.add(product);
         });
-        return updatedproducts;
+        return savedProducts;
     }
 
     @Override
@@ -144,12 +114,17 @@ public class ProductRepositoryImpl implements ProductRepository {
     @Override
     @SuppressWarnings("unchecked")
     public List<Product> findProducts(Map<String, Object> columns) {
+        log.info("MYYYYY LOG: findProducts method in class ProductRepositoryImpl");
         if (columns.size() == 0) {
             return findAll();
         }
-        String sql = "select * from Products";
+        String sql = "from Product";
         sql += " where ";
-        String[] conditionsFields = (String[]) columns.keySet().toArray();
+        Object[] conditionsFieldsAsObjects = columns.keySet().toArray();
+        String[] conditionsFields = new String[columns.size()];
+        for (int i = 0; i < conditionsFieldsAsObjects.length; i++) {
+            conditionsFields[i] = (String) conditionsFieldsAsObjects[i];
+        }
         for (int i = 0; i < conditionsFields.length; i++) {
             String field = conditionsFields[i];
             sql += field + "=" + columns.get(field);
@@ -157,63 +132,17 @@ public class ProductRepositoryImpl implements ProductRepository {
                 sql += " and ";
             }
         }
-        sql += ";";
         Query query = session.createQuery(sql, Product.class);
         return query.getResultList();
     }
 
     @Override
-    public int updateProducts(Map<String, Object> columns, Map<String, Object> conditions) {
-        if (columns.isEmpty()) {
-            return 0;
-        }
-
-        String sql = "UPDATE Product (";
-        String[] updateFields = (String[])columns.keySet().toArray();
-        for (int i = 0; i < updateFields.length; i++) {
-            sql += updateFields[i];
-            if (i < updateFields.length - 1) {
-                sql += ", ";
-            }
-        }
-        sql += ") VALUES (";
-        for (int i = 0; i < updateFields.length; i++) {
-            Object value = columns.get(updateFields[i]);
-            sql += ":" + value;
-            if (i < updateFields.length - 1) {
-                sql += ", ";
-            }
-        }
-        sql += ")";
-
-        if (!conditions.isEmpty()) {
-            sql += " where (";
-            String[] fieldsForSearching = (String[])conditions.keySet().toArray();
-            for (int i = 0; i < fieldsForSearching.length; i++) {
-                sql += ", " + fieldsForSearching[i];
-                if (i < fieldsForSearching.length - 1) {
-                    sql += ", ";
-                }
-            }
-            sql += ") VALUES (";
-            for (int i = 0; i < fieldsForSearching.length; i++) {
-                Object value = conditions.get(fieldsForSearching[i]);
-                sql += ":" + value;
-                if (i < updateFields.length - 1) {
-                    sql += ", ";
-                }
-            }
-        }
-
-        sql += ");";
-
-        int amountOfModifiedRows = 0;
-        NativeQuery query = session.createSQLQuery(sql);
-        try {
-            amountOfModifiedRows = query.executeUpdate();
-        } catch (PersistenceException e) {
-            log.warning("MYYYYY LOG: " + e + " updatedProducts are " + amountOfModifiedRows);
-        }
-        return amountOfModifiedRows;
+    public void updateProducts(List<Product> productsToUpdate) {
+        log.info("MYYYYY LOG: productsToUpdate in ProductRepositoryImpl");
+        productsToUpdate.forEach(product -> {
+            log.info("MYYYYY LOG: " + product + " is going to be updated");
+            session.update(product);
+            log.info("MYYYYY LOG: " + product + " has been updated");
+        });
     }
 }

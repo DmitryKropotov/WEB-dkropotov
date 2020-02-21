@@ -109,7 +109,7 @@ public class JspToJSONAdapter implements UserFunctionalController {
 
     @Override
     @RequestMapping(value = "/removeItem", method = RequestMethod.GET)
-    public boolean removeItemFromCartById(int id) {
+    public boolean removeItemFromCartById(int id) {//I don't like the results, it wasn't removed
         log.info("MYYYYYYYYY LOG: removeItem in JspToJSONAdapter");
         return sessionModeOnController.removeItemFromCartById(id);
     }
@@ -117,7 +117,7 @@ public class JspToJSONAdapter implements UserFunctionalController {
     @Override
     @SuppressWarnings("unchecked")
     @RequestMapping(value = "/modifyItem", method = RequestMethod.GET)
-    public ResponseEntity modifyCartItem(final int ID, final int NEW_QUANTITY) {
+    public ResponseEntity modifyCartItem(final int ID, final int NEW_QUANTITY) {//I don't like the results
         log.info("MYYYYYYYYY LOG: modifyCartItem in JspToJSONAdapter");
         if (NEW_QUANTITY <= 0) {
             return new ResponseEntity("Asked quantity should be positive", HttpStatus.BAD_REQUEST);

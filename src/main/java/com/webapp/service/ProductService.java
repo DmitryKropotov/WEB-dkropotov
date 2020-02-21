@@ -17,6 +17,6 @@ public interface ProductService {
 
     List<Product> findProducts(Map<String, Object> columns);
 
-    int updateProducts(Map<String, Object> columns, Map<String, Object> conditions);
+    void updateProducts(List<Product> products);
 
 }
