@@ -2,12 +2,16 @@ package com.webapp.repository;
 
 import com.webapp.model.User;
 import lombok.extern.java.Log;
-import org.hibernate.*;
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.PersistenceException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -35,16 +39,37 @@ public class UserRepositoryImpl implements CrudRepository<User, String> {
 
     @Override
     public <S extends User> S save(S user) {
-        session.save(user);
-        return user;
+        boolean saved = true;
+        log.info("MYYYYY LOG: save method in class UserRepositoryImpl. We gonna try to save user with email " + user.getEmail());
+        try {
+            Transaction txn = session.beginTransaction();
+            session.save(user);
+            txn.commit();
+            log.info("MYYYYY LOG: save method in class UserRepositoryImpl. We saved user with email " + user.getEmail());
+        } catch (PersistenceException e) {
+            log.warning("MYYYYY LOG: " + e);
+            saved = false;
+        }
+        return saved ? user: null;
     }
 
     @Override
     public <S extends User> Iterable<S> saveAll(Iterable<S> users) {
         List<S> savedUsers = new ArrayList<S>();
         users.forEach(user -> {
-            session.save(user);
-            savedUsers.add(user);
+            boolean saved = true;
+            try {
+                Transaction txn = session.beginTransaction();
+                session.save(user);
+                txn.commit();
+                log.info("MYYYYY LOG: save method in class UserRepositoryImpl. We saved user with email " + user.getEmail());
+            } catch (PersistenceException e) {
+                log.warning("MYYYYY LOG: " + e);
+                saved = false;
+            }
+            if (saved) {
+                savedUsers.add(user);
+            }
         });
         return savedUsers;
     }

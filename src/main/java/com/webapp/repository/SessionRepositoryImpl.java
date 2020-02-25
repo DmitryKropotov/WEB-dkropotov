@@ -3,18 +3,15 @@ package com.webapp.repository;
 import com.webapp.model.Product;
 import com.webapp.model.Session;
 import lombok.extern.java.Log;
-import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.query.NativeQuery;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.PersistenceException;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -42,16 +39,34 @@ public class SessionRepositoryImpl implements CrudRepository<Session, Integer> {
 
     @Override
     public <S extends Session> S save(S userSession) {
-        session.save(userSession);
-        return userSession;
+        boolean saved = true;
+        try {
+            Transaction txn = session.beginTransaction();
+            session.save(userSession);
+            txn.commit();
+        } catch (PersistenceException e) {
+            log.warning("MYYYYY LOG: " + e);
+            saved = false;
+        }
+        return saved ? userSession: null;
     }
 
     @Override
     public <S extends Session> Iterable<S> saveAll(Iterable<S> userSessions) {
         List<S> savedSessions = new ArrayList<S>();
         userSessions.forEach(userSession -> {
-            session.save(userSession);
-            savedSessions.add(userSession);
+            boolean saved = true;
+            try {
+                Transaction txn = session.beginTransaction();
+                session.save(userSession);
+                txn.commit();
+            } catch (PersistenceException e) {
+                log.warning("MYYYYY LOG: " + e);
+                saved = false;
+            }
+            if (saved) {
+                savedSessions.add(userSession);
+            }
         });
         return savedSessions;
     }
