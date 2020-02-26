@@ -50,7 +50,7 @@ public class JspToJSONAdapter implements UserFunctionalController {
         if (!grantedAuthorities.isEmpty()) {
             GrantedAuthority grantedAuthority = grantedAuthorities.stream().findFirst().get();
             if (!grantedAuthority.getAuthority().equals("ROLE_ANONYMOUS")) {
-                return new ResponseEntity(false, HttpStatus.CONFLICT);
+                return new ResponseEntity("User is already logged in", HttpStatus.CONFLICT);
             }
         }
         if (!email.matches("[a-zA-Z0-9]+@[a-zA-Z0-9]+.?[a-zA-Z0-9]+")) {
@@ -109,7 +109,7 @@ public class JspToJSONAdapter implements UserFunctionalController {
 
     @Override
     @RequestMapping(value = "/removeItem", method = RequestMethod.GET)
-    public boolean removeItemFromCartById(int id) {//I don't like the results, it wasn't removed
+    public boolean removeItemFromCartById(int id) {
         log.info("MYYYYYYYYY LOG: removeItem in JspToJSONAdapter");
         return sessionModeOnController.removeItemFromCartById(id);
     }
@@ -117,7 +117,7 @@ public class JspToJSONAdapter implements UserFunctionalController {
     @Override
     @SuppressWarnings("unchecked")
     @RequestMapping(value = "/modifyItem", method = RequestMethod.GET)
-    public ResponseEntity modifyCartItem(final int ID, final int NEW_QUANTITY) {//I don't like the result
+    public ResponseEntity modifyCartItem(final int ID, final int NEW_QUANTITY) {
         log.info("MYYYYYYYYY LOG: modifyCartItem in JspToJSONAdapter");
         if (NEW_QUANTITY <= 0) {
             return new ResponseEntity("Asked quantity should be positive", HttpStatus.BAD_REQUEST);

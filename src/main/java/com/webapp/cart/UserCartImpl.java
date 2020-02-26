@@ -73,11 +73,10 @@ public class UserCartImpl implements UserCart {
         if (productToRemove.isPresent()) {
             Map<String, Object> conditionsToSelect = new HashMap();
             conditionsToSelect.put("id", id);
-            int availableInDB = productService.findProducts(conditionsToSelect).get(0).getAvailable();
-            ProductForCart productForCart = productToRemove.get();
-            Product product = new Product(id, productForCart.getTitle(), productForCart.getQuantityInCart() + availableInDB, productForCart.getPriceForOneItem());
+            Product productFromDb = productService.findProducts(conditionsToSelect).get(0);
+            productFromDb.setAvailable(productFromDb.getAvailable() + productToRemove.get().getQuantityInCart());
             List<Product> products = new ArrayList<>();
-            products.add(product);
+            products.add(productFromDb);
             productService.updateProducts(products);
             cartProduct.remove(productToRemove.get());
             return true;
@@ -93,12 +92,12 @@ public class UserCartImpl implements UserCart {
         }
         Map<String, Object> conditionsToSelect = new HashMap();
         conditionsToSelect.put("id", id);
-        int availableInDB = productService.findProducts(conditionsToSelect).get(0).getAvailable();
+        Product productFromDb = productService.findProducts(conditionsToSelect).get(0);
+        int availableInDB = productFromDb.getAvailable();
         ProductForCart productFromCart = modifiedProductsFromCart.get(0);
         if (newAmount > availableInDB + productFromCart.getQuantityInCart()) {
             return ModifyCartItemsResults.NOT_ENOUGH_IN_DATABASE;
         } else {
-            Product productFromDb = productService.findProducts(conditionsToSelect).get(0);
             productFromDb.setAvailable(productFromDb.getAvailable() - (newAmount - productFromCart.getQuantityInCart()));
             List<Product> productsToUpdate = new ArrayList<>();
             productsToUpdate.add(productFromDb);

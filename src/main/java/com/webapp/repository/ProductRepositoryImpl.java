@@ -6,6 +6,8 @@ import org.hibernate.*;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import javax.persistence.PersistenceException;
 import java.util.*;
 
 @Repository("ProductRepositoryImpl")
@@ -31,16 +33,35 @@ public class ProductRepositoryImpl implements ProductRepository {
 
     @Override
     public <S extends Product> S save(S product) {
-        session.save(product);
-        return  product;
+        boolean saved = true;
+        try {
+            Transaction txn = session.beginTransaction();
+            session.save(product);
+            txn.commit();
+        } catch (PersistenceException e) {
+            log.warning("MYYYYY LOG: " + e);
+            saved = false;
+        }
+        return saved ? product: null;
     }
 
     @Override
     public <S extends Product> Iterable<S> saveAll(Iterable<S> products) {
+
         List<S> savedProducts = new ArrayList<S>();
         products.forEach(product -> {
-            session.save(product);
-            savedProducts.add(product);
+            boolean saved = true;
+            try {
+                Transaction txn = session.beginTransaction();
+                session.save(product);
+                txn.commit();
+            } catch (PersistenceException e) {
+                log.warning("MYYYYY LOG: " + e);
+                saved = false;
+            }
+            if (saved) {
+                savedProducts.add(product);
+            }
         });
         return savedProducts;
     }
