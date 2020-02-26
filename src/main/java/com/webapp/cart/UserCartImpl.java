@@ -137,8 +137,8 @@ public class UserCartImpl implements UserCart {
             }
             Product realProductFromDb = productFromDBOptional.get();
             realProductFromDb.setAvailable(realProductFromDb.getAvailable() + product.getQuantityInCart());
-            cartProduct.remove(product);
         });
+        clearCartProducts();
         productService.updateProducts(productsFromDataBase);
     }
 }
