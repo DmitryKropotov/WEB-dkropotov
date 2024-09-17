@@ -7,13 +7,12 @@ import com.webapp.controller.sessionModeControllers.enums.ModifyCartItemsResults
 import com.webapp.model.UserChecker;
 import com.webapp.repository.DatabaseInitializer;
 import com.webapp.repository.ProductRepository;
-import lombok.extern.java.Log;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.util.*;
 
-@Log
+//@Log
 public class Main {
 
     private static SessionModeOnController sessionModeOnController = null;
@@ -31,7 +30,7 @@ public class Main {
             if (sessionModeOnController == null) {
                 if (sessionOffCommandMenu()) {
                     sessionModeOnController = (SessionModeOnController) appContext.getBean("sessionModeOnControllerConsole");
-                    log.info("MYYYYYYYYY LOG" +  sessionModeOnController);
+                    //log.info("MYYYYYYYYY LOG" +  sessionModeOnController);
                 }
             } else {
                 if (!sessionOnControl()) {
@@ -44,7 +43,7 @@ public class Main {
     private static boolean sessionOffCommandMenu() {
         SessionModeOffControllerConsole sessionModeOffController = (SessionModeOffControllerConsole) appContext.getBean("sessionModeOffControllerConsole");
 
-        log.info("MYYYYYYYYY LOG" +  sessionModeOffController);
+        //log.info("MYYYYYYYYY LOG" +  sessionModeOffController);
 
         List<String> allowedFormats = new ArrayList();
         allowedFormats.add("register user [a-zA-Z0-9]+@[a-zA-Z0-9]+.[a-z]+ [a-zA-Z0-9]+");

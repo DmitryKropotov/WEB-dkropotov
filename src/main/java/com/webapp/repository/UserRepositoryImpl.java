@@ -1,7 +1,6 @@
 package com.webapp.repository;
 
 import com.webapp.model.User;
-import lombok.extern.java.Log;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -17,7 +16,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-@Log
+//@Log
 public class UserRepositoryImpl implements CrudRepository<User, String> {
 
     private SessionFactory sessionFactory;
@@ -26,7 +25,7 @@ public class UserRepositoryImpl implements CrudRepository<User, String> {
 
     @Autowired
     public UserRepositoryImpl(SessionFactory sessionFactory) {
-        log.info("MYYYYY LOG: constructor in UserRepositoryImpl");
+        //log.info("MYYYYY LOG: constructor in UserRepositoryImpl");
         this.sessionFactory = sessionFactory;
         Session session;
         try {
@@ -40,14 +39,14 @@ public class UserRepositoryImpl implements CrudRepository<User, String> {
     @Override
     public <S extends User> S save(S user) {
         boolean saved = true;
-        log.info("MYYYYY LOG: save method in class UserRepositoryImpl. We gonna try to save user with email " + user.getEmail());
+        //log.info("MYYYYY LOG: save method in class UserRepositoryImpl. We gonna try to save user with email " + user.getEmail());
         try {
             Transaction txn = session.beginTransaction();
             session.save(user);
             txn.commit();
-            log.info("MYYYYY LOG: save method in class UserRepositoryImpl. We saved user with email " + user.getEmail());
+            //log.info("MYYYYY LOG: save method in class UserRepositoryImpl. We saved user with email " + user.getEmail());
         } catch (PersistenceException e) {
-            log.warning("MYYYYY LOG: " + e);
+            //log.warning("MYYYYY LOG: " + e);
             saved = false;
         }
         return saved ? user: null;
@@ -62,9 +61,9 @@ public class UserRepositoryImpl implements CrudRepository<User, String> {
                 Transaction txn = session.beginTransaction();
                 session.save(user);
                 txn.commit();
-                log.info("MYYYYY LOG: save method in class UserRepositoryImpl. We saved user with email " + user.getEmail());
+                //log.info("MYYYYY LOG: save method in class UserRepositoryImpl. We saved user with email " + user.getEmail());
             } catch (PersistenceException e) {
-                log.warning("MYYYYY LOG: " + e);
+                //log.warning("MYYYYY LOG: " + e);
                 saved = false;
             }
             if (saved) {
@@ -78,10 +77,10 @@ public class UserRepositoryImpl implements CrudRepository<User, String> {
     public Optional<User> findById(String id) {
         User user = session.get(User.class, id);
         if (user == null) {
-            log.info("MYYYYY LOG: User is not present");
+            //log.info("MYYYYY LOG: User is not present");
             return Optional.empty();
         }
-        log.info("MYYYYY LOG: User is present");
+        //log.info("MYYYYY LOG: User is present");
         return Optional.of(user);
     }
 
@@ -92,7 +91,7 @@ public class UserRepositoryImpl implements CrudRepository<User, String> {
             User user = session.get(User.class, id);
             if (user != null) {
                 updatedUsers.add(user);
-                log.info("MYYYYY LOG: User is present");
+                //log.info("MYYYYY LOG: User is present");
             }
         });
         return updatedUsers;

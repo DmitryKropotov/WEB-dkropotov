@@ -2,7 +2,6 @@ package com.webapp.service;
 
 import com.webapp.model.Product;
 import com.webapp.repository.ProductRepository;
-import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
@@ -14,7 +13,7 @@ import java.util.Map;
 
 @Service
 @Scope("prototype")
-@Log
+//@Log
 public class ProductServiceImpl implements ProductService {
 
     private List<Product> cartProducts = new ArrayList<>();

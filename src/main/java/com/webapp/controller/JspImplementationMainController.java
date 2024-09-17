@@ -9,7 +9,6 @@ import com.webapp.model.UserChecker;
 import com.webapp.repository.DatabaseInitializer;
 import com.webapp.repository.ProductRepository;
 import com.webapp.service.ProductService;
-import lombok.extern.java.Log;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Controller;
@@ -28,7 +27,7 @@ import java.util.Optional;
 
 @Controller
 @SessionAttributes("userchecker")
-@Log
+//@Log
 public class JspImplementationMainController {
 
     private SessionModeOnControllerJsp sessionModeOnController = null;
@@ -44,7 +43,7 @@ public class JspImplementationMainController {
         DatabaseInitializer databaseInitializer = new DatabaseInitializer(productRepository);
         databaseInitializer.initializeDatabase();
 
-        log.info("MYYYYYYYYY LOG: goToMainPage get");
+        //log.info("MYYYYYYYYY LOG: goToMainPage get");
         UserChecker userChecker = new UserChecker();
         model.addAttribute("userchecker", userChecker);
         return "main";
@@ -54,29 +53,29 @@ public class JspImplementationMainController {
     public String goToMainPage(@Valid @ModelAttribute("userchecker") UserChecker user, BindingResult result, Model model) {
 
         //debug logs
-        log.info("MYYYYYYYYY LOG: goToMainPage post " + user.getEmail() + " " + user.getPassword() + " " + user.getProductRequest() + " " + ++goToMainPageCall);
-        log.info("MYYYYYYYYY LOG: Amount of errors is " + result.getErrorCount());
+        //log.info("MYYYYYYYYY LOG: goToMainPage post " + user.getEmail() + " " + user.getPassword() + " " + user.getProductRequest() + " " + ++goToMainPageCall);
+        //log.info("MYYYYYYYYY LOG: Amount of errors is " + result.getErrorCount());
         List<ObjectError> errors = result.getAllErrors();
-        errors.forEach(error ->  log.warning("MYYYYYYYYY LOG: " + error + " "));
+        //errors.forEach(error ->  log.warning("MYYYYYYYYY LOG: " + error + " "));
         //debug logs
 
         String pageToReturn;
         if (sessionModeOnController == null) {
             //debug logs
-            log.info("MYYYYYYYYY LOG: session mode off");
+            //log.info("MYYYYYYYYY LOG: session mode off");
             //debug logs
             pageToReturn = sessionModeOff(user, result, model);
             if (pageToReturn.equals("sessionModeOnMainPage")) {
                 sessionModeOnController =
                         (SessionModeOnControllerJsp) appContext.getBean("sessionModeOnControllerJsp");
-                log.info("MYYYYYYYYY LOG" + sessionModeOnController);
+                //log.info("MYYYYYYYYY LOG" + sessionModeOnController);
                 ProductRequest productRequest = new ProductRequest(sessionModeOnController.getAllProductsAsString());
                 model.addAttribute("productrequest", productRequest);
                 user.setProductRequest(productRequest);
             }
         } else {
             //debug logs
-            log.info("MYYYYYYYYY LOG: session mode on + user.getProductRequest()");
+            //log.info("MYYYYYYYYY LOG: session mode on + user.getProductRequest()");
             //debug logs
             pageToReturn = sessionModeOn(user.getProductRequest(), model);
             if (pageToReturn.equals("main")) {
@@ -90,7 +89,7 @@ public class JspImplementationMainController {
     private String sessionModeOff(UserChecker user, BindingResult result, Model model) {
         SessionModeOffControllerJsp sessionModeOffController =
                 (SessionModeOffControllerJsp) appContext.getBean("sessionModeOffControllerJsp");
-        log.info("MYYYYYYYYY LOG" + sessionModeOffController);
+        //log.info("MYYYYYYYYY LOG" + sessionModeOffController);
 
         user.setPasswordError("");
         user.setWrongEmailOrPassword("");
@@ -118,7 +117,7 @@ public class JspImplementationMainController {
         //operation register user, passwords match
         else if (!passwordRepeater.equals(" ")) {
             boolean registered = sessionModeOffController.registerUser(user);
-            log.info("MYYYYYYYYY LOG:" + registered);
+            //log.info("MYYYYYYYYY LOG:" + registered);
             if (registered) {
                 user.setSuccessfulRegMessage("User is registered successfully");
             } else {
@@ -140,7 +139,7 @@ public class JspImplementationMainController {
 
     private String sessionModeOn(ProductRequest product, Model model) {
         //log
-        log.info("MYYYYYYYYY LOG: session mode off");
+        //log.info("MYYYYYYYYY LOG: session mode off");
         //log
         ProductService productService = (ProductService) appContext.getBean("ProductsService");
         model.addAttribute("productrequest", product);
@@ -160,8 +159,8 @@ public class JspImplementationMainController {
 
         if (product.getTitle() != null && product.getAmount() != null) {
             //debug logs
-            log.info("MYYYYYYYYY LOG: session mode off");
-            log.info("MYYYYYYYYY LOG: 1");
+//            log.info("MYYYYYYYYY LOG: session mode off");
+//            log.info("MYYYYYYYYY LOG: 1");
             //debug logs
             String title = product.getTitle();
             Integer requestedAmount = product.getAmount();
@@ -177,7 +176,7 @@ public class JspImplementationMainController {
             return "sessionModeOnMainPage";
         } else if (product.isDisplayContent()) {
             //debug logs
-            log.info("MYYYYYYYYY LOG: 2");
+//            log.info("MYYYYYYYYY LOG: 2");
             //debug logs
             String answer = sessionModeOnController.displayCartContent();
             product.setCartContent(answer);
@@ -185,7 +184,7 @@ public class JspImplementationMainController {
             return "sessionModeOnMainPage";
         } else if (product.getItemToRemove() != null) {
             //debug logs
-            log.info("MYYYYYYYYY LOG: 3");
+//            log.info("MYYYYYYYYY LOG: 3");
             //debug logs
             String productName = product.getItemToRemove();
             if (titleIdProductsAsMap.containsKey(product.getItemToRemove())) {
@@ -199,7 +198,7 @@ public class JspImplementationMainController {
             return "sessionModeOnMainPage";
         } else if (product.getItemToModify() != null && product.getNewAmount() != null) {
             //debug logs
-            log.info("MYYYYYYYYY LOG: 4");
+//            log.info("MYYYYYYYYY LOG: 4");
             //debug logs
             String productName = product.getItemToModify();
             int productNewAmount = product.getNewAmount();
@@ -226,7 +225,7 @@ public class JspImplementationMainController {
             return "sessionModeOnMainPage";
         } else if (product.isCheckoutBooking()) {
             //debug logs
-            log.info("MYYYYYYYYY LOG: 5");
+//            log.info("MYYYYYYYYY LOG: 5");
             //debug logs
             boolean successfullyRegistered = sessionModeOnController.checkoutBooking();
             String successfulCheckout = successfullyRegistered ? "Your booking is successfully registered" : "Sorry. There is not enough products in database any more";
@@ -235,12 +234,12 @@ public class JspImplementationMainController {
             return "sessionModeOnMainPage";
         } else if (product.isLogOut()) {
             //debug logs
-            log.info("MYYYYYYYYY LOG: 6");
+//            log.info("MYYYYYYYYY LOG: 6");
             //debug logs
             return sessionModeOnController.finishSession();
         } else {
             //debug logs
-            log.info("MYYYYYYYYY LOG: 7");
+//            log.info("MYYYYYYYYY LOG: 7");
             //debug logs
             makeValuesOfLogicVarsAndContentToShowDefault(product, sessionModeOnController);
             return "sessionModeOnMainPage";

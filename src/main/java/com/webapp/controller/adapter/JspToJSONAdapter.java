@@ -7,7 +7,6 @@ import com.webapp.controller.user_functional.UserFunctionalController;
 import com.webapp.model.Product;
 import com.webapp.model.ProductForCart;
 import com.webapp.model.UserChecker;
-import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.http.HttpStatus;
@@ -27,7 +26,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@Log
+//@Log
 public class JspToJSONAdapter implements UserFunctionalController {
 
     @Autowired
@@ -43,9 +42,9 @@ public class JspToJSONAdapter implements UserFunctionalController {
     @SuppressWarnings("unchecked")
     @RequestMapping(value = "/registerUser", method = RequestMethod.GET)
     public ResponseEntity registerUser(String email, String password, String repeatingPassword) {
-        log.info("MYYYYYYYYY LOG: registerUser in JspToJSONAdapter");
+        //log.info("MYYYYYYYYY LOG: registerUser in JspToJSONAdapter");
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        log.info("MYYYYYYYYY LOG: User is authenticated " + auth.isAuthenticated() + " Authorities are " + auth.getAuthorities() + " Credentials are " + auth.getCredentials());
+        //log.info("MYYYYYYYYY LOG: User is authenticated " + auth.isAuthenticated() + " Authorities are " + auth.getAuthorities() + " Credentials are " + auth.getCredentials());
         Collection<? extends GrantedAuthority> grantedAuthorities = auth.getAuthorities();
         if (!grantedAuthorities.isEmpty()) {
             GrantedAuthority grantedAuthority = grantedAuthorities.stream().findFirst().get();
@@ -66,9 +65,9 @@ public class JspToJSONAdapter implements UserFunctionalController {
     @Override
     @RequestMapping(value = "/loginUserAndGetSession", method = RequestMethod.GET)
     public String loginUserAndGetSessionId(String email, String password) {
-        log.info("MYYYYYYYYY LOG: loginUserAndGetSessionId in JspToJSONAdapter");
+        //log.info("MYYYYYYYYY LOG: loginUserAndGetSessionId in JspToJSONAdapter");
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        log.info("MYYYYYYYYY LOG: User is authenticated " + auth.isAuthenticated() + " Authorities are " + auth.getAuthorities() + " Credentials are " + auth.getCredentials());
+        //log.info("MYYYYYYYYY LOG: User is authenticated " + auth.isAuthenticated() + " Authorities are " + auth.getAuthorities() + " Credentials are " + auth.getCredentials());
         Collection<? extends GrantedAuthority> grantedAuthorities = auth.getAuthorities();
         if (!grantedAuthorities.isEmpty()) {
             GrantedAuthority grantedAuthority = grantedAuthorities.stream().findFirst().get();
@@ -83,7 +82,7 @@ public class JspToJSONAdapter implements UserFunctionalController {
     @Override
     @RequestMapping(value = "/getAllProductsFromStore", method = RequestMethod.GET)
     public List<Product> getAllProductsFromStore() {
-        log.info("MYYYYYYYYY LOG: getAllProductsFromStore in JspToJSONAdapter");
+        //log.info("MYYYYYYYYY LOG: getAllProductsFromStore in JspToJSONAdapter");
         return (List<Product>)productRepository.findAll();
     }
 
@@ -91,7 +90,7 @@ public class JspToJSONAdapter implements UserFunctionalController {
     @SuppressWarnings("unchecked")
     @RequestMapping(value = "/addItem", method = RequestMethod.GET)
     public ResponseEntity<String> addItemToCartProducts(final int ASKED_ITEM_ID, final int ASKED_QUANTITY) {
-        log.info("MYYYYYYYYY LOG: addItemToCartProducts in JspToJSONAdapter");
+        //log.info("MYYYYYYYYY LOG: addItemToCartProducts in JspToJSONAdapter");
         if (ASKED_QUANTITY <= 0 ) {
             return new ResponseEntity("Asked quantity should be positive", HttpStatus.BAD_REQUEST);
         }
@@ -102,7 +101,7 @@ public class JspToJSONAdapter implements UserFunctionalController {
     @Override
     @RequestMapping(value = "/displayCartContent", method = RequestMethod.GET)
     public DisplayCartContentObject displayCartContent() {
-        log.info("MYYYYYYYYY LOG: displayCartContent in JspToJSONAdapter");
+        //log.info("MYYYYYYYYY LOG: displayCartContent in JspToJSONAdapter");
         List<ProductForCart> productForCartList = sessionModeOnController.getProductsInCart();
         return new DisplayCartContentObject(productForCartList);
     }
@@ -110,7 +109,7 @@ public class JspToJSONAdapter implements UserFunctionalController {
     @Override
     @RequestMapping(value = "/removeItem", method = RequestMethod.GET)
     public boolean removeItemFromCartById(int id) {
-        log.info("MYYYYYYYYY LOG: removeItem in JspToJSONAdapter");
+        //log.info("MYYYYYYYYY LOG: removeItem in JspToJSONAdapter");
         return sessionModeOnController.removeItemFromCartById(id);
     }
 
@@ -118,7 +117,7 @@ public class JspToJSONAdapter implements UserFunctionalController {
     @SuppressWarnings("unchecked")
     @RequestMapping(value = "/modifyItem", method = RequestMethod.GET)
     public ResponseEntity modifyCartItem(final int ID, final int NEW_QUANTITY) {
-        log.info("MYYYYYYYYY LOG: modifyCartItem in JspToJSONAdapter");
+        //log.info("MYYYYYYYYY LOG: modifyCartItem in JspToJSONAdapter");
         if (NEW_QUANTITY <= 0) {
             return new ResponseEntity("Asked quantity should be positive", HttpStatus.BAD_REQUEST);
         }
@@ -137,14 +136,14 @@ public class JspToJSONAdapter implements UserFunctionalController {
     @Override
     @RequestMapping(value = "/checkoutBooking", method = RequestMethod.GET)
     public boolean checkoutBooking() {
-        log.info("MYYYYYYYYY LOG: checkoutBooking in JspToJSONAdapter");
+        //log.info("MYYYYYYYYY LOG: checkoutBooking in JspToJSONAdapter");
         return sessionModeOnController.checkoutBooking();
     }
 
     @Override
     @RequestMapping(value = "/finishSession", method = RequestMethod.GET)
     public boolean finishSession(HttpServletRequest request, HttpServletResponse response) {
-        log.info("MYYYYYYYYY LOG: finishSession in JspToJSONAdapter");
+        //log.info("MYYYYYYYYY LOG: finishSession in JspToJSONAdapter");
         String legacyResult = sessionModeOnController.finishSession();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (legacyResult.equals("main") && auth != null) {

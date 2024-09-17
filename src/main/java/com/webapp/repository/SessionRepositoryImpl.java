@@ -2,7 +2,6 @@ package com.webapp.repository;
 
 import com.webapp.model.Product;
 import com.webapp.model.Session;
-import lombok.extern.java.Log;
 import org.hibernate.HibernateException;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -17,7 +16,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-@Log
+//@Log
 public class SessionRepositoryImpl implements CrudRepository<Session, Integer> {
 
     private SessionFactory sessionFactory;
@@ -26,7 +25,7 @@ public class SessionRepositoryImpl implements CrudRepository<Session, Integer> {
 
     @Autowired
     public SessionRepositoryImpl(SessionFactory sessionFactory) {
-        log.info("MYYYYY LOG: constructor in SessionRepositoryImpl");
+        //log.info("MYYYYY LOG: constructor in SessionRepositoryImpl");
         this.sessionFactory = sessionFactory;
         org.hibernate.Session session;
         try {
@@ -45,7 +44,7 @@ public class SessionRepositoryImpl implements CrudRepository<Session, Integer> {
             session.save(userSession);
             txn.commit();
         } catch (PersistenceException e) {
-            log.warning("MYYYYY LOG: " + e);
+            //log.warning("MYYYYY LOG: " + e);
             saved = false;
         }
         return saved ? userSession: null;
@@ -61,7 +60,7 @@ public class SessionRepositoryImpl implements CrudRepository<Session, Integer> {
                 session.save(userSession);
                 txn.commit();
             } catch (PersistenceException e) {
-                log.warning("MYYYYY LOG: " + e);
+                //log.warning("MYYYYY LOG: " + e);
                 saved = false;
             }
             if (saved) {
@@ -75,10 +74,10 @@ public class SessionRepositoryImpl implements CrudRepository<Session, Integer> {
     public Optional<Session> findById(Integer id) {
         Session userSession = session.get(Session.class, id);
         if (userSession == null) {
-            log.info("MYYYYY LOG: Product is not present");
+            //log.info("MYYYYY LOG: Product is not present");
             return Optional.empty();
         }
-        log.info("Product is present");
+        //log.info("Product is present");
         return Optional.of(userSession);
     }
 
@@ -89,7 +88,7 @@ public class SessionRepositoryImpl implements CrudRepository<Session, Integer> {
             Session userSession = session.get(Session.class, id);
             if (userSession != null) {
                 updatedProducts.add(userSession);
-                log.info("MYYYYY LOG: Session is present");
+                //log.info("MYYYYY LOG: Session is present");
             }
         });
         return updatedProducts;

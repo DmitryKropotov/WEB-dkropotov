@@ -1,7 +1,6 @@
 package com.webapp.repository;
 
 import com.webapp.model.Product;
-import lombok.extern.java.Log;
 import org.hibernate.*;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +10,7 @@ import javax.persistence.PersistenceException;
 import java.util.*;
 
 @Repository("ProductRepositoryImpl")
-@Log
+//@Log
 public class ProductRepositoryImpl implements ProductRepository {
 
     private SessionFactory sessionFactory;
@@ -20,7 +19,7 @@ public class ProductRepositoryImpl implements ProductRepository {
 
     @Autowired
     public ProductRepositoryImpl(SessionFactory sessionFactory) {
-        log.info("MYYYYY LOG: constructor in ProductRepositoryImpl");
+        //log.info("MYYYYY LOG: constructor in ProductRepositoryImpl");
         this.sessionFactory = sessionFactory;
         Session session;
         try {
@@ -39,7 +38,7 @@ public class ProductRepositoryImpl implements ProductRepository {
             session.save(product);
             txn.commit();
         } catch (PersistenceException e) {
-            log.warning("MYYYYY LOG: " + e);
+            //log.warning("MYYYYY LOG: " + e);
             saved = false;
         }
         return saved ? product: null;
@@ -56,7 +55,7 @@ public class ProductRepositoryImpl implements ProductRepository {
                 session.save(product);
                 txn.commit();
             } catch (PersistenceException e) {
-                log.warning("MYYYYY LOG: " + e);
+                //log.warning("MYYYYY LOG: " + e);
                 saved = false;
             }
             if (saved) {
@@ -70,10 +69,10 @@ public class ProductRepositoryImpl implements ProductRepository {
     public Optional<Product> findById(Integer id) {
         Product product = session.get(Product.class, id);
         if (product == null) {
-            log.info("MYYYYY LOG: Product is not present");
+            //log.info("MYYYYY LOG: Product is not present");
             return Optional.empty();
         }
-        log.info("MYYYYY LOG: Product is present");
+        //log.info("MYYYYY LOG: Product is present");
         return Optional.of(product);
     }
 
@@ -84,7 +83,7 @@ public class ProductRepositoryImpl implements ProductRepository {
             Product product = session.get(Product.class, id);
             if (product != null) {
                 updatedProducts.add(product);
-                log.info("MYYYYY LOG: Product is present");
+                //log.info("MYYYYY LOG: Product is present");
             }
         });
         return updatedProducts;
@@ -135,7 +134,7 @@ public class ProductRepositoryImpl implements ProductRepository {
     @Override
     @SuppressWarnings("unchecked")
     public List<Product> findProducts(Map<String, Object> columns) {
-        log.info("MYYYYY LOG: findProducts method in class ProductRepositoryImpl");
+        //log.info("MYYYYY LOG: findProducts method in class ProductRepositoryImpl");
         if (columns.size() == 0) {
             return findAll();
         }
@@ -159,11 +158,11 @@ public class ProductRepositoryImpl implements ProductRepository {
 
     @Override
     public void updateProducts(List<Product> productsToUpdate) {
-        log.info("MYYYYY LOG: productsToUpdate in ProductRepositoryImpl");
+        //log.info("MYYYYY LOG: productsToUpdate in ProductRepositoryImpl");
         productsToUpdate.forEach(product -> {
-            log.info("MYYYYY LOG: " + product + " is going to be updated");
+            //log.info("MYYYYY LOG: " + product + " is going to be updated");
             session.update(product);
-            log.info("MYYYYY LOG: " + product + " has been updated");
+            //log.info("MYYYYY LOG: " + product + " has been updated");
         });
     }
 }

@@ -4,7 +4,6 @@ import com.webapp.controller.sessionModeControllers.enums.ModifyCartItemsResults
 import com.webapp.model.Product;
 import com.webapp.model.ProductForCart;
 import com.webapp.service.ProductService;
-import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -12,7 +11,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 @Component
-@Log
+//@Log
 public class UserCartImpl implements UserCart {
 
     @Autowired
@@ -132,7 +131,7 @@ public class UserCartImpl implements UserCart {
         cartProduct.forEach(product -> {
             Optional<Product> productFromDBOptional = productsFromDataBase.stream().filter(productFromDBInFilter -> productFromDBInFilter.getId() == product.getId()).findFirst();
             if (!productFromDBOptional.isPresent()) {
-                log.warning("MYYYYYYYYY LOG: database error");
+                //log.warning("MYYYYYYYYY LOG: database error");
                 return;
             }
             Product realProductFromDb = productFromDBOptional.get();
